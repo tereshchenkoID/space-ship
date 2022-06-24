@@ -15,6 +15,7 @@
       align-items: center;
       grid-gap: 60px;
       color: #747474;
+      overflow: hidden;
 
       @include media-breakpoint-up(lg) {
         grid-template-columns: repeat(2, 1fr);
@@ -54,7 +55,7 @@
         }
 
         &::before {
-          display: block;
+          display: none;
           position: absolute;
           top: 16px;
           bottom: 16px;
@@ -65,6 +66,10 @@
           background-size: contain;
           z-index: 0;
           content: '';
+
+          @include media-breakpoint-up(lg) {
+            display: block;
+          }
         }
 
         .img {

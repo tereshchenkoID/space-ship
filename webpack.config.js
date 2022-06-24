@@ -17,7 +17,6 @@ function createConfig(env) {
     mode: isProduction?'production':'development',
     context: path.join(__dirname, config.src.js),
     entry: {
-      // vendor: ['jquery'],
       app: './app.js',
     },
     output: {
@@ -29,11 +28,6 @@ function createConfig(env) {
       '#source-map' :
       '#cheap-module-eval-source-map',
     plugins: [
-      // new webpack.optimize.CommonsChunkPlugin({
-      //     name: 'vendor',
-      //     filename: '[name].js',
-      //     minChunks: Infinity
-      // }),
       new webpack.LoaderOptionsPlugin({
         options: {
           eslint: {

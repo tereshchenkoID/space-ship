@@ -15,12 +15,13 @@
   }
 
   &__meta {
-    @include make-spacer('my', 4);
-    @include flex($align-items: center);
+    @include make-spacer('my', 2);
+    @include flex($align-items: center, $wrap: wrap);
   }
 
   &__author,
   &__date {
+    @include make-spacer('my', 1);
 
     &:hover {
       color: var(--color-accent);
@@ -64,11 +65,16 @@
   &__description {
     @include make-spacer('mb', 4);
 
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     color: #545454;
   }
 
   &__image {
-    @include make-spacer('mr', 3);
+    @include make-spacer('mb', 1);
+    @include make-spacer('mr', 2);
     @include size(42px);
 
     border-radius: 50%;

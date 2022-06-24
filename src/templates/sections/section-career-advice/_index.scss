@@ -2,11 +2,21 @@
 
   &--career-advice {
 
+    .slick-slider {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+
+    .slick-slide {
+      padding: 0;
+    }
+
     .card {
       background-color: var(--color-white);
       border-radius: var(--default-border-radius);
-      box-shadow: var(--default-box-shadow);
+      box-shadow: 0 0 19px 0 rgba(224, 223, 242, 0);
       overflow: hidden;
+      margin: 0 10px;
 
       &__img {
         @include size(100%, 212px);

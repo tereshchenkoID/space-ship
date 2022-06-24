@@ -1,0 +1,42 @@
+mixin popup
+  .popup&attributes(attributes)
+    .popup__wrapper.js-popup-wrapper
+      .popup__header
+        a(data-link="sign-in").popup__link.popup__link--active.js-popup-link
+          i.fa.fa-arrow-circle-right
+          | Sign In
+        a(data-link="create-account").popup__link.js-popup-link
+          i.fa.fa-user
+          | New Account
+
+      .popup__body(data-body="sign-in").popup__body--active.js-popup-body
+        .popup__item
+          input(type="text" placeholder="Username*").popup__field
+        .popup__grid
+          .popup__item
+            input(type="text" placeholder="First Name*").popup__field
+          .popup__item
+            input(type="text" placeholder="Last Name").popup__field
+        .popup__item
+          input(type="email" placeholder="Email*").popup__field
+        .popup__item
+          label(for="terms").popup__label
+            input(type="checkbox")#terms
+            span
+            p
+              | I agree with the
+              a(href="#") Terms.
+              | Edit this in Settings => Ajax Login Modal => Expressions tab => Registration section
+        +button('Create Account')(type="button").button--primary.popup__button
+
+      .popup__body(data-body="create-account").js-popup-body
+        .popup__item
+          input(type="text" placeholder="Email or Username").popup__field
+        .popup__item
+          input(type="password" placeholder="Password").popup__field
+        .popup__item
+          label(for="remember").popup__label
+            input(type="checkbox")#remember
+            span
+            p Remember me
+        +button('Login')(type="button").button--primary.popup__button

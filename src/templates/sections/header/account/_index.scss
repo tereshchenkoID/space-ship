@@ -37,7 +37,7 @@
 
   &__button {
     @include make-spacer('ml', auto);
-    @include make-spacer('ml', 2, lg);
+    @include make-spacer('ml', 3, lg);
   }
 
   &--active {

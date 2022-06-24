@@ -1,0 +1,145 @@
+.popup {
+  @include make-spacer('px', 1);
+
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(52, 54, 66, 0.9);
+  z-index: 12;
+  overflow-y: auto;
+
+  &__wrapper {
+    @include make-spacer('my', 10);
+    @include make-spacer('mx', auto);
+
+    background-color: #f3f2fc;
+    border-radius: var(--default-border-radius);
+    width: 100%;
+    max-width: 540px;
+    overflow: hidden;
+  }
+
+  &__header {
+    @include flex($align-items: center);
+    @include font-size(14px);
+
+    height: 50px;
+
+    @include media-breakpoint-up(sm) {
+      @include font-size(18px);
+
+      height: 70px;
+    }
+  }
+
+  &__body {
+    @include make-spacer('p', 4);
+    @include make-spacer('p', 8, sm);
+
+    display: none;
+
+    &--active {
+      display: block;
+    }
+  }
+
+  &__grid {
+
+    @include media-breakpoint-up(sm) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 20px;
+    }
+  }
+
+  &__item {
+    @include make-spacer('mb', 4);
+  }
+
+  &__link {
+    @include flex(center, center);
+
+    flex: 1;
+    height: 100%;
+
+    * {
+      @include make-spacer('mx', 2);
+    }
+
+    &--active {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+    }
+  }
+
+  &__field {
+    @include make-spacer('px', 2);
+    @include make-spacer('py', 3);
+
+    border: 1px solid #e1e1e1;
+    border-radius: var(--default-border-radius);
+    width: 100%;
+
+    &:focus {
+      border-color: var(--color-accent);
+    }
+  }
+
+  &__label {
+    @include flex($align-items: center);
+    @include make-spacer('pl', 6);
+
+    position: relative;
+    cursor: pointer;
+
+    input {
+      @include size(0);
+
+      position: absolute;
+      opacity: 0;
+
+      &:checked ~ span {
+
+        &::after {
+          @include size(20px);
+
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: var(--color-accent);
+          color: var(--color-white);
+          font-family: 'Font Awesome 5 Free';
+          font-weight: 700;
+          text-align: center;
+          font-size: 14px;
+          content: '\f00c';
+        }
+      }
+    }
+
+    span {
+      @include size(20px);
+
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      transition: var(--default-transition);
+      background-color: var(--color-white);
+      border: 1px solid #e1e1e1;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: -2px;
+    }
+
+    a {
+      @include make-spacer('mx', 1);
+
+      color: var(--color-accent);
+    }
+  }
+}
