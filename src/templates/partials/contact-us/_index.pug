@@ -1,0 +1,18 @@
+mixin contact-us
+  form.contact-us&attributes(attributes)
+    .contact-us__item
+      h4.contact-us__title Contact us
+    .contact-us__item.contact-us__item--error
+      input(type="text" placeholder="Name").contact-us__field
+      p.contact-us__error This is a required field.
+    .contact-us__item.contact-us__item--error
+      input(type="email" placeholder="Email").contact-us__field
+      p.contact-us__error This is a required field.
+    .contact-us__item
+      input(type="text" placeholder="Phone").contact-us__field
+      p.contact-us__error This is a required field.
+    .contact-us__item.contact-us__item--error
+      textarea(placeholder="Message").contact-us__textarea
+      p.contact-us__error This is a required field.
+    .contact-us__item
+      +button('Submit')(type="submit").button--primary.contact-us__button.contact-us__button--disabled

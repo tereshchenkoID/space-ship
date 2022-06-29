@@ -1,0 +1,255 @@
+@import "nouislider/dist/nouislider.min.css";
+
+.section {
+
+  &--job {
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 25px;
+
+      @include media-breakpoint-up(lg) {
+        grid-template-columns: 2fr 1fr;
+      }
+
+      &__column {
+
+        &:last-child {
+
+          @include media-breakpoint-up(md) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+          }
+
+          @include media-breakpoint-up(lg) {
+            grid-template-columns: 1fr;
+
+            > * {
+              @include make-spacer('mb', 6);
+
+              order: unset;
+            }
+          }
+        }
+      }
+    }
+
+    .job {
+      @include make-spacer('p', 8);
+
+      color: #5f5f5f;
+      background-color: var(--color-white);
+      border-radius: var(--default-border-radius);
+      overflow: hidden;
+
+      &__title,
+      &__wrapper {
+        @include make-spacer('mb', 4);
+      }
+
+      &__image,
+      &__header {
+        @include make-spacer('mb', 8);
+      }
+
+      &__image {
+        @include make-spacer('mx', -8);
+      }
+
+      &__header {
+        display: grid;
+        grid-template-columns: 1fr;
+        column-gap: 25px;
+        align-items: center;
+
+        @include media-breakpoint-up(lg) {
+          grid-template-columns: 98px 1fr;
+        }
+      }
+
+      &__logo {
+        @include make-spacer('p', 4);
+        @include size(98px);
+
+        display: none;
+        border-radius: var(--default-border-radius);
+        background-color: #f8f8f8;
+        overflow: hidden;
+
+        @include media-breakpoint-up(lg) {
+          display: block;
+        }
+      }
+
+      &__meta {
+        @include flex($align-items: center, $wrap: wrap);
+
+        * {
+          @include make-spacer('mr', 2);
+        }
+      }
+
+      &__link {
+        color: var(--color-accent);
+      }
+
+      &__footer {
+        @include flex($align-items: center, $wrap: wrap);
+
+        & > * {
+          @include make-spacer('my', 2);
+        }
+      }
+
+      &__button {
+        @include make-spacer('mr', 4);
+
+        min-width: 240px;
+      }
+
+      &__expires {
+        display: grid;
+        grid-template-columns: 32px 1fr;
+        grid-gap: 10px;
+
+        i {
+          @include font-size(32px);
+        }
+
+        div {
+          @include font-size(14px);
+
+          line-height: 1.2;
+        }
+      }
+    }
+
+    .map {
+      @include size(100%, 300px);
+
+      border-radius: var(--default-border-radius);
+      overflow: hidden;
+      order: 3;
+
+      iframe {
+        @include size(100%);
+      }
+    }
+
+    .overview {
+      order: 2;
+    }
+
+    .job-widget {
+      @include make-spacer('p', 6);
+
+      background-color: var(--color-white);
+      border-radius: var(--default-border-radius);
+      overflow: hidden;
+      color: #5f5f5f;
+      text-align: center;
+      order: 4;
+
+      &__button {
+        @include make-spacer('my', 4);
+
+        width: 100%;
+      }
+
+      &__options,
+      &__option {
+        @include flex(center, center);
+      }
+
+      &__options {
+        @include make-spacer('mb', 4);
+      }
+
+      &__option {
+        @include make-spacer('py', 1);
+        @include make-spacer('px', 3);
+        @include make-spacer('mr', 2);
+
+        flex: 1;
+        border: 1px solid #c5c5c5;
+        border-radius: 3px;
+        transition: var(--default-transition);
+        color: #838383;
+        height: 38px;
+
+        &:last-child {
+          @include make-spacer('mr', 0)
+        }
+
+        * {
+          @include make-spacer('mx', half);
+        }
+
+        &:hover {
+          color: var(--color-white);
+          background-color: var(--color-accent);
+          border-color: var(--color-accent);
+        }
+      }
+
+      &__date {
+        @include font-size(12px);
+      }
+    }
+
+    .job-contact {
+      background-color: var(--color-white);
+      border-radius: var(--default-border-radius);
+      overflow: hidden;
+      color: #5f5f5f;
+      order: 1;
+
+      &__header {
+        position: relative;
+      }
+
+      &__body {
+        @include make-spacer('pt', 14);
+        @include make-spacer('pb', 6);
+        @include make-spacer('px', 6);
+      }
+
+      &__logo {
+        @include flex(center, center);
+        @include make-spacer('p', 4);
+        @include size(103px);
+
+        position: absolute;
+        bottom: 0;
+        left: 30px;
+        transform: translateY(50%);
+        background-color: #f8f8f8;
+        border-radius: 3px;
+        overflow: hidden;
+      }
+
+      &__title {
+        @include make-spacer('mb', 3);
+      }
+
+      &__subtitle {
+        @include make-spacer('mb', 2);
+      }
+
+      &__item {
+        @include flex($align-items: center);
+        @include make-spacer('mb', 1);
+      }
+
+      i {
+        @include make-spacer('mr', 2);
+      }
+
+      a {
+        color: var(--color-accent);
+      }
+    }
+  }
+}

@@ -3,4 +3,5 @@ mixin section-breadcrumbs(title, links)
     .container-fluid
       .container
         +breadcrumbs(links)
-        h2= title
+        if (title)
+          h2= title

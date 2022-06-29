@@ -8,4 +8,16 @@
       @include font-size(38px);
     }
   }
+
+  &--breadcrumbs-sm {
+    @include flex($align-items: center);
+    @include make-spacer('py', 4);
+
+    background-color: #e9e8f7;
+    min-height: 90px;
+
+    .breadcrumbs {
+      @include make-spacer('mb', 0);
+    }
+  }
 }

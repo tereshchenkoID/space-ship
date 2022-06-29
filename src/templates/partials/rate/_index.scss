@@ -6,4 +6,42 @@
 
     color: var(--color-accent);
   }
+
+  &--checked {
+    flex-direction: row-reverse;
+
+    i {
+      cursor: pointer;
+
+      &::before {
+        font-weight: 400;
+      }
+    }
+
+    .rate {
+
+      &__item {
+
+        &:hover {
+
+          i {
+
+            &:before {
+              font-weight: 900;
+            }
+          }
+
+          ~ .rate__item {
+
+            i {
+
+              &:before {
+                font-weight: 900;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
