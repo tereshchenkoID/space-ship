@@ -1,0 +1,50 @@
+.info {
+  @include make-spacer('mx', 2);
+
+  position: relative;
+  cursor: pointer;
+
+  &__icon {
+    @include flex(center, center);
+    @include font-size(13px);
+    @include size(20px);
+
+    border-radius: 50%;
+    color: var(--color-white);
+    background-color: var(--color-grey-100);
+  }
+
+  &__modal {
+    @include font-size(13px, 16px);
+    @include make-spacer('py', 2);
+    @include make-spacer('px', 4);
+
+    display: none;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    background-color: var(--color-white);
+    border-radius: var(--default-border-radius);
+    box-shadow: var(--default-box-shadow);
+    min-width: 200px;
+    font-weight: var(--typography-regular);
+  }
+
+  &__link {
+    @include flex($align-items: center);
+    @include make-spacer('mt', half);
+
+    color: var(--color-accent);
+  }
+
+  &:hover {
+
+    .info {
+
+      &__modal {
+        display: block;
+      }
+    }
+  }
+}

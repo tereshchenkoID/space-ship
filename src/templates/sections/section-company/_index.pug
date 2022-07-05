@@ -64,9 +64,9 @@ mixin section-company
             .open-positions
               .open-positions__title
                 +headline('Open Positions')
-              each item in jobs
+              each item, index in jobs
                 .open-positions__item
-                  +card-job(item, true)
+                  +card-job(item, true)(class=index === 0 && "card-job--active")
 
             .reviews
               .reviews__title

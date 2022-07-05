@@ -1,0 +1,28 @@
+---
+title: Rekroot
+lang: en
+---
+extends ../../layouts/_layout
+
+block content
+  -
+    var breadcrumbs = [
+      {
+        name: 'Головна',
+        url: './index.html'
+      },
+      {
+        name: 'Особистий розділ',
+        url: './worker/my.html'
+      },
+      {
+        name: 'Збережені вакансії',
+        url: false
+      }
+    ]
+
+  +nav.nav--default.js-nav
+  main
+    +section-breadcrumbs(false, breadcrumbs).section--breadcrumbs-sm
+    +section-company-list('Збережені вакансії', 'Поки у вас немає збережених вакансій.').section--company-list
+    +section-subscribe-newsletter.section--subscribe-newsletter

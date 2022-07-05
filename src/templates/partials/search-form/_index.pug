@@ -1,4 +1,32 @@
 mixin search-form
+  -
+    var options = [
+      {
+        id: "0",
+        title: "Date"
+      },
+      {
+        id: "1",
+        title: "Featured"
+      },
+      {
+        id: "2",
+        title: "Title"
+      },
+      {
+        id: "3",
+        title: "Job ID"
+      },
+      {
+        id: "4",
+        title: "Name"
+      },
+      {
+        id: "5",
+        title: "Date"
+      }
+    ]
+
   .search-form&attributes(attributes)
     h4.search-form__title Find your perfect job
     .search-form__cell
@@ -12,7 +40,7 @@ mixin search-form
         input(type="text" placeholder="Location").search-jobs__input
 
     .search-form__cell
-      +select.search-form__select.js-select
+      +select(options).search-form__select.js-select
 
     .search-form__cell
       each item in jobTypes

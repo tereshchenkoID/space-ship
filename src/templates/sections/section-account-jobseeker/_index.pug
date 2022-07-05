@@ -1,0 +1,270 @@
+mixin section-account-jobseeker
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        .card
+          h4.card__title
+            span Світлина
+            +info
+
+          .file
+            .file__picture
+              img(src="https://cv-photos-original.rabota.ua/cdn-cgi/image/w=120,h=150/a6c79e02-ec07-4cb0-b3f7-d92c895ba195.jpg").img.img--cover
+            input(type="file" id="avatar").file__input
+            .file__actions
+              label(for="avatar").file__action Додати
+            .file__actions
+              button.file__action Оновити
+              button.file__action Видалити
+
+        .card
+          h4.card__title
+            span Особисті дані
+            +info
+
+          .card__grid
+            .card__column
+              p.card__text Дата народження:
+              .card__value
+                strong 23.04.1991
+            .card__column
+              p.card__text Місто проживання:
+              .card__value
+                strong Київ
+            .card__column
+              p.card__text Адреса:
+              .card__value
+                strong м. Ірпінь
+            .card__column
+              p.card__text Телефон:
+              .card__value
+                strong 067 000-00-00
+                +verify.verify--no
+            .card__column
+              p.card__text Ел. пошта:
+              .card__value
+                strong test@mail.com
+                +verify.verify--yes
+            .card__column
+              p.card__text Соціальні мережі:
+              .card__value.card__value--column
+                a(href="#" target="_blank").card__social
+                  i.fab.fa-facebook
+                  | Facebook
+                a(href="#" target="_blank").card__social
+                  i.fab.fa-linkedin
+                  | Facebook
+                a(href="#" target="_blank").card__social
+                  i.fab.fa-instagram
+                  | Instagram
+
+          a.card__link.js-card-link
+            i.fa.fa-pen
+            span Редагувати
+
+          .card__toggle.js-card-toggle
+            .card-change
+              .card-change__wrapper.card-change__wrapper--error
+                .card-change__label
+                  span Прізвище
+                  strong *
+                input(type="text").card-change__field
+                p.card-change__error Будь ласка, вкажіть Ваше прізвище
+              .card-change__wrapper
+                .card-change__label
+                  span Ім'я
+                  strong *
+                input(type="text").card-change__field
+                p.card-change__error Будь ласка, вкажіть Ваше ім'я
+              .card-change__wrapper
+                .card-change__label
+                  span По батькові
+                input(type="text").card-change__field
+              .card-change__wrapper.card-change__wrapper--error
+                .card-change__label
+                  span Дата народження
+                  strong *
+                .card-change__grid
+                  .card-change__column
+                    +select(date).card-change__select.js-select
+                  .card-change__column
+                    +select(month).card-change__select.js-select
+                  .card-change__column
+                    +select(year).card-change__select.js-select
+                p.card-change__error Будь ласка, виберіть дата народження
+              .card-change__wrapper
+                .card-change__label
+                  span Місто проживання
+                  strong *
+                input(type="text").card-change__field
+                p.card-change__error Будь ласка, вкажіть місто проживання
+              .card-change__wrapper
+                .card-change__label
+                  span Домашня адреса
+                input(type="text").card-change__field
+              .card-change__wrapper
+                .card-change__label
+                  span Мобільний телефон
+                  strong *
+                input(type="text").card-change__field
+                p.card-change__error Будь ласка, вкажіть мобільний телефон
+              .card-change__wrapper
+                .card-change__label
+                  span Ел. пошта
+                  strong *
+                input(type="text").card-change__field
+                p.card-change__error Будь ласка, вкажіть eл. пошта
+              .card-change__wrapper
+                .card-change__label
+                  span Соціальні мережі
+                input(type="text" placeholder="Facebook, Instagram чи Linkedin").card-change__field
+              .card-change__wrapper
+                a.card-change__link.card-change__link--default Додати посилання
+              .card-change__wrapper
+                .card-change__social
+                  span https://www.linkedin.com/in/ihor-tereshchenko/
+                  a.card-change__icon
+                    i.fa.fa-times
+                .card-change__social
+                  span https://www.linkedin.com/in/ihor-tereshchenko/
+                  a.card-change__icon
+                    i.fa.fa-times
+              .card-change__wrapper
+                .card-change__actions
+                  button.button.button--sm.button--primary.card-change__button.js-card-change-apply
+                    span.button__text Зберегти
+                  a.card-change__link.card-change__link--warning.js-card-change-cancel Скасувати
+
+        .card
+          h4.card__title
+            span Налаштування видимості особистих даних
+            +info
+          p.card__text Роботодавці бачать ваші особисті дані у розміщених резюме. Щоб приховати їх, змініть налаштування видимості.
+          a.card__link.js-card-link
+            i.fa.fa-pen
+            span Редагувати
+
+          .card__toggle.js-card-toggle
+            .card-change
+              .card-change__wrapper.card-change__wrapper--error
+                .card-change__label
+                  span Мої особисті дані в резюме
+                +radio('Показувати', 'seen').card-change__radio
+                +radio('Приховувати', 'seen').card-change__radio
+              .card-change__wrapper
+                .card-change__actions
+                  button.button.button--sm.button--primary.card-change__button.js-card-change-apply
+                    span.button__text Зберегти
+                  a.card-change__link.card-change__link--warning.js-card-change-cancel Скасувати
+
+        .card
+          h4.card__title
+            span Налаштування сповіщень
+            +info
+          a.card__link.js-card-link
+            i.fa.fa-pen
+            span Редагувати
+
+          .card__toggle.js-card-toggle
+            .card-change
+              .card-change__section
+                .card-change__wrapper
+                  .card-change__title Резюме
+                .card-change__wrapper
+                  .card-change__label
+                    span Повідомлення про відгуки на вакансію
+                  .card-change__container
+                    .checked.checked--active.checked--disabled.js-checked
+                      span.checked__title Ел. пошта
+                    a(href="#").card-change__link.card-change__link--default Вказати
+                hr.card-change__hr
+                .card-change__wrapper
+                  .card-change__label
+                    span Нагадування про необхідність оновити резюме
+                  .card-change__container
+                    .checked.checked--active.checked--disabled.js-checked
+                      span.checked__title Ел. пошта
+                    a(href="#").card-change__link.card-change__link--default Вказати
+                  .card-change__container
+                    .checked.checked--active.checked--disabled.js-checked
+                      span.checked__title Telegram
+                    a(href="#").card-change__link.card-change__link--default Підключити Telegram
+                  .card-change__container
+                    .checked.checked--active.js-checked
+                      span.checked__title Push-сповіщення
+                hr.card-change__hr
+                .card-change__wrapper
+                  .card-change__label
+                    span Щотижневий звіт про покази та перегляди ваших резюме
+                  .card-change__container
+                    .checked.checked--active.checked--disabled.js-checked
+                      span.checked__title Ел. пошта
+                    a(href="#").card-change__link.card-change__link--default Вказати
+                  .card-change__container
+                    .checked.checked--active.checked--disabled.js-checked
+                      span.checked__title Telegram
+                    a(href="#").card-change__link.card-change__link--default Підключити Telegram
+                  .card-change__container
+                    .checked.checked--active.js-checked
+                      span.checked__title Push-сповіщення
+
+              .card-change__section
+                .card-change__wrapper
+                  .card-change__title Новини та нагадування
+                .card-change__wrapper
+                  .card-change__label
+                    span Повідомлення про відгуки на вакансію
+                  .card-change__container
+                    .checked.checked--active.checked--disabled.js-checked
+                      span.checked__title Ел. пошта
+                    a(href="#").card-change__link.card-change__link--default Вказати
+                hr.card-change__hr
+                .card-change__wrapper
+                  .card-change__label
+                    span Нагадування про необхідність оновити резюме
+                  .card-change__container
+                    .checked.checked--active.checked--disabled.js-checked
+                      span.checked__title Ел. пошта
+                    a(href="#").card-change__link.card-change__link--default Вказати
+                  .card-change__container
+                    .checked.checked--active.checked--disabled.js-checked
+                      span.checked__title Telegram
+                    a(href="#").card-change__link.card-change__link--default Підключити Telegram
+                  .card-change__container
+                    .checked.checked--active.js-checked
+                      span.checked__title Push-сповіщення
+
+              .card-change__wrapper
+                .card-change__actions
+                  button.button.button--sm.button--primary.card-change__button.js-card-change-apply
+                    span.button__text Зберегти
+                  a.card-change__link.card-change__link--warning.js-card-change-cancel Скасувати
+
+        .card
+          h4.card__title
+            span Пароль
+            +info
+          p.card__text ******
+          a.card__link.js-card-link
+            i.fa.fa-pen
+            span Редагувати
+
+          .card__toggle.js-card-toggle
+            .card-change
+              .card-change__wrapper.card-change__wrapper--error
+                .card-change__label
+                  span Новий пароль
+                  strong *
+                input(type="password").card-change__field
+                p.card-change__error Будь ласка, введіть пароль не менш 4 знаків.
+              .card-change__wrapper.card-change__wrapper--error
+                .card-change__label
+                  span Новий пароль ще раз
+                  strong *
+                input(type="password").card-change__field
+                p.card-change__error Ви ввели різні паролі. Будь ласка, введіть однакові паролі.
+              .card-change__wrapper
+                .card-change__actions
+                  button.button.button--sm.button--primary.card-change__button.js-card-change-apply
+                    span.button__text Зберегти
+                  a.card-change__link.card-change__link--warning.js-card-change-cancel Скасувати

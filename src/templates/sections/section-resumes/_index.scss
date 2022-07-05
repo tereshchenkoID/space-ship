@@ -1,0 +1,29 @@
+.section {
+
+  &--resumes {
+
+    .headline {
+      @include make-spacer('mb', 4);
+    }
+
+    .actions {
+      @include flex($align-items: center, $wrap: wrap);
+
+      &__link {
+        @include make-spacer('my', 2);
+        @include make-spacer('mr', 4);
+      }
+    }
+
+    .cards {
+
+      &__item {
+        @include make-spacer('mb', 4);
+      }
+
+      &__footer {
+        @include flex(center);
+      }
+    }
+  }
+}

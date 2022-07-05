@@ -1,0 +1,42 @@
+mixin section-jobseeker
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        +card-indent
+        .grid
+          .grid__column
+            a(href="./worker/resumes.html").item
+              span.item__icon.fa.fa-file-alt
+              span.item__text Мої резюме
+          .grid__column
+            a(href="#").item
+              span.item__icon.fa.fa-newspaper
+              span.item__text Рекомендовані вакансії
+          .grid__column
+            a(href="#").item
+              span.item__icon.fa.fa-search
+              span.item__text Збережені пошуки
+          .grid__column
+            a(href="/worker/saved-jobs.html").item
+              span.item__icon.fa.fa-heart
+              span.item__text Збережені вакансії
+          .grid__column
+            a(href="#").item
+              span.item__icon.fa.fa-box
+              span.item__text Історія відгуків
+          .grid__column
+            a(href="./worker/viewers.html").item
+              span.item__icon.fa.fa-eye
+              span.item__text Історія переглядів
+          .grid__column
+            a(href="/worker/account.html").item
+              span.item__icon.fa.fa-user
+              span.item__text Особисті дані
+          .grid__column
+            a(href="./worker/hidden-jobs.html").item
+              span.item__icon.fa.fa-eye-slash
+              span.item__text Приховані вакансії
+          .grid__column
+            a(href="#").item
+              span.item__icon.fa.fa-arrow-right
+              span.item__text Вийти

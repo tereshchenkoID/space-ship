@@ -1,0 +1,17 @@
+.section {
+
+  &--company-list {
+    background-color: var(--color-white);
+
+    .cards {
+
+      &__item {
+        @include make-spacer('mb', 4);
+      }
+
+      &__footer {
+        @include flex(center);
+      }
+    }
+  }
+}

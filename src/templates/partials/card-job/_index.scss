@@ -31,6 +31,13 @@
     flex-grow: 1;
   }
 
+  &__description {
+    @include make-spacer('mt', 2);
+    @include line-clamp(3);
+
+    order: 3;
+  }
+
   &__category {
     @include font-size(12px);
 
@@ -110,6 +117,10 @@
     &::before {
       content: '\f1ad';
     }
+  }
+
+  &__button {
+    white-space: nowrap;
   }
 
   &__actions {
@@ -277,6 +288,27 @@
         top: 50px;
         text-align: left;
       }
+    }
+  }
+
+  &--active {
+    overflow: hidden;
+
+    &::before {
+      @include flex(center, flex-end);
+      @include size(66px);
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #ffae00;
+      padding-bottom: 2px;
+      z-index: 1;
+      transform: rotateZ(45deg) translateY(-45px);
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 600;
+      color: var(--color-white);
+      content: '\f005';
     }
   }
 }

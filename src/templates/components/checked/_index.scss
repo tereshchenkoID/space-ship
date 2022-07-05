@@ -15,9 +15,9 @@
     left: 0;
     border-radius: 3px;
     background-color: var(--color-white);
-    border: 1px solid #e1e1e1;
+    border: 1px solid var(--color-grey-100);
     transform: translateY(-2px);
-    color: #5049e1;
+    color: var(--color-accent);
     text-align: center;
     content: '';
   }
@@ -25,7 +25,7 @@
   &__count {
     @include make-spacer('ml', 1);
 
-    color: #a1a1a1;
+    color: var(--color-grey-200);
   }
 
   &--active {
@@ -49,5 +49,10 @@
         color: var(--color-accent);
       }
     }
+  }
+
+  &--disabled {
+    pointer-events: none;
+    opacity: 0.5;
   }
 }

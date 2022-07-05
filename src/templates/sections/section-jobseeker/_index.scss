@@ -1,0 +1,72 @@
+.section {
+
+  &--jobseeker {
+    background-color: var(--color-white);
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(100px, 1fr));
+      grid-gap: 25px;
+
+      @include media-breakpoint-up(sm) {
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+      }
+
+      @include media-breakpoint-up(md) {
+        grid-template-columns: repeat(4, minmax(100px, 1fr));
+      }
+
+      @include media-breakpoint-up(xl) {
+        grid-template-columns: repeat(9, minmax(100px, 1fr));
+        grid-gap: 15px;
+      }
+    }
+
+    .card-indent {
+      @include make-spacer('mb', 6);
+    }
+
+    .item {
+      @include flex(center, center, column);
+      @include make-spacer('mx', auto);
+
+      text-align: center;
+      color: #747474;
+
+      &__icon {
+        @include flex(center, center);
+        @include make-spacer('mb', 3);
+        @include size(100%, 100px);
+        @include font-size(32px);
+
+        border-radius: var(--default-border-radius);
+        background-color: #f3f2fc;
+        transition: var(--default-transition);
+      }
+
+      &__text {
+        @include font-size(14px);
+
+        font-weight: var(--typography-semibold);
+        color: var(--color-title);
+      }
+
+      &--active,
+      &:hover {
+        color: var(--color-accent);
+
+        .item {
+
+          &__icon {
+            background-color: var(--color-white);
+            box-shadow: var(--default-box-shadow);
+          }
+
+          &__text {
+            color: var(--color-accent);
+          }
+        }
+      }
+    }
+  }
+}

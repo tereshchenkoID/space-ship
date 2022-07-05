@@ -17,7 +17,7 @@
         top: 0;
         right: 0;
         border-radius: 3px;
-        background-color: #e80000;
+        background-color: var(--color-red);
         color: var(--color-white);
         content: '!';
       }
@@ -30,7 +30,7 @@
 
         &__field,
         &__textarea {
-          border-color: #e80000;
+          border-color: var(--color-red);
         }
       }
     }
@@ -41,7 +41,7 @@
     @include make-spacer('px', 3);
 
     width: 100%;
-    border: 1px solid #e1e1e1;
+    border: 1px solid var(--color-grey-100);
     border-radius: 3px
   }
 
@@ -85,6 +85,6 @@
     @include make-spacer('mt', 2);
 
     display: none;
-    color: #e80000;
+    color: var(--color-red);
   }
 }

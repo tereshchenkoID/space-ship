@@ -148,3 +148,14 @@ $('.js-career-slider').slick({
     }
   ]
 });
+
+
+$('.js-card-link').on('click', function() {
+  $('.js-card-toggle').hide();
+  $(this).next('.js-card-toggle').show()
+})
+
+
+$('.js-card-change-cancel').on('click', function() {
+  $(this).closest('.js-card-toggle').hide()
+})

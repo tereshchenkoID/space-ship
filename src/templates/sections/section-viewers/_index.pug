@@ -1,0 +1,30 @@
+mixin section-viewers
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        +headline(
+          'Статистика переглядів',
+          'Статистика переглядів резюме компаніями за останні 6 месяців.'
+        )
+
+        .block
+          .block__header
+            +card-cv(true)
+          .block__body
+            each item in jobs
+              .block__item
+                +card-job(item)
+          .block__footer
+            a(href="#").button.button--sm.button--primary
+              span.button__text Завантажити більше
+
+        .block
+          .block__header
+            +card-cv(false)
+          .block__body
+            each item in jobs
+              .block__item
+                +card-job(item)
+          .block__footer
+            a(href="#").button.button--sm.button--primary
+              span.button__text Завантажити більше

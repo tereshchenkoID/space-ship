@@ -2,21 +2,21 @@
 title: Rekroot
 lang: en
 ---
-extends layouts/_layout
+extends ../../layouts/_layout
 
 block content
   -
     var breadcrumbs = [
       {
-        name: 'Home',
+        name: 'Головна',
         url: './index.html'
       },
       {
-        name: 'Companies',
-        url: '#'
+        name: 'Особистий розділ',
+        url: './worker/my.html'
       },
       {
-        name: 'Rival Gaming',
+        name: 'Мої резюме',
         url: false
       }
     ]
@@ -24,5 +24,5 @@ block content
   +nav.nav--default.js-nav
   main
     +section-breadcrumbs(false, breadcrumbs).section--breadcrumbs-sm
-    +section-company.section--company
+    +section-resumes.section--resumes
     +section-subscribe-newsletter.section--subscribe-newsletter

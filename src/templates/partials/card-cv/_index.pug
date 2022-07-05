@@ -1,0 +1,61 @@
+mixin card-cv(active)
+  -
+    var options = [
+      {
+        id: "0",
+        title: "Опції",
+      },
+      {
+        id: "1",
+        title: "Активувати",
+      },
+      {
+        id: "2",
+        title: "Сховати",
+      },
+      {
+        id: "3",
+        title: "Редагувати",
+      },
+      {
+        id: "4",
+        title: "Створити копію",
+      },
+      {
+        id: "5",
+        title: "Видалити",
+      }
+    ]
+
+  .card-cv&attributes(attributes)
+    .card-cv__header
+      .card-cv__column
+        p.card-cv__update
+          if (active)
+            i.fa.fa-spinner.card-cv__icon
+            span Обновлено 16 февраля 2022
+          else
+            i.fa.fa-eye-slash.card-cv__icon
+            span Резюме неактивно
+      .card-cv__column
+        +select(options).js-select
+
+    .card-cv__body
+      .card-cv__column
+        .card-cv__image
+          img(src="https://rekroot.themes.zone/startup/wp-content/uploads/sites/19/2021/04/logo8-150x150.png").img
+      .card-cv__column
+        a(href="#").card-cv__title HTML/CSS Developer
+        .card-cv__meta
+          p.card-cv__salary
+            i.fa.fa-dollar-sign.card-cv__icon
+            span 2000 usd
+          p.card-cv__location
+            i.fa.fa-map-pin.card-cv__icon
+            span Киев
+        a(href="./worker/viewers.html").card-cv__view
+          i.fa.fa-eye.card-cv__icon
+          span 283 переглядів
+      .card-cv__column
+        a(href="#").button.button--sm.button--primary.card-cv__link
+          span.button__text Заповнити

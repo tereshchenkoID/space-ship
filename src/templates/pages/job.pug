@@ -2,7 +2,7 @@
 title: Rekroot
 lang: en
 ---
-extends layouts/_layout
+extends ../layouts/_layout
 
 block content
   -
@@ -12,13 +12,13 @@ block content
         url: './index.html'
       },
       {
-        name: 'Contact',
+        name: 'E-Commerce Web Designer',
         url: false
       }
     ]
 
   +nav.nav--default.js-nav
   main
-    +section-breadcrumbs('Contact Us', breadcrumbs).section--breadcrumbs
-    +section-get-in-touch.section--get-in-touch
+    +section-breadcrumbs(false, breadcrumbs).section--breadcrumbs-sm
+    +section-job.section--job
     +section-subscribe-newsletter.section--subscribe-newsletter

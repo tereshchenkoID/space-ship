@@ -1,16 +1,46 @@
--
-  var breadcrumbs = [
-    {
-      name: 'Home',
-      url: './index.html'
-    },
-    {
-      name: 'Jobs',
-      url: false
-    }
-  ]
-
 mixin section-jobs
+
+  -
+    var breadcrumbs = [
+      {
+        name: 'Home',
+        url: './index.html'
+      },
+      {
+        name: 'Jobs',
+        url: false
+      }
+    ]
+
+  -
+    var options = [
+      {
+        id: "0",
+        title: "Date"
+      },
+      {
+        id: "1",
+        title: "Featured"
+      },
+      {
+        id: "2",
+        title: "Title"
+      },
+      {
+        id: "3",
+        title: "Job ID"
+      },
+      {
+        id: "4",
+        title: "Name"
+      },
+      {
+        id: "5",
+        title: "Date"
+      }
+    ]
+
+
   section.section&attributes(attributes)
     .container-fluid
       .container
@@ -74,11 +104,11 @@ mixin section-jobs
               a.sort-button.js-sort-button
                 i.fa.fa-arrow-up
 
-              +select.js-select
+              +select(options).js-select
 
             .jobs.jobs--grid.js-jobs
-              each item in jobs
-                .jobs__item
-                  +card-job(item, true)
+              each item, index in jobs
+                .open-positions__item
+                  +card-job(item, true)(class=index === 0 && "card-job--active")
 
             +button('Load more listings').button--primary.load-more
