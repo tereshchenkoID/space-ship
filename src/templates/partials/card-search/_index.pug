@@ -1,14 +1,56 @@
-mixin card-search
+mixin card-search(type)
+  -
+    var options = [
+      {
+        id: "0",
+        title: "Усі категорії",
+      },
+      {
+        id: "1",
+        title: "IT, комп'ютери, інтернет",
+      },
+      {
+        id: "2",
+        title: "Адмiнiстрацiя, керівництво середньої ланки",
+      },
+      {
+        id: "3",
+        title: "Будівництво, архітектура",
+      }
+    ]
+
   .card-search&attributes(attributes)
     .card-search__body
       .card-search__column
         a(href="#").card-search__title Html. IT, комп'ютери, інтернет
-        .card-search__actions
-          a.card-search__link Реадгувати
-          a.card-search__link Видалити
+        if (type)
+          .card-search__actions
+            button.button.button--sm.button--primary.card-search__button.js-card-search-link
+              span.button__text Реадгувати
+            a.card-search__link Видалити
+        else
+          .card-search__actions
+            a.card-search__link Видалити
+
       .card-search__column
         a(href="#").card-search__count
           span 16
           span вакансій
-    .card-search__toggle
-      p 1
+    .card-search__toggle.js-card-search-toggle
+      .card-search__wrapper
+        p.card-search__label Запит:
+        input(type="text").card-search__field
+        p.card-search__error Будь ласка, вкажіть мобільний телефон
+      .card-search__wrapper.card-search__wrapper--error
+        p.card-search__label Місто:
+        input(type="text").card-search__field
+        p.card-search__error Будь ласка, вкажіть мобільний телефон
+      .card-search__wrapper
+        p.card-search__label Категорія:
+        +select(options).js-select
+        p.card-search__error Будь ласка, вкажіть мобільний телефон
+      .card-search__wrapper
+        .card-search__actions
+          button.button.button--sm.button--primary.card-search__button.js-card-search-apply
+            span.button__text Зберегти
+          a.card-search__link.card-search__link--warning.js-card-search-cancel Скасувати

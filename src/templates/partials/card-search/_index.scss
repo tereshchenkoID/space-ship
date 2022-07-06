@@ -8,6 +8,11 @@
   border-radius: var(--default-border-radius);
   color: #747474;
 
+  &__title,
+  &__count {
+    font-weight: var(--typography-semibold);
+  }
+
   &__body {
     position: relative;
     display: grid;
@@ -19,9 +24,10 @@
     }
   }
 
-  &__title,
-  &__count {
-    font-weight: var(--typography-semibold);
+  &__toggle {
+    @include make-spacer('pt', 4);
+
+    display: none;
   }
 
   &__title {
@@ -64,20 +70,16 @@
     span {
       @include make-spacer('mx', half);
 
-      &:nth-child(1) {
-
-      }
-
       &:nth-child(2) {
         display: none;
 
-        @include media-breakpoint-up(sm) {
+        @include media-breakpoint-up(md) {
           display: inline-flex;
         }
       }
     }
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
       @include size(auto);
       @include font-size(18px, 22px);
 
@@ -90,5 +92,69 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  &__field {
+    @include size(100%, 45px);
+    @include make-spacer('px', 3);
+
+    border: 1px solid var(--color-grey-100);
+    border-radius: 3px;
+    background-color: var(--color-white);
+    box-shadow: var(--default-box-shadow);
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    grid-gap: 20px;
+
+    @include media-breakpoint-up(sm) {
+      grid-template-columns: repeat(2, 150px);
+    }
+  }
+
+  &__wrapper {
+    @include make-spacer('mb', 4);
+
+    &--error {
+
+      .card-search {
+
+        &__error {
+          display: block;
+        }
+
+        &__field {
+          border-color: var(--color-red);
+        }
+      }
+
+      .select {
+
+        &__label {
+          border-color: var(--color-red);
+        }
+      }
+    }
+  }
+
+  &__label {
+    @include make-spacer('mb', 2);
+
+    strong {
+      @include make-spacer('ml', 1);
+
+      color: var(--color-red);
+    }
+  }
+
+  &__error {
+    @include make-spacer('mt', 1);
+    @include font-size(12px);
+
+    display: none;
+    color: var(--color-red);
   }
 }

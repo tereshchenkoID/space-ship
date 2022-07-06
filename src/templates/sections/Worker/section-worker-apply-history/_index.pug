@@ -12,3 +12,11 @@ mixin section-worker-apply-history
             span Спробуйтe
             a(href="#") знайти вакансії
             span і відгукнутися, щоб цей розділ не виглядав таким порожнім.
+
+        .cards
+          each item in jobs
+            .cards__item
+              +card-job(item)
+          .cards__footer
+            a(href="#").button.button--sm.button--primary
+              span.button__text Завантажити більше

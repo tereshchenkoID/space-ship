@@ -155,7 +155,25 @@ $('.js-card-link').on('click', function() {
   $(this).next('.js-card-toggle').show()
 })
 
-
 $('.js-card-change-cancel').on('click', function() {
   $(this).closest('.js-card-toggle').hide()
+})
+
+
+$('.js-card-search-link').on('click', function() {
+  $('.js-card-search-toggle').hide();
+  $(this).closest('.js-card-search').find('.js-card-search-toggle').show()
+})
+
+$('.js-card-search-cancel').on('click', function() {
+  $(this).closest('.js-card-search').find('.js-card-search-toggle').hide()
+})
+
+
+$('.js-agents-create-show').on('click', function() {
+  $('.js-agents-create-toggle').show()
+})
+
+$('.js-agents-create-cancel').on('click', function() {
+  $('.js-agents-create-toggle').hide()
 })

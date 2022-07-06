@@ -1,7 +1,6 @@
 .section {
 
-  &--worker-apply-history {
-    background-color: var(--color-white);
+  &--worker-resume-create {
 
     .content {
       @include make-spacer('mb', 6);
@@ -11,12 +10,12 @@
       @include make-spacer('mb', 4);
     }
 
-    .text {
+    .actions {
+      @include flex($align-items: center, $wrap: wrap);
 
-      a {
-        @include make-spacer('mx', 1);
-
-        color: var(--color-accent);
+      &__link {
+        @include make-spacer('my', 2);
+        @include make-spacer('mr', 4);
       }
     }
 

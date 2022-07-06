@@ -1,0 +1,27 @@
+mixin section-worker-resume-create
+
+
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        .content
+          .card-create
+            h4.create__title
+              span Бажана професія
+            .card-create__wrapper
+              .card-create__label
+                span Бажана вакансія
+                strong *
+              input(type="text").card-create__field
+            .card-create__wrapper
+              .card-create__label
+                span Тип зайнятості
+              +select(jobType).card-change__select.js-select
+            .card-create__wrapper
+              .card-create__label
+                span Заробітня плата
+              .card-create__grid
+                .card-create__column
+                  input(type="text").card-create__field
+                .card-create__column
+                  +select(moneyType).card-change__select.js-select
