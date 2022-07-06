@@ -1,6 +1,14 @@
 .headline {
   @include make-spacer('mb', 12);
 
+  &__wrapper {
+    @include flex($align-items: center);
+
+    & > * {
+      @include make-spacer('mr', 1);
+    }
+  }
+
   &__text {
     @include make-spacer('mt', 3);
   }

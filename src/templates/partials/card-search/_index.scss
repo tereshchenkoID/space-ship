@@ -1,0 +1,94 @@
+.card-search {
+  @include size(100%);
+  @include make-spacer('px', 6);
+  @include make-spacer('py', 4);
+
+  background-color: var(--color-white);
+  box-shadow: var(--default-box-shadow);
+  border-radius: var(--default-border-radius);
+  color: #747474;
+
+  &__body {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @include media-breakpoint-up(sm) {
+      grid-gap: 20px;
+      grid-template-columns: 1fr 250px;
+    }
+  }
+
+  &__title,
+  &__count {
+    font-weight: var(--typography-semibold);
+  }
+
+  &__title {
+    @include font-size(20px, 26px);
+    @include make-spacer('mb', 4);
+
+    display: block;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__actions {
+    @include flex($align-items: center);
+  }
+
+  &__link {
+    @include make-spacer('mr', 2);
+
+    color: var(--color-accent);
+
+    &:hover {
+      color: var(--color-red);
+    }
+  }
+
+  &__count {
+    @include flex(center, center);
+    @include font-size(14px, 16px);
+    @include size(30px);
+
+    position: absolute;
+    top: -30px;
+    right: -40px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+
+    span {
+      @include make-spacer('mx', half);
+
+      &:nth-child(1) {
+
+      }
+
+      &:nth-child(2) {
+        display: none;
+
+        @include media-breakpoint-up(sm) {
+          display: inline-flex;
+        }
+      }
+    }
+
+    @include media-breakpoint-up(sm) {
+      @include size(auto);
+      @include font-size(18px, 22px);
+
+      position: static;
+      background: unset;
+      color: var(--color-accent);
+      justify-content: flex-end;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

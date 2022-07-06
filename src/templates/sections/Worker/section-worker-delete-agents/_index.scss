@@ -1,0 +1,18 @@
+.section {
+
+  &--worker-delete-agents {
+    background-color: var(--color-white);
+
+    .content {
+      @include make-spacer('mb', 6);
+    }
+
+    .headline {
+      @include make-spacer('mb', 4);
+    }
+
+    .button {
+      max-width: 300px;
+    }
+  }
+}

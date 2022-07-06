@@ -1,0 +1,23 @@
+mixin section-worker-saved-job
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        .content
+          +headline(
+            'Збережені вакансії',
+            'Поки у вас немає збережених вакансій.',
+            true
+          ).headline--margin
+          p.text
+            a(href="#") Перейдіть на сторінку пошуку вакансій
+            span або на сторінку вакансії та натисніть «Зберегти», щоб переглянути вакансію пізніше та відгукнутися на неї.
+
+        .cards
+          each item in jobs
+            .cards__item
+              +card-job(item)
+              button(type="button").cards__delete
+                i.fa.fa-trash
+          .cards__footer
+            a(href="#").button.button--sm.button--primary
+              span.button__text Завантажити більше

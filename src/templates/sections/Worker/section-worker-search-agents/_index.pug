@@ -1,0 +1,28 @@
+mixin section-worker-search-agents
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        .content
+          +headline(
+            'Збережені пошуки',
+            'Щоб отримувати сповіщення про нові вакансії за вашим запитом, натисніть кнопку «Створити пошук».',
+            true
+          )
+          a(href="#").button.button--sm.button--primary
+            span.button__text Створити пошук
+
+          .cards
+            .cards__item
+              +card-search
+            .cards__item
+              +card-search
+            .cards__item
+              +card-search
+
+        .content
+          h4.title За окремими компаніями
+          p.text
+            span Щоб отримувати сповіщення про нові вакансії у вибраних компаніях, перейдіть на сторінку цієї компанії і внизу сторінки натисніть кнопку «Створити пошук».
+            a(href="#") Перейти до пошуку за компаніями
+          a(href="/worker/delete-agents.html").link
+            span.button__text Видалені пошуки

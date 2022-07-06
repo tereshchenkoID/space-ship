@@ -1,7 +1,20 @@
 .section {
 
-  &--company-list {
+  &--worker-personal-feed {
     background-color: var(--color-white);
+
+    .content {
+      @include make-spacer('mb', 6);
+    }
+
+    .text {
+
+      a {
+        @include make-spacer('mr', 1);
+
+        color: var(--color-accent);
+      }
+    }
 
     .cards {
 

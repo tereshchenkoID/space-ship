@@ -1,6 +1,10 @@
 .section {
 
-  &--resumes {
+  &--worker-resume-list {
+
+    .content {
+      @include make-spacer('mb', 6);
+    }
 
     .headline {
       @include make-spacer('mb', 4);

@@ -15,15 +15,20 @@
   }
 
   &__modal {
+    @include make-spacer('pb', 6);
+
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+  }
+
+  &__wrapper {
     @include font-size(13px, 16px);
     @include make-spacer('py', 2);
     @include make-spacer('px', 4);
 
-    display: none;
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translate(-50%, -100%);
     background-color: var(--color-white);
     border-radius: var(--default-border-radius);
     box-shadow: var(--default-box-shadow);
@@ -36,6 +41,10 @@
     @include make-spacer('mt', half);
 
     color: var(--color-accent);
+
+    i {
+      @include make-spacer('ml', half);
+    }
   }
 
   &:hover {

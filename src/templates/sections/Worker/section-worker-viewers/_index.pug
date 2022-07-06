@@ -1,10 +1,11 @@
-mixin section-viewers
+mixin section-worker-viewers
   section.section&attributes(attributes)
     .container-fluid
       .container
         +headline(
           'Статистика переглядів',
-          'Статистика переглядів резюме компаніями за останні 6 месяців.'
+          'Статистика переглядів резюме компаніями за останні 6 месяців.',
+          true
         )
 
         .block

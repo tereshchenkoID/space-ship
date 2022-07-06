@@ -1,11 +1,12 @@
-mixin section-resumes
+mixin section-worker-resume-list
   section.section&attributes(attributes)
     .container-fluid
       .container
         .content
           +headline(
             'У вас поки що немає створених резюме',
-            'Створіть резюме, щоб швидко та ефективно знайти хорошу роботу.'
+            'Створіть резюме, щоб швидко та ефективно знайти хорошу роботу.',
+            true
           )
           ul.list.list--default
             li.list__item
@@ -19,9 +20,6 @@ mixin section-resumes
               span.button__text Створити резюме
             a(href="#").button.button--sm.button--secondary.actions__link
               span.button__text Завантажити файл з резюме
-
-        br
-        br
 
         +headline(
           'Мои резюме (1/5)',

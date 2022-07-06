@@ -1,0 +1,12 @@
+mixin section-worker-delete-agents
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        .content
+          +headline(
+            'Видалені пошуки',
+            'У вас немає пошуків, які були видалені протягом останніх 40 днів.',
+            true
+          )
+          a(href="/worker/search-agents.html").button.button--sm.button--primary
+            span.button__text Назад до списку пошуків
