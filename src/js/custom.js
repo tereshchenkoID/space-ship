@@ -29,6 +29,7 @@ $('.js-checked').on('click', function() {
 })
 
 $('.js-select').on('click', function(){
+  $('.js-select').not($(this)).removeClass('select--active');
   $(this).toggleClass('select--active');
 })
 
@@ -176,4 +177,14 @@ $('.js-agents-create-show').on('click', function() {
 
 $('.js-agents-create-cancel').on('click', function() {
   $('.js-agents-create-toggle').hide()
+})
+
+
+$('.js-card-create-link').on('click', function() {
+  $('.js-card-create-toggle').hide();
+  $(this).closest('.js-card-create').find('.js-card-create-toggle').show()
+})
+
+$('.js-card-create-cancel').on('click', function() {
+  $(this).closest('.js-card-create').find('.js-card-create-toggle').hide()
 })

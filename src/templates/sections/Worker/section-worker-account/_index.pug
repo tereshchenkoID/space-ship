@@ -7,15 +7,7 @@ mixin section-worker-account
             span Світлина
             +info
 
-          .file
-            .file__picture
-              img(src="https://cv-photos-original.rabota.ua/cdn-cgi/image/w=120,h=150/a6c79e02-ec07-4cb0-b3f7-d92c895ba195.jpg").img.img--cover
-            input(type="file" id="avatar").file__input
-            .file__actions
-              label(for="avatar").file__action Додати
-            .file__actions
-              button.file__action Оновити
-              button.file__action Видалити
+          +file(false)
 
         .card
           h4.card__title

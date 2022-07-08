@@ -218,36 +218,5 @@
         height: 1px;
       }
     }
-
-    .file {
-      @include size(150px, auto);
-
-      position: relative;
-
-      &__picture {
-        @include make-spacer('mb', 2);
-        @include size(100%, 200px);
-      }
-
-      &__input {
-        position: absolute;
-        opacity: 0;
-        z-index: -1;
-      }
-
-      &__action {
-        text-align: center;
-        cursor: pointer;
-        color: var(--color-accent);
-      }
-
-      &__actions {
-        @include flex(center, center);
-      }
-
-      &__action {
-        flex: 1;
-      }
-    }
   }
 }
