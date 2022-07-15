@@ -1,0 +1,157 @@
+mixin section-employer-job-create
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        .content
+          .card-create.js-card-create
+            .card-create__container
+              h4.card-create__title
+                span Назва посади
+                +info
+              a.card-create__link.js-card-create-link
+                i.fa.fa-pen
+                span Редагувати
+              .card-create__toggle(style="display: block").js-card-create-toggle
+                .card-create__wrapper
+                  .card-create__label
+                    span Місто проживання
+                    strong *
+                  input(type="text").card-create__field
+                  p.card-create__error Будь ласка, вкажіть назву посади.
+                .card-create__wrapper
+                  .card-create__label
+                    span Категорія розміщення вакансії
+                    strong *
+                  .card-create__grid.card-create__grid--2
+                    .checked.js-checked
+                      span.checked__title IT, комп'ютери, інтернет
+                    .checked.js-checked
+                      span.checked__title Продаж, закупівля
+                    .checked.js-checked
+                      span.checked__title Адмiнiстрацiя, керівництво середньої ланки
+                    .checked.js-checked
+                      span.checked__title Робочі спеціальності, виробництво
+                    .checked.js-checked
+                      span.checked__title Будівництво, архітектура
+                    .checked.js-checked
+                      span.checked__title Роздрібна торгівля
+                    .checked.js-checked
+                      span.checked__title IT, комп'ютери, інтернет
+                    .checked.js-checked
+                      span.checked__title Продаж, закупівля
+                    .checked.js-checked
+                      span.checked__title Адмiнiстрацiя, керівництво середньої ланки
+                    .checked.js-checked
+                      span.checked__title Робочі спеціальності, виробництво
+                    .checked.js-checked
+                      span.checked__title Будівництво, архітектура
+                    .checked.js-checked
+                      span.checked__title Роздрібна торгівля
+                  p.card-create__error Будь ласка, вкажіть категорію.
+                .card-create__wrapper
+                  .card-create__actions
+                    button.button.button--sm.button--primary.card-create__button.js-card-create-apply
+                      span.button__text Зберегти
+                    a.card-create__link.card-create__link--warning.js-card-create-cancel Скасувати
+
+          .card-create.js-card-create
+            .card-create__container
+              h4.card-create__title
+                span Умови роботи
+                +info
+              a.card-create__link.js-card-create-link
+                i.fa.fa-pen
+                span Редагувати
+              .card-create__toggle.js-card-create-toggle
+                .card-create__wrapper
+                  .card-create__label
+                    span Місто та адреса
+                  +radio('Місто та адреса', 'city').card-create__radio
+                  +radio('Дистанційна робота', 'city').card-create__radio
+                  input(type="text").card-create__field
+                .card-create__wrapper
+                  .card-create__label
+                    span Вид зайнятості
+                    strong *
+                  .checked.js-checked
+                    span.checked__title повна
+                  .checked.js-checked
+                    span.checked__title неповна
+                  p.card-create__error Будь ласка, вкажіть вид зайнятості.
+                .card-create__wrapper
+                  .card-create__actions
+                    button.button.button--sm.button--primary.card-create__button.js-card-create-apply
+                      span.button__text Зберегти
+                    a.card-create__link.card-create__link--warning.js-card-create-cancel Скасувати
+
+          .card-create.js-card-create
+            .card-create__container
+              h4.card-create__title
+                span Зарплата
+                +info
+              a.card-create__link.js-card-create-link
+                i.fa.fa-pen
+                span Редагувати
+              .card-create__toggle.js-card-create-toggle
+                .card-create__wrapper.card-create__wrapper--error
+                  .card-create__label
+                    span Діапазон
+                    strong *
+                  +radio('Діапазон', 'money').card-create__radio
+                  .card-create__grid.card-create__grid--2
+                    .card-create__column
+                      .card-create__label
+                        span Від
+                      input(type="text").card-create__field
+                    .card-create__column
+                      .card-create__label
+                        span До
+                      input(type="text").card-create__field
+                  +radio('Одне значення', 'money').card-create__radio
+                  +radio('Не вказувати (не рекомендується)', 'money').card-create__radio
+                  p.card-create__error Будь ласка, вкажіть зарплату.
+                .card-create__wrapper
+                  .card-create__actions
+                    button.button.button--sm.button--primary.card-create__button.js-card-create-apply
+                      span.button__text Зберегти
+                    a.card-create__link.card-create__link--warning.js-card-create-cancel Скасувати
+
+          .card-create.js-card-create
+            .card-create__container
+              h4.card-create__title
+                span Вимоги до шукача
+                +info
+              a.card-create__link.js-card-create-link
+                i.fa.fa-pen
+                span Редагувати
+              .card-create__toggle.js-card-create-toggle
+                .card-create__wrapper.card-create__wrapper--error
+                  .card-create__label
+                    span Досвід роботи
+                    strong *
+                  +radio('готові взяти без досвіду', 'time').card-create__radio
+                  +radio('від 1 року', 'time').card-create__radio
+                  +radio('від 2 років', 'time').card-create__radio
+                  +radio('від 5 років', 'time').card-create__radio
+                .card-create__wrapper
+                  .card-create__label
+                    span Тип зайнятості
+                    strong *
+                  +select(education).card-create__select.js-select
+                  p.card-create__error Будь ласка, виберіть досвід роботи
+                .card-create__wrapper
+                  .card-create__label
+                    span Вакансія підходить для:
+                  .checked.js-checked
+                    span.checked__title Студента
+                  .checked.js-checked
+                    span.checked__title Людини з інвалідністю
+                  .checked.js-checked
+                    span.checked__title Ветерана АТО/ООС
+                  .checked.js-checked
+                    span.checked__title Пенсіонера
+                .card-create__wrapper
+                  .card-create__actions
+                    button.button.button--sm.button--primary.card-create__button.js-card-create-apply
+                      span.button__text Зберегти
+                    a.card-create__link.card-create__link--warning.js-card-create-cancel Скасувати

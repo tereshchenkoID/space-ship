@@ -34,8 +34,9 @@ $('.js-select').on('click', function(){
 })
 
 $('.js-select-item').on('click', function () {
-  $('.js-select-label').text($(this).text());
-  $('.js-select-label').attr('value', $(this).attr('value'));
+  const el = $(this)
+  $(el).closest('.js-select').find('.js-select-label').text(el.text());
+  $(el).closest('.js-select').find('.js-select-label').attr('value', el.attr('value'));
 })
 
 
@@ -179,6 +180,21 @@ $('.js-agents-create-cancel').on('click', function() {
   $('.js-agents-create-toggle').hide()
 })
 
+$('.js-company-create-show').on('click', function() {
+  $('.js-company-create-toggle').show()
+})
+
+$('.js-company-create-cancel').on('click', function() {
+  $('.js-company-create-toggle').hide()
+})
+
+$('.js-user-create-show').on('click', function() {
+  $('.js-user-create-toggle').show()
+})
+
+$('.js-user-create-cancel').on('click', function() {
+  $('.js-user-create-toggle').hide()
+})
 
 $('.js-card-create-link').on('click', function() {
   $('.js-card-create-toggle').hide();
@@ -187,4 +203,223 @@ $('.js-card-create-link').on('click', function() {
 
 $('.js-card-create-cancel').on('click', function() {
   $(this).closest('.js-card-create').find('.js-card-create-toggle').hide()
+})
+
+
+
+function initEditActionHTML() {
+  if (localStorage.getItem('o_photo')) {
+    $('#file-preview').attr('src', localStorage.getItem('o_photo'))
+    $('#file-actions').html(`
+       <button class="file__action" id="dropped-edit-link">Оновити</button>
+       <button class="file__action" id="dropped-delete-link">Видалити</button>
+    `)
+  }
+  else {
+    $('#file-actions').html(`<button class="file__action" id="dropped-add-link">Додати</button>`)
+  }
+}
+
+let cropper
+
+function initCropped() {
+  cropper = $('#dropped-modal-image').cropper(
+    {
+      aspectRatio: 1,
+      preview: "#dropped-modal-preview",
+      dragMode: "crop",
+      guides: true,
+      center: true,
+      scalable: true,
+      background: true,
+      zoomable: true,
+      zoomOnWheel: true,
+      setDragMode: "move",
+      done: function(){
+        $('#dropped-modal-image').cropper('destroy')
+      }
+    })
+
+  $('#dropped-modal-button').removeClass('dropped-modal__button--disabled')
+}
+
+$('#dropped-modal-input').on('change', function() {
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    $('#dropped-modal-uploading').hide()
+    $('#dropped-modal-edit').show()
+    $('#dropped-modal-image').attr('src', reader.result.toString())
+
+    localStorage.setItem('o_photo', reader.result.toString())
+
+    initCropped();
+  };
+
+  reader.readAsDataURL($('#dropped-modal-input')[0].files[0]);
+});
+
+$('#dropped-modal-new-input').on('change', function() {
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    $('#dropped-modal-image').attr('src', reader.result.toString())
+
+    localStorage.setItem('o_photo', reader.result.toString())
+
+    if (cropper) {
+      // cropper.destroy()
+      $('#dropped-modal-image').cropper('destroy')
+    }
+
+    $('#dropped-modal-uploading').hide()
+    $('#dropped-modal-edit').show()
+    $('#dropped-modal-image').attr('src', reader.result.toString())
+
+    initCropped();
+  };
+
+  reader.readAsDataURL($('#dropped-modal-new-input')[0].files[0]);
+});
+
+$('#dropped-modal-button').on('click', function() {
+
+  // cropper.getCroppedCanvas(
+  //   {
+  //     fillColor: '#fff',
+  //     imageSmoothingQuality: 'high',
+  //   }
+  // )
+
+  const path = $('#dropped-modal-image').cropper('getCroppedCanvas').toDataURL()
+
+  $('#dropped-modal').toggleClass('dropped-modal--active')
+  $('#dropped-modal-uploading').show()
+  $('#dropped-modal-edit').hide()
+  $('#file-preview').attr('src', path)
+
+  localStorage.setItem('o_photo', path)
+  initEditActionHTML()
+});
+
+$('#dropped-modal-close').on('click', function() {
+  $('#dropped-modal').toggleClass('dropped-modal--active')
+})
+
+
+
+$('body').on('click', '#dropped-add-link', function() {
+  $('#dropped-modal').toggleClass('dropped-modal--active')
+});
+
+$('body').on('click', '#dropped-edit-link', function() {
+  $('#dropped-modal').toggleClass('dropped-modal--active')
+
+  $('#dropped-modal-uploading').hide()
+  $('#dropped-modal-edit').show()
+
+  if (!cropper) {
+    $('#dropped-modal-image').attr('src', localStorage.getItem('o_photo'))
+
+    initCropped();
+  }
+});
+
+$('body').on('click', '#dropped-delete-link', function() {
+  localStorage.setItem('o_photo', '')
+  $('#file-preview').attr('src', './img/user.svg')
+
+  if(cropper) {
+    $('#dropped-modal-image').cropper('destroy')
+  }
+
+  initEditActionHTML()
+
+  $('#dropped-modal-button').addClass('dropped-modal__button--disabled')
+});
+
+// Editor Events
+$('.js-cropped-button').on('click', function (){
+  $('.js-cropped-button').removeClass('btn-group__button--active')
+  $(this).toggleClass('btn-group__button--active')
+})
+
+$('.js-cropped-button-move').on('click', function (){
+  const way = $(this).attr('data-style')
+
+  if (cropper) {
+
+    if(way === 'top') {
+      $('#dropped-modal-image').cropper('move', 0, -10)
+    }
+    else if(way === 'bottom') {
+      $('#dropped-modal-image').cropper('move', 0, 10)
+    }
+    else if(way === 'left') {
+      $('#dropped-modal-image').cropper('move', -10, 0)
+    }
+    else if(way === 'right') {
+      $('#dropped-modal-image').cropper('move', 10, 0)
+    }
+  }
+})
+
+$('.js-cropped-button-zoom').on('click', function (){
+  const way = $(this).attr('data-style')
+
+  if (cropper) {
+
+    if(way === 'up') {
+      $('#dropped-modal-image').cropper('zoom', 0.1)
+    }
+    else if(way === 'down') {
+      $('#dropped-modal-image').cropper('zoom', -0.1)
+    }
+  }
+})
+
+$('.js-cropped-button-rotate').on('click', function (){
+  const way = $(this).attr('data-style')
+
+  if (cropper) {
+
+    if (way === 'left') {
+      $('#dropped-modal-image').cropper('rotate', -5)
+    }
+    else if (way === 'right') {
+      $('#dropped-modal-image').cropper('rotate', 5)
+    }
+  }
+})
+
+$('.js-cropped-button-move').on('click', function (){
+  if (cropper) {
+    $('#dropped-modal-image').cropper('setDragMode', 'move')
+  }
+})
+
+$('.js-cropped-button-crop').on('click', function (){
+  if (cropper) {
+    $('#dropped-modal-image').cropper('setDragMode', 'crop')
+  }
+})
+// End Editor Events
+
+initEditActionHTML()
+
+
+$('.js-card-action-info').on('click', function (){
+  $(this).closest('.js-card-action').toggleClass('card-action--active')
+})
+
+$('.js-card-action-close').on('click', function (){
+  $(this).closest('.js-card-action').toggleClass('card-action--active')
+})
+
+$('.js-tab-link').on('click', function (){
+  const id = $(this).attr('data-link-tab')
+  $(this).closest('.js-tab').find('.tab__link--active').removeClass('tab__link--active')
+  $(this).closest('.js-tab').find('.tab__body--active').removeClass('tab__body--active')
+  $(this).addClass('tab__link--active')
+  $(this).closest('.js-tab').find($(`div[data-body-tab="${id}"]`)).addClass('tab__body--active')
 })

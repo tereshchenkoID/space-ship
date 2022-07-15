@@ -41,14 +41,19 @@
     }
   }
 
-  &__actions {
-    @include flex($align-items: center);
+  &__text {
+    @include make-spacer('mb', 2);
   }
 
   &__link {
     @include make-spacer('mr', 2);
 
+    text-align: center;
     color: var(--color-accent);
+
+    @include media-breakpoint-up(sm) {
+      text-align: left;
+    }
 
     &:hover {
       color: var(--color-red);
@@ -111,7 +116,7 @@
     grid-gap: 20px;
 
     @include media-breakpoint-up(sm) {
-      grid-template-columns: repeat(2, 150px);
+      grid-template-columns: 150px 100px 100px;
     }
   }
 

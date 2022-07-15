@@ -1,0 +1,85 @@
+mixin section-employer-events
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        .content
+          +headline(
+            'Журнал подій ',
+            false,
+            true
+          )
+
+        .tab.js-tab
+          .tab__header
+            a(data-link-tab="0").tab__link.tab__link--active.js-tab-link Усі дії
+            a(data-link-tab="1").tab__link.js-tab-link Послуги та рахунки
+            a(data-link-tab="2").tab__link.js-tab-link Робота з базою кандидатів
+            a(data-link-tab="3").tab__link.js-tab-link Використання послуг
+          .tab__body(data-body-tab="0").tab__body--active.js-tab-body
+            .grid
+              .grid__column
+                p.label З:
+                input(type="date").date
+              .grid__column
+                p.label По:
+                input(type="date").date
+              .grid__column
+                p.label Тип подій:
+                +select(actions).js-select
+              .grid__column
+                p.label Користувач:
+                +select(users).js-select
+
+            +card-action(true).js-card-action
+            +card-action(false).js-card-action
+            +card-action(true).js-card-action
+            +card-action(true).js-card-action
+
+          .tab__body(data-body-tab="1").js-tab-body
+            .grid
+              .grid__column
+                p.label З:
+                input(type="date").date
+              .grid__column
+                p.label По:
+                input(type="date").date
+              .grid__column
+                p.label Користувач:
+                +select(users).js-select
+
+            +card-action(true).js-card-action
+            +card-action(false).js-card-action
+            +card-action(true).js-card-action
+            +card-action(true).js-card-action
+
+          .tab__body(data-body-tab="2").js-tab-body
+            .grid
+              .grid__column
+                p.label З:
+                input(type="date").date
+              .grid__column
+                p.label По:
+                input(type="date").date
+              .grid__column
+                p.label Користувач:
+                +select(users).js-select
+
+            +card-action(true).js-card-action
+            +card-action(false).js-card-action
+
+          .tab__body(data-body-tab="3").js-tab-body
+            .grid
+              .grid__column
+                p.label З:
+                input(type="date").date
+              .grid__column
+                p.label По:
+                input(type="date").date
+              .grid__column
+                p.label Користувач:
+                +select(users).js-select
+
+            +card-action(true).js-card-action
+            +card-action(false).js-card-action
+            +card-action(true).js-card-action
+            +card-action(true).js-card-action

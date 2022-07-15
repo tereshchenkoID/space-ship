@@ -3,4 +3,5 @@ mixin account
     a.account__link.js-account-sign-in Sign in
     p.account__text |
     a(href="./worker/my.html").account__link Dashboard
-    +button('Post a job').button--primary.account__button
+    a(href="./employer/my.html").button.button--sm.button--primary.account__button
+      span.button__text Post a job

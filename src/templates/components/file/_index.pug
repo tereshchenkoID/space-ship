@@ -1,12 +1,6 @@
-mixin file(upload)
+mixin file
   .file&attributes(attributes)
     .file__picture
-      img(src="https://cv-photos-original.rabota.ua/cdn-cgi/image/w=120,h=150/a6c79e02-ec07-4cb0-b3f7-d92c895ba195.jpg").img.img--cover
-    input(type="file" id="avatar").file__input
-    if(upload)
-       .file__actions
-         button.file__action Оновити
-         button.file__action Видалити
-    else
-       .file__actions
-          label(for="avatar").file__action Додати
+      img(src="./img/user.svg").img.img--cover#file-preview
+    input(type="file" id="file-avatar").file__input
+    .file__actions#file-actions

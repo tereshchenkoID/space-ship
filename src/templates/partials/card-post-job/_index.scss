@@ -1,4 +1,4 @@
-.card-indent {
+.card-post-job {
   @include size(100%);
   @include make-spacer('p', 4);
 
@@ -11,7 +11,7 @@
   border-radius: var(--default-border-radius);
 
   @include media-breakpoint-up(sm) {
-    grid-template-columns: 50px 1fr 150px;
+    grid-template-columns: 50px 1fr 200px;
   }
 
   &__icon {

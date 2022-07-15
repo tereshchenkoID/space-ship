@@ -1,0 +1,30 @@
+mixin section-employer-jobs-list
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        .content
+          +headline(
+            'Вакансії та кандидати',
+            'У вас ще немає вакансій.',
+            true
+          )
+          ul.list.list--default
+            li.list__item
+              p.text Щоб шукачі надсилали вам резюме, створіть вакансію.
+          .actions
+            a(href="./employer/jobs-create.html").button.button--sm.button--primary.actions__link
+              span.button__text Створити вакансію
+            a(href="#").button.button--sm.button--secondary.actions__link
+              span.button__text Видалені вакансії
+
+        +headline(
+          'Мої публікації (1/5)',
+          'Максимальна кількість 5 публікацій'
+        )
+        .cards
+          each item, index in jobs
+            .cards__item
+              +card-job(item, false)(class=index === 1 && 'card-job--disabled')
+          .cards__footer
+            a(href="#").button.button--sm.button--primary
+              span.button__text Створити нову вакансію

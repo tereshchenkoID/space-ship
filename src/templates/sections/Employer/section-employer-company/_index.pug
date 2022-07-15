@@ -1,0 +1,96 @@
+mixin section-employer-company
+  -
+    var options = [
+      {
+        id: "0",
+        title: "Вибрати",
+      },
+      {
+        id: "1",
+        title: "Менш 10",
+      },
+      {
+        id: "2",
+        title: "Від 10 до 50",
+      },
+      {
+        id: "3",
+        title: "Від 250 до 1000",
+      }
+    ]
+
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        .content
+          +headline(
+            'Інформація про компанію',
+            false,
+            true
+          )
+          .company-create
+            .company-create__body
+              .company-create__action
+                a.button.button--sm.button--primary.company-create__button.js-company-create-show
+                  span.button__text Редагувати
+              .company-create__content
+                .company-create__logo
+                  img(src="https://rekroot.themes.zone/startup/wp-content/uploads/sites/19/2021/04/logo8-150x150.png").img
+                h4 Терещенко, ФОП
+                a(href="https://tereshchenko-id.com") tereshchenko-id.com
+                p
+                  span менше 10 співробітників
+                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci architecto assumenda at commodi dignissimos dolores error incidunt, laboriosam nobis officia officiis, perspiciatis quibusdam reprehenderit rerum sed, sint vel veniam voluptate.q
+                p
+                  span Адреса сторінки вашої компанії на сайті:
+                  a(href="#") www.work.ua/jobs/by-company/2410245/.
+            .company-create__toggle.js-company-create-toggle
+              .company-create__wrapper
+                p.company-create__label Логотип:
+                +file
+                +dropped-modal#dropped-modal
+              .company-create__wrapper
+                p.company-create__label Назва:
+                input(type="text").company-create__field
+                p.company-create__error Будь ласка, вкажіть назву компанії.
+              .company-create__wrapper
+                p.company-create__label Тип:
+                .company-create__block
+                  +radio('Прямий роботодавець', 'type').card-change__radio
+                .company-create__block
+                  +radio('Кадрова агенція', 'type').card-change__radio
+              .company-create__wrapper
+                p.company-create__label Галузь компанії:
+                .company-create__grid
+                  .company-create__block
+                    +radio('Автосервіс', 'work').card-change__radio
+                  .company-create__block
+                    +radio('IT', 'work').card-change__radio
+                  .company-create__block
+                    +radio('Пошук персоналу, HR', 'work').card-change__radio
+                  .company-create__block
+                    +radio('Послуги для населення та бізнесу', 'work').card-change__radio
+              .company-create__wrapper
+                p.company-create__label Кількість співробітників у компанії*:
+                +select(options).js-select
+                p.company-create__error Будь ласка, вкажіть кількість співробітників у вашій компанії.
+              .company-create__wrapper
+                p.company-create__label Сайт вашої компанії:
+                input(type="text").company-create__field
+              .company-create__wrapper
+                p.company-create__label Контактна особа:
+                input(type="text").company-create__field
+              .company-create__wrapper
+                p.company-create__label Телефон:
+                input(type="text").company-create__field
+              .company-create__wrapper
+                p.company-create__label Опис компанії:
+                textarea.company-create__textarea
+              .company-create__wrapper
+                .checked.js-checked
+                  span.checked__title Надсилати нових кандидатів на ел. пошту
+              .company-create__wrapper
+                .company-create__actions
+                  button.button.button--sm.button--primary.company-create__button.js-company-create-apply
+                    span.button__text Зберегти
+                  a.company-create__link.company-create__link--warning.js-company-create-cancel Скасувати

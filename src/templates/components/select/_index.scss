@@ -6,7 +6,6 @@
   &__label {
     @include make-spacer('pr', 8);
     @include make-spacer('pl', 3);
-
     @include flex($align-items: center);
     @include size(100%, 42px);
 

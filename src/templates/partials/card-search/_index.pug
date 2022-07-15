@@ -23,10 +23,12 @@ mixin card-search(type)
     .card-search__body
       .card-search__column
         a(href="#").card-search__title Html. IT, комп'ютери, інтернет
+        p.card-search__text Не розсилається.
         if (type)
           .card-search__actions
             button.button.button--sm.button--primary.card-search__button.js-card-search-link
               span.button__text Реадгувати
+            a.card-search__link Результати
             a.card-search__link Видалити
         else
           .card-search__actions
@@ -49,6 +51,9 @@ mixin card-search(type)
         p.card-search__label Категорія:
         +select(options).js-select
         p.card-search__error Будь ласка, вкажіть мобільний телефон
+      .card-search__wrapper
+        .checked.js-checked
+          span.checked__title Надсилати нових кандидатів на ел. пошту
       .card-search__wrapper
         .card-search__actions
           button.button.button--sm.button--primary.card-search__button.js-card-search-apply

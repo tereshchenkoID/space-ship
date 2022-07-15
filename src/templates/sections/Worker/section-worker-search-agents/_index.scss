@@ -38,9 +38,13 @@
     .agents-create {
 
       &__toggle {
-        @include make-spacer('pt', 4);
+        @include make-spacer('mt', 4);
+        @include make-spacer('py', 4);
+        @include make-spacer('px', 6);
 
         display: none;
+        background-color: var(--color-white);
+        box-shadow: var(--default-box-shadow);
       }
 
       &__button {

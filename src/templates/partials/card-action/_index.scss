@@ -1,0 +1,110 @@
+.card-action {
+  border-bottom: 1px solid rgba(224, 223, 242, 0.8);
+
+  &--active {
+
+    .card-action {
+
+      &__body {
+        display: block;
+      }
+    }
+  }
+
+  &__header {
+    @include flex($direction: column, $wrap: wrap);
+    @include make-spacer('p', 3);
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    > * {
+      @include make-spacer('my', 2);
+      @include make-spacer('my', 0, md);
+    }
+  }
+
+  &__close {
+    @include flex(center, center);
+    @include font-size(20px);
+    @include size(25px);
+
+    position: absolute;
+    top: 10px;
+    right: 0;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  &__body {
+    display: none;
+    position: relative;
+    border-top: 1px solid rgba(224, 223, 242, 0.8);
+  }
+
+  &__content {
+    @include make-spacer('mr', 2);
+
+    flex-grow: 1;
+  }
+
+  &__subtitle {
+    @include make-spacer('mb', 2);
+  }
+
+  &__text {
+    @include font-size(13px);
+
+    opacity: 0.9;
+  }
+
+  &__info {
+    @include make-spacer('mr', 2);
+    @include size(25px);
+    @include flex(center, center);
+    @include font-size(13px);
+
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: var(--color-grey-100);
+    color: var(--color-white);
+  }
+
+  &__data {
+
+    & > * {
+      @include make-spacer('ml', 1);
+    }
+  }
+
+  &__item {
+    @include make-spacer('p', 3);
+
+    border-bottom: 1px solid rgba(224, 223, 242, 0.8);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__column {
+    @include make-spacer('mb', 1);
+  }
+
+  &__name {
+    text-decoration: underline;
+    color: var(--color-black);
+  }
+
+  &__old {
+    @include make-spacer('mb', 1);
+    @include font-size(13px);
+
+    opacity: 0.9;
+  }
+}

@@ -111,3 +111,35 @@ p {
     @include font-size(0);
   }
 }
+
+.btn-group {
+  @include make-spacer('mx', 1);
+  @include make-spacer('mb', 1);
+  @include flex(center, center);
+
+  border-radius: var(--default-border-radius);
+  overflow: hidden;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+
+  &__button {
+    @include flex(center, center);
+    @include size(30px);
+
+    border-radius: 0;
+    opacity: 0.8;
+    padding: 5px!important;
+
+    svg {
+      @include make-spacer('m', 0);
+      @include size(16px);
+
+      fill: var(--color-white);
+    }
+
+    &:hover,
+    &--active {
+      opacity: 1;
+    }
+  }
+}

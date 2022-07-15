@@ -1,0 +1,115 @@
+.card-user {
+  @include size(100%);
+  @include make-spacer('px', 6);
+  @include make-spacer('py', 4);
+
+  background-color: var(--color-white);
+  box-shadow: var(--default-box-shadow);
+  border-radius: var(--default-border-radius);
+  color: #747474;
+
+  &__title,
+  &__count {
+    font-weight: var(--typography-semibold);
+  }
+
+  &__body {
+    position: relative;
+  }
+
+  &__toggle {
+    @include make-spacer('pt', 4);
+
+    display: none;
+  }
+
+  &__email {
+    @include make-spacer('mb', 2);
+
+    text-decoration: underline;
+  }
+
+  &__text {
+    @include make-spacer('mb', 2);
+  }
+
+  &__role {
+    color: var(--color-red);
+  }
+
+  &__title {
+    @include font-size(20px, 26px);
+    @include make-spacer('mb', 2);
+
+    display: block;
+    color: var(--color-accent);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__field {
+    @include size(100%, 45px);
+    @include make-spacer('px', 3);
+
+    border: 1px solid var(--color-grey-100);
+    border-radius: 3px;
+    background-color: var(--color-white);
+    box-shadow: var(--default-box-shadow);
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    grid-gap: 20px;
+
+    @include media-breakpoint-up(sm) {
+      grid-template-columns: 150px 100px 100px;
+    }
+  }
+
+  &__wrapper {
+    @include make-spacer('mb', 4);
+
+    &--error {
+
+      .card-search {
+
+        &__error {
+          display: block;
+        }
+
+        &__field {
+          border-color: var(--color-red);
+        }
+      }
+
+      .select {
+
+        &__label {
+          border-color: var(--color-red);
+        }
+      }
+    }
+  }
+
+  &__label {
+    @include make-spacer('mb', 2);
+
+    strong {
+      @include make-spacer('ml', 1);
+
+      color: var(--color-red);
+    }
+  }
+
+  &__error {
+    @include make-spacer('mt', 1);
+    @include font-size(12px);
+
+    display: none;
+    color: var(--color-red);
+  }
+}

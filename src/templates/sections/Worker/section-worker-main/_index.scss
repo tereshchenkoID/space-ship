@@ -22,7 +22,7 @@
       }
     }
 
-    .card-indent {
+    .card-post-resume {
       @include make-spacer('mb', 6);
     }
 
@@ -30,6 +30,7 @@
       @include flex(center, center, column);
       @include make-spacer('mx', auto);
 
+      position: relative;
       text-align: center;
       color: #747474;
 
@@ -42,6 +43,20 @@
         border-radius: var(--default-border-radius);
         background-color: #f3f2fc;
         transition: var(--default-transition);
+      }
+
+      &__count {
+        @include size(25px);
+        @include font-size(12px);
+        @include flex(center, center);
+
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background-color: var(--color-accent);
+        border-radius: 50%;
+        color: var(--color-white);
+        font-weight: var(--typography-semibold);
       }
 
       &__text {

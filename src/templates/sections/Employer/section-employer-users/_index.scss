@@ -1,0 +1,120 @@
+.section {
+
+  &--employer-users {
+    background-color: var(--color-white);
+
+    .headline {
+      @include make-spacer('mb', 4);
+    }
+
+    .cards {
+      @include make-spacer('mb', 6);
+
+      &__item {
+        @include make-spacer('mb', 4);
+
+        position: relative;
+
+        &:last-child {
+          @include make-spacer('mb', 0);
+        }
+      }
+    }
+
+    .user-create {
+
+      &__toggle {
+        @include make-spacer('mt', 4);
+        @include make-spacer('py', 4);
+        @include make-spacer('px', 6);
+
+        display: none;
+        background-color: var(--color-white);
+        box-shadow: var(--default-box-shadow);
+      }
+
+      &__block {
+        @include make-spacer('mb', 4);
+      }
+
+      &__button {
+        max-width: 200px;
+      }
+
+      &__description {
+        @include make-spacer('mt', 1);
+        @include font-size(13px, 18px);
+
+        opacity: 0.8;
+      }
+
+      &__field {
+        @include size(100%, 45px);
+        @include make-spacer('px', 3);
+
+        border: 1px solid var(--color-grey-100);
+        border-radius: 3px;
+        background-color: var(--color-white);
+        box-shadow: var(--default-box-shadow);
+      }
+
+      &__actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        grid-gap: 20px;
+
+        @include media-breakpoint-up(sm) {
+          grid-template-columns: repeat(2, 150px);
+        }
+      }
+
+      &__wrapper {
+        @include make-spacer('mb', 4);
+
+        &--error {
+
+          .user-create {
+
+            &__error {
+              display: block;
+            }
+
+            &__field {
+              border-color: var(--color-red);
+            }
+          }
+
+          .select {
+
+            &__label {
+              border-color: var(--color-red);
+            }
+          }
+        }
+      }
+
+      &__label {
+        @include make-spacer('mb', 2);
+
+        strong {
+          @include make-spacer('ml', 1);
+
+          color: var(--color-red);
+        }
+      }
+
+      &__error {
+        @include make-spacer('mt', 1);
+        @include font-size(12px);
+
+        display: none;
+        color: var(--color-red);
+      }
+    }
+
+    .link {
+      color: var(--color-accent);
+    }
+  }
+}

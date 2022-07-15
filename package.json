@@ -78,6 +78,7 @@
   "dependencies": {
     "@barba/core": "^2.3.10",
     "@barba/router": "^2.1.4",
+    "cropperjs": "^1.5.12",
     "gsap": "^3.10.4",
     "jquery": "^3.4.1",
     "jquery.photoswipe": "^1.1.1",

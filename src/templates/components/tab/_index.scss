@@ -1,0 +1,36 @@
+.tab {
+  background-color: var(--color-white);
+  box-shadow: var(--default-box-shadow);
+  border-radius: var(--default-border-radius);
+  overflow: hidden;
+
+  &__header {
+    @include flex($align-items: center);
+
+    border-bottom: 1px solid rgba(224, 223, 242, 0.8);
+    overflow-x: auto;
+  }
+
+  &__link {
+    @include make-spacer('p', 3);
+
+    white-space: nowrap;
+
+    &:hover,
+    &--active {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+    }
+  }
+
+  &__body {
+    @include make-spacer('py', 6);
+    @include make-spacer('px', 3);
+
+    display: none;
+
+    &--active {
+      display: block;
+    }
+  }
+}

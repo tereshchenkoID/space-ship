@@ -1,0 +1,28 @@
+---
+title: Rekroot
+lang: en
+---
+extends ../../layouts/_layout
+
+block content
+  -
+    var breadcrumbs = [
+      {
+        name: 'Головна',
+        url: './index.html'
+      },
+      {
+        name: 'Особистий розділ',
+        url: './employer/my.html'
+      },
+      {
+        name: 'Журнал подій',
+        url: false
+      }
+    ]
+
+  +nav.nav--default.js-nav
+  main
+    +section-breadcrumbs(false, breadcrumbs).section--breadcrumbs-sm
+    +section-employer-events.section--employer-events
+    +section-subscribe-newsletter.section--subscribe-newsletter
