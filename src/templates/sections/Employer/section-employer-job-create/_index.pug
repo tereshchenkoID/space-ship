@@ -155,3 +155,93 @@ mixin section-employer-job-create
                     button.button.button--sm.button--primary.card-create__button.js-card-create-apply
                       span.button__text Зберегти
                     a.card-create__link.card-create__link--warning.js-card-create-cancel Скасувати
+
+          .card-create.js-card-create
+            .card-create__container
+              h4.card-create__title
+                span Опис вакансії
+                +info
+              a.card-create__link.js-card-create-link
+                i.fa.fa-pen
+                span Редагувати
+              .card-create__toggle.js-card-create-toggle
+                .card-create__wrapper
+                  .card-create__text
+                    span Щоб знайти потрібного кандидата, опишіть вакансію докладніше. Чим більше корисної інформації буде в вакансії, тим краще шукачі зрозуміють, що їх очікує у вашій компанії.
+                    a(href="#") Докладніше
+                .card-create__wrapper
+                  textarea.card-create__textarea
+                .card-create__wrapper
+                  .card-create__actions
+                    button.button.button--sm.button--primary.card-create__button.js-card-create-apply
+                      span.button__text Зберегти
+                    a.card-create__link.card-create__link--warning.js-card-create-cancel Скасувати
+
+          .card-create.js-card-create
+            .card-create__container
+              h4.card-create__title
+                span Контактна інформація
+                +info
+              a.card-create__link.js-card-create-link
+                i.fa.fa-pen
+                span Редагувати
+              .card-create__toggle.js-card-create-toggle
+                .card-create__wrapper
+                  .card-create__label
+                    span Користувач:
+                  .card-create__text Igor Tereshchenko — tereschenko23041991@gmail.com
+                  .checked.js-checked
+                    span.checked__title Показувати на сторінці цієї вакансії ім’я і телефон: Igor Tereshchenko, 017623346898
+                .card-create__wrapper
+                  .card-create__actions
+                    button.button.button--sm.button--primary.card-create__button.js-card-create-apply
+                      span.button__text Зберегти
+                    a.card-create__link.card-create__link--warning.js-card-create-cancel Скасувати
+
+          .card-create.js-card-create
+            .card-create__container
+              h4.card-create__title
+                span Як можна відгукнутися
+                +info
+              a.card-create__link.js-card-create-link
+                i.fa.fa-pen
+                span Редагувати
+              .card-create__toggle.js-card-create-toggle
+                .card-create__wrapper
+                  +radio('Резюме обов’язково', 'feedback').card-create__radio
+                  +radio('Можна і без резюме (тільки ім’я, прізвище та контакти)', 'feedback').card-create__radio
+                .card-create__wrapper
+                  .card-create__actions
+                    button.button.button--sm.button--primary.card-create__button.js-card-create-apply
+                      span.button__text Зберегти
+                    a.card-create__link.card-create__link--warning.js-card-create-cancel Скасувати
+
+          .card-create.js-card-create
+            .card-create__container
+              h4.card-create__title
+                span Розміщення вакансії
+                +info
+              a.card-create__link.js-card-create-link
+                i.fa.fa-pen
+                span Редагувати
+              .card-create__toggle.js-card-create-toggle
+                .card-create__wrapper
+                  .card-create__label
+                    span Вакансія підходить для:
+                  .card-create__block
+                    +radio('Стандарт Доступна 1 з 1 шт.', 'show').card-create__radio
+                    p.card-create__text Вакансія буде розміщена на місяць.
+                  .card-create__block
+                    +radio('СтандартПлюс', 'show').card-create__radio
+                    p.card-create__text Вакансія буде розміщена на місяць і 4 рази оновиться дата її розміщення.
+                  .card-create__block
+                    +radio('Гаряча', 'show').card-create__radio
+                    p.card-create__text Вакансія протягом тижня буде виводитися вгорі результатів пошуку та в блоці «Гарячі вакансії».
+                  .card-create__block
+                    +radio('Прихована', 'show').card-create__radio
+                    p.card-create__text Вакансію буде приховано від шукачів.
+                .card-create__wrapper
+                  .card-create__actions
+                    button.button.button--sm.button--primary.card-create__button.js-card-create-apply
+                      span.button__text Зберегти
+                    a.card-create__link.card-create__link--warning.js-card-create-cancel Скасувати

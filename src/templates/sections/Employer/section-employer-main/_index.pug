@@ -2,7 +2,9 @@ mixin section-employer-main
   section.section&attributes(attributes)
     .container-fluid
       .container
-        +alert.alert--danger
+        +alert(1).alert--danger
+        +alert(2).alert--warning
+        +alert(2).alert--success
         +card-post-job
         .grid
           .grid__column

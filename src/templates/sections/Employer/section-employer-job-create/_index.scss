@@ -79,14 +79,26 @@
         display: none;
       }
 
+      &__textarea,
       &__field {
-        @include size(100%, 45px);
         @include make-spacer('px', 3);
 
         border: 1px solid var(--color-grey-100);
         border-radius: 3px;
         background-color: var(--color-white);
         box-shadow: var(--default-box-shadow);
+        width: 100%;
+      }
+
+      &__field {
+        height: 45px;
+      }
+
+      &__textarea {
+        @include make-spacer('py', 3);
+
+        resize: vertical;
+        height: 150px;
       }
 
       &__actions {
@@ -164,6 +176,10 @@
         &:hover {
           color: var(--color-red);
         }
+      }
+
+      &__text {
+        opacity: 0.7;
       }
 
       &__link {

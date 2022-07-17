@@ -51,7 +51,13 @@
     }
   }
 
-  &--success {
+  &--warning {
+    background-color: #ffeacc;
+    border-color: #ffd3b3;
+  }
 
+  &--success {
+    background-color: #e3f3d9;
+    border-color: #dbedc6;
   }
 }

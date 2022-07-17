@@ -6,7 +6,9 @@
       @include make-spacer('mb', 6);
     }
 
-    .headline {
+    .actions,
+    .headline,
+    .text {
       @include make-spacer('mb', 4);
     }
 

@@ -16,7 +16,11 @@ block content
         url: './employer/my.html'
       },
       {
-        name: 'Мої резюме',
+        name: 'Вакансії та кандидати',
+        url: './employer/jobs.html'
+      },
+      {
+        name: 'Видалені вакансії',
         url: false
       }
     ]
@@ -24,5 +28,5 @@ block content
   +nav.nav--default.js-nav
   main
     +section-breadcrumbs(false, breadcrumbs).section--breadcrumbs-sm
-    +section-employer-jobs-list(1).section--employer-jobs-list
+    +section-employer-jobs-list(2).section--employer-jobs-list
     +section-subscribe-newsletter.section--subscribe-newsletter
