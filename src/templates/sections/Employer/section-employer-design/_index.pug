@@ -1,0 +1,18 @@
+mixin section-employer-design
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        .content
+          +headline(
+            'Дизайн',
+            false,
+            true
+          )
+          .tab.js-tab
+            .tab__header
+              a(data-link-tab="0").tab__link.tab__link--active.js-tab-link Сторінка вакансії
+              a(data-link-tab="1").tab__link.js-tab-link Сторінка компанії
+            .tab__body(data-body-tab="0").tab__body--active.js-tab-body
+              +card-job(jobs[0])
+            .tab__body(data-body-tab="1").js-tab-body
+              p 2

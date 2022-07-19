@@ -1,35 +1,66 @@
 .section {
 
-  &--employer-job-create {
+  &--employer-order {
 
     .headline {
       @include make-spacer('mb', 4);
     }
 
-    .actions {
-      @include flex($align-items: center, $wrap: wrap);
+    .card-trash {
+      @include make-spacer('py', 2);
+
+      &__header {
+        @include make-spacer('mb', 2);
+
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        grid-gap: 20px;
+
+        @include media-breakpoint-up(md) {
+          grid-template-columns: 1fr 150px 100px;
+        }
+      }
+
+      &__title {
+        @include line-clamp(3);
+      }
+
+      &__field {
+        @include make-spacer('mb', 1);
+        @include make-spacer('px', 3);
+        @include size(100%, 35px);
+
+        border-radius: 3px;
+        border: 1px solid var(--color-grey-100);
+        background-color: var(--color-white);
+        box-shadow: var(--default-box-shadow);
+      }
+
+      &__label {
+        text-align: right;
+      }
 
       &__link {
-        @include make-spacer('my', 2);
-        @include make-spacer('mr', 4);
+        color: var(--color-accent);
       }
     }
 
-    .card-create {
+    .trash {
       @include make-spacer('mb', 4);
 
       &:last-child {
         @include make-spacer('mb', 0);
       }
 
-      &__social,
-      &__radio {
-        @include make-spacer('my', half);
-      }
+      &__item {
+        @include make-spacer('mb', 2);
 
-      &__title {
-        @include make-spacer('mb', 4);
-        @include flex($align-items: center);
+        border-bottom: 1px solid rgba(224, 223, 242, 0.8);
+
+        &:last-child {
+          @include make-spacer('mb', 0);
+        }
       }
 
       &__section {
@@ -41,7 +72,7 @@
 
         &--error {
 
-          .card-create {
+          .trash {
 
             &__error {
               display: block;
@@ -61,10 +92,6 @@
         }
       }
 
-      &__radio {
-        @include make-spacer('my', 2);
-      }
-
       &__container {
         @include make-spacer('p', 4);
 
@@ -75,12 +102,11 @@
 
       &__toggle {
         @include make-spacer('mt', 4);
-
-        display: none;
       }
 
       &__textarea,
       &__field {
+        @include make-spacer('mb', 1);
         @include make-spacer('px', 3);
 
         border: 1px solid var(--color-grey-100);
@@ -108,7 +134,7 @@
         grid-gap: 20px;
 
         @include media-breakpoint-up(sm) {
-          grid-template-columns: repeat(2, 150px);
+          grid-template-columns: repeat(2, 220px);
         }
       }
 
@@ -122,12 +148,6 @@
             grid-template-columns: repeat(2, 1fr);
           }
         }
-
-        &--3 {
-          @include media-breakpoint-up(sm) {
-            grid-template-columns: repeat(3, 1fr);
-          }
-        }
       }
 
       &__label {
@@ -138,6 +158,10 @@
 
           color: var(--color-red);
         }
+
+        &--right {
+          text-align: right;
+        }
       }
 
       &__error {
@@ -146,36 +170,6 @@
 
         display: none;
         color: var(--color-red);
-      }
-
-      &__title {
-        @include font-size(20px);
-        @include make-spacer('mb', 4);
-
-        font-weight: var(--typography-semibold);
-      }
-
-      &__social {
-        display: grid;
-        grid-template-columns: 1fr 20px;
-        grid-gap: 10px;
-
-        span {
-          display: block;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
-          text-decoration: underline;
-        }
-      }
-
-      &__icon {
-        text-align: right;
-        color: var(--color-accent);
-
-        &:hover {
-          color: var(--color-red);
-        }
       }
 
       &__text {
@@ -202,15 +196,6 @@
         &:hover {
           text-decoration: underline;
         }
-      }
-
-      &__hr {
-        @include make-spacer('my', 4);
-
-        display: block;
-        border: 0;
-        background-color: var(--color-grey-100);
-        height: 1px;
       }
     }
   }

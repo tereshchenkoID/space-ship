@@ -1,0 +1,58 @@
+mixin section-employer-order
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        .content
+          +headline(
+            'Кошик',
+            false,
+            true
+          )
+          .trash
+            .trash__container
+              .trash__list
+                .trash__item
+                  .card-trash
+                    .card-trash__header
+                      p.card-trash__title Послуга «Гаряча вакансія» на сайті Work.ua
+                      .card-trash__label
+                        strong 3190 грн
+                      input(type="number").card-trash__field
+                    .card-trash__body
+                      a(href="#").card-trash__link Видалити
+
+                .trash__item
+                  .card-trash
+                    .card-trash__header
+                      p.card-trash__title Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet aspernatur dignissimos distinctio, eveniet excepturi exercitationem expedita fugit iusto laboriosam, maxime numquam praesentium quae quas repellat saepe, sequi vel voluptas.
+                      .card-trash__label
+                        strong 190 грн
+                      input(type="number").card-trash__field
+                    .card-trash__body
+                      a(href="#").card-trash__link Видалити
+
+              .trash__toggle
+                .trash__wrapper
+                  .trash__grid.trash__grid--2
+                    .trash__column
+                      .trash__label
+                        span Разом:
+                    .trash__column
+                      .trash__label.trash__label--right
+                        strong 31900 грн
+                .trash__wrapper
+                  .trash__label
+                    span Промокод
+                  input(type="text").trash__field
+                  a.trash__link.trash__link--default Застосувати
+                .trash__wrapper.trash__wrapper--error
+                  .trash__label
+                    span Платник
+                    strong *
+                  input(type="text").trash__field
+                  p.trash__error Будь ласка, вкажіть платника.
+                .trash__wrapper
+                  .trash__actions
+                    button.button.button--sm.button--primary.trash__button
+                      span.button__text Оформити замовлення
+                    a(href="#").trash__link.trash__link--warning Додати ще послуги

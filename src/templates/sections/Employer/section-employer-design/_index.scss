@@ -1,0 +1,9 @@
+.section {
+
+  &--employer-design {
+
+    .headline {
+      @include make-spacer('mb', 4);
+    }
+  }
+}

@@ -11,6 +11,10 @@
       box-shadow: var(--default-box-shadow);
       border-radius: var(--default-border-radius);
 
+      &:last-child {
+        @include make-spacer('mb', 0);
+      }
+
       &__toggle {
         @include make-spacer('mt', 4);
 

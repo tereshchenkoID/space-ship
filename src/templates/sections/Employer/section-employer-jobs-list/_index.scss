@@ -2,10 +2,6 @@
 
   &--employer-jobs-list {
 
-    .content {
-      @include make-spacer('mb', 6);
-    }
-
     .actions,
     .headline,
     .text {
