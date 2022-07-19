@@ -1,7 +1,8 @@
 mixin card-user
   .card-user&attributes(attributes)
-    .card-user__body
-      a(href="#").card-user__title Igor Tereshchenko
-      p.card-user__email test@mail.com
-      p.card-user__text немає розміщених вакансій
-      p.card-user__role Адміністратор
+    a(href="#").card-user__title Igor Tereshchenko
+    p.card-user__email test@mail.com
+    p.card-user__text немає розміщених вакансій
+    p.card-user__role Адміністратор
+    button(type="button").card-user__delete
+      i.fa.fa-trash

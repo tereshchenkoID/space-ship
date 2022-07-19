@@ -24,12 +24,6 @@
     }
   }
 
-  &__toggle {
-    @include make-spacer('pt', 4);
-
-    display: none;
-  }
-
   &__title {
     @include font-size(20px, 26px);
     @include make-spacer('mb', 4);
@@ -49,13 +43,16 @@
     @include make-spacer('mr', 2);
 
     text-align: center;
-    color: var(--color-accent);
 
     @include media-breakpoint-up(sm) {
       text-align: left;
     }
 
-    &:hover {
+    &--default {
+      color: var(--color-accent);
+    }
+
+    &--warning {
       color: var(--color-red);
     }
   }
@@ -99,16 +96,6 @@
     }
   }
 
-  &__field {
-    @include size(100%, 45px);
-    @include make-spacer('px', 3);
-
-    border: 1px solid var(--color-grey-100);
-    border-radius: 3px;
-    background-color: var(--color-white);
-    box-shadow: var(--default-box-shadow);
-  }
-
   &__actions {
     display: grid;
     grid-template-columns: 1fr;
@@ -120,46 +107,9 @@
     }
   }
 
-  &__wrapper {
-    @include make-spacer('mb', 4);
-
-    &--error {
-
-      .card-search {
-
-        &__error {
-          display: block;
-        }
-
-        &__field {
-          border-color: var(--color-red);
-        }
-      }
-
-      .select {
-
-        &__label {
-          border-color: var(--color-red);
-        }
-      }
-    }
-  }
-
-  &__label {
-    @include make-spacer('mb', 2);
-
-    strong {
-      @include make-spacer('ml', 1);
-
-      color: var(--color-red);
-    }
-  }
-
-  &__error {
-    @include make-spacer('mt', 1);
-    @include font-size(12px);
+  &__toggle {
+    @include make-spacer('pt', 6);
 
     display: none;
-    color: var(--color-red);
   }
 }

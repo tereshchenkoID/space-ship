@@ -1,0 +1,31 @@
+mixin section-employer-invoices
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        +headline(
+          'Рахунки',
+          false,
+          true
+        )
+
+        .item.item--active
+          .item__header
+            .item__meta
+              h4.item__id № 1497929
+              p.item__data 17.05.2021
+            p.item__icon
+              i.fa.fa-info
+            h5.item__price 390 грн
+          .item__body
+            p.item__status Оплачен 17.05.2021. Услуги начислены 17.05.2021.
+
+        .item.item--done
+          .item__header
+            .item__meta
+              h4.item__id № 1497929
+              p.item__data 17.05.2021
+            p.item__icon
+              i.fa.fa-info
+            h5.item__price 390 грн
+          .item__body
+            p.item__status Оплачен 17.05.2021. Услуги начислены 17.05.2021.

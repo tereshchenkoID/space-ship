@@ -1,24 +1,4 @@
 mixin section-employer-users
-  -
-    var options = [
-      {
-        id: "0",
-        title: "Усі категорії",
-      },
-      {
-        id: "1",
-        title: "IT, комп'ютери, інтернет",
-      },
-      {
-        id: "2",
-        title: "Адмiнiстрацiя, керівництво середньої ланки",
-      },
-      {
-        id: "3",
-        title: "Будівництво, архітектура",
-      }
-    ]
-
   section.section&attributes(attributes)
     .container-fluid
       .container
@@ -37,45 +17,55 @@ mixin section-employer-users
             .cards__item
               +card-user.js-card-user
 
-          .user-create
-            a.button.button--sm.button--primary.user-create__button.js-user-create-show
+          .card-create
+            a.button.button--sm.button--primary.card-create__button.js-card-create-show
               span.button__text Додати користувача
-            .user-create__toggle.js-user-create-toggle
-              .user-create__wrapper
-                p.user-create__label Ім'я та прізвище користувача:
-                input(type="text").user-create__field
-                p.user-create__error Будь ласка, вкажіть ім’я та прізвище користувача.
-              .user-create__wrapper
-                p.user-create__label Телефон:
-                input(type="text").user-create__field
-                p.user-create__error Будь ласка, вкажіть телефон користувача.
-              .user-create__wrapper
-                p.user-create__label Ел. пошта:
-                input(type="email").user-create__field
-                p.user-create__error Будь ласка, вкажіть ел. адресу користувача.
-              .user-create__wrapper.user-create__wrapper--error
-                p.user-create__label Пароль:
-                input(type="text").user-create__field
-                p.user-create__error Будь ласка, введіть пароль.
-              .user-create__wrapper
-                p.user-create__label Пароль ще раз:
-                +select(options).js-select
-                p.user-create__error Будь ласка, введіть пароль ще раз.
-              .user-create__wrapper
-                p.user-create__label Роль користувача:
-                .user-create__block
+            .card-create__toggle.js-card-create-toggle
+              .card-create__wrapper
+                p.card-create__label
+                  span Ім'я та прізвище користувача
+                  strong *
+                input(type="text").card-create__field
+                p.card-create__error Будь ласка, вкажіть ім’я та прізвище користувача.
+              .card-create__wrapper
+                p.card-create__label
+                  span Телефон
+                  strong *
+                input(type="text").card-create__field
+                p.card-create__error Будь ласка, вкажіть телефон користувача.
+              .card-create__wrapper
+                p.card-create__label
+                  span Ел. пошта
+                  strong *
+                input(type="email").card-create__field
+                p.card-create__error Будь ласка, вкажіть ел. адресу користувача.
+              .card-create__wrapper.card-create__wrapper--error
+                p.card-create__label
+                  span Пароль:
+                  strong *
+                input(type="text").card-create__field
+                p.card-create__error Будь ласка, введіть пароль.
+              .card-create__wrapper
+                p.card-create__label
+                  span Пароль ще раз:
+                  strong *
+                input(type="text").card-create__field
+                p.card-create__error Будь ласка, введіть пароль ще раз.
+              .card-create__wrapper
+                p.card-create__label Роль користувача:
+                .card-create__block
                   +radio('Користувач', 'seen').card-change__radio
-                  p.user-create__description Бачить тільки свої вакансії та працює з ними.
-                .user-create__block
+                  p.card-create__description Бачить тільки свої вакансії та працює з ними.
+                .card-create__block
                   +radio('Адміністратор', 'seen').card-change__radio
-                  p.user-create__description Бачить і може все: бачить усіх інших користувачів, їхні вакансії та кандидатів, може додавати нових користувачів, редагувати й видаляти їх, розподіляти послуги між користувачами, редагувати інформацію про компанію.
-              .user-create__wrapper
-              .user-create__wrapper
-                p.user-create__label Налаштування повідомлень ел. поштою:
+                  p.card-create__description Бачить і може все: бачить усіх інших користувачів, їхні вакансії та кандидатів, може додавати нових користувачів, редагувати й видаляти їх, розподіляти послуги між користувачами, редагувати інформацію про компанію.
+              .card-create__wrapper
+              .card-create__wrapper
+                p.card-create__label Налаштування повідомлень ел. поштою:
                 .checked.js-checked
                   span.checked__title Отримувати новини про зміни та нові можливості сайту
-              .user-create__wrapper
-                .user-create__actions
-                  button.button.button--sm.button--primary.user-create__button.js-user-create-apply
+              .card-create__wrapper
+                .card-create__actions
+                  button.button.button--sm.button--primary.card-create__button.js-card-create-apply
                     span.button__text Зберегти
-                  a.user-create__link.user-create__link--warning.js-user-create-cancel Скасувати
+                  a.card-create__link.card-create__link--warning.js-card-create-cancel Скасувати

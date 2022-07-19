@@ -1,8 +1,14 @@
 .card-user {
   @include size(100%);
-  @include make-spacer('px', 6);
-  @include make-spacer('py', 4);
+  @include make-spacer('pl', 6);
+  @include make-spacer('pr', 6);
+  @include make-spacer('pr', 14, sm);
 
+  @include make-spacer('pt', 4);
+  @include make-spacer('pb', 12);
+  @include make-spacer('pb', 4, sm);
+
+  position: relative;
   background-color: var(--color-white);
   box-shadow: var(--default-box-shadow);
   border-radius: var(--default-border-radius);
@@ -13,8 +19,26 @@
     font-weight: var(--typography-semibold);
   }
 
-  &__body {
-    position: relative;
+  &__delete {
+    @include flex(center, center);
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 50px;
+    background-color: var(--color-red);
+    color: var(--color-white);
+    border-radius: 0 0 var(--default-border-radius) var(--default-border-radius);
+    border: 1px solid red;
+
+    @include media-breakpoint-up(sm) {
+      @include size(50px, auto);
+
+      top: 0;
+      left: auto;
+      border-radius: 0 var(--default-border-radius) var(--default-border-radius) 0;
+    }
   }
 
   &__toggle {

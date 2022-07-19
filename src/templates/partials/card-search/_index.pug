@@ -1,24 +1,4 @@
 mixin card-search(type)
-  -
-    var options = [
-      {
-        id: "0",
-        title: "Усі категорії",
-      },
-      {
-        id: "1",
-        title: "IT, комп'ютери, інтернет",
-      },
-      {
-        id: "2",
-        title: "Адмiнiстрацiя, керівництво середньої ланки",
-      },
-      {
-        id: "3",
-        title: "Будівництво, архітектура",
-      }
-    ]
-
   .card-search&attributes(attributes)
     .card-search__body
       .card-search__column
@@ -28,8 +8,8 @@ mixin card-search(type)
           .card-search__actions
             button.button.button--sm.button--primary.card-search__button.js-card-search-link
               span.button__text Реадгувати
-            a.card-search__link Результати
-            a.card-search__link Видалити
+            a.card-search__link.card-search__link--default Результати
+            a.card-search__link.card-search__link--warning Видалити
         else
           .card-search__actions
             a.card-search__link Видалити
@@ -38,24 +18,31 @@ mixin card-search(type)
         a(href="#").card-search__count
           span 16
           span вакансій
+
     .card-search__toggle.js-card-search-toggle
-      .card-search__wrapper
-        p.card-search__label Запит:
-        input(type="text").card-search__field
-        p.card-search__error Будь ласка, вкажіть запит
-      .card-search__wrapper.card-search__wrapper--error
-        p.card-search__label Місто:
-        input(type="text").card-search__field
-        p.card-search__error Будь ласка, вкажіть місто
-      .card-search__wrapper
-        p.card-search__label Категорія:
-        +select(options).js-select
-        p.card-search__error Будь ласка, вкажіть категорію
-      .card-search__wrapper
-        .checked.js-checked
-          span.checked__title Надсилати нових кандидатів на ел. пошту
-      .card-search__wrapper
-        .card-search__actions
-          button.button.button--sm.button--primary.card-search__button.js-card-search-apply
-            span.button__text Зберегти
-          a.card-search__link.card-search__link--warning.js-card-search-cancel Скасувати
+      .card-create
+        .card-create__wrapper
+          p.card-create__label
+            span Запит
+            strong *
+          input(type="text").card-create__field
+          p.card-create__error Будь ласка, вкажіть запит
+        .card-create__wrapper.card-create__wrapper--error
+          p.card-create__label
+            span Місто
+            strong *
+          input(type="text").card-create__field
+          p.card-create__error Будь ласка, вкажіть місто
+        .card-create__wrapper
+          p.card-create__label
+            span Категорія:
+          +select(categories).js-select
+          p.card-create__error Будь ласка, вкажіть категорію
+        .card-create__wrapper
+          .checked.js-checked
+            span.checked__title Надсилати нових кандидатів на ел. пошту
+        .card-create__wrapper
+          .card-create__actions
+            button.button.button--sm.button--primary.card-create__button.js-card-create-apply
+              span.button__text Зберегти
+            a.card-create__link.card-create__link--warning.js-card-search-cancel Скасувати

@@ -1,24 +1,4 @@
 mixin section-employer-search-agents
-  -
-    var options = [
-      {
-        id: "0",
-        title: "Усі категорії",
-      },
-      {
-        id: "1",
-        title: "IT, комп'ютери, інтернет",
-      },
-      {
-        id: "2",
-        title: "Адмiнiстрацiя, керівництво середньої ланки",
-      },
-      {
-        id: "3",
-        title: "Будівництво, архітектура",
-      }
-    ]
-
   section.section&attributes(attributes)
     .container-fluid
       .container
@@ -37,27 +17,27 @@ mixin section-employer-search-agents
             .cards__item
               +card-search(true).js-card-search
 
-          .agents-create
-            a.button.button--sm.button--primary.agents-create__button.js-agents-create-show
+          .card-create
+            a.button.button--sm.button--primary.card-create__button.js-card-create-show
               span.button__text Створити пошук
-            .agents-create__toggle.js-agents-create-toggle
-              .agents-create__wrapper
-                p.agents-create__label Запит:
-                input(type="text").agents-create__field
-                p.agents-create__error Будь ласка, вкажіть запит
-              .agents-create__wrapper.agents-create__wrapper--error
-                p.agents-create__label Місто:
-                input(type="text").agents-create__field
-                p.agents-create__error Будь ласка, вкажіть Місто
-              .agents-create__wrapper
-                p.agents-create__label Категорія:
-                +select(options).js-select
-                p.agents-create__error Будь ласка, вкажіть категорію
-              .agents-create__wrapper
+            .card-create__toggle.js-card-create-toggle
+              .card-create__wrapper
+                p.card-create__label Запит:
+                input(type="text").card-create__field
+                p.card-create__error Будь ласка, вкажіть запит
+              .card-create__wrapper.card-create__wrapper--error
+                p.card-create__label Місто:
+                input(type="text").card-create__field
+                p.card-create__error Будь ласка, вкажіть місто
+              .card-create__wrapper
+                p.card-create__label Категорія:
+                +select(categories).js-select
+                p.card-create__error Будь ласка, вкажіть категорію
+              .card-create__wrapper
                 .checked.js-checked
                   span.checked__title Надсилати нових кандидатів на ел. пошту
-              .agents-create__wrapper
-                .agents-create__actions
-                  button.button.button--sm.button--primary.agents-create__button.js-agents-create-apply
+              .card-create__wrapper
+                .card-create__actions
+                  button.button.button--sm.button--primary.card-create__button.js-card-create-apply
                     span.button__text Зберегти
-                  a.agents-create__link.agents-create__link--warning.js-agents-create-cancel Скасувати
+                  a.card-create__link.card-create__link--warning.js-card-create-cancel Скасувати

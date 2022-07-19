@@ -179,8 +179,6 @@
       &__link {
         @include flex($align-items: center);
 
-        color: var(--color-accent);
-
         i {
           @include make-spacer('mr', 1);
         }
