@@ -93,4 +93,11 @@
     position: relative;
     background-color: var(--color-white);
   }
+
+  &--wide {
+
+    .container {
+      max-width: 100%;
+    }
+  }
 }

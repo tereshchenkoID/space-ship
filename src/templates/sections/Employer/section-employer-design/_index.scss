@@ -2,6 +2,12 @@
 
   &--employer-design {
 
+    iframe {
+      @include size(100%, 100vh);
+
+      border: 0;
+    }
+
     .headline {
       @include make-spacer('mb', 4);
     }
