@@ -30,8 +30,15 @@
     }
   }
 
+  .logo {
+    @include make-spacer('mr', auto);
+  }
+
+  .language {
+    @include make-spacer('mr', 4);
+  }
+
   .account-toggle {
-    @include make-spacer('ml', auto);
     @include make-spacer('mr', 4);
     @include font-size(20px);
 
@@ -58,6 +65,13 @@
     .menu {
 
       &__link {
+        color: var(--color-text);
+      }
+    }
+
+    .language {
+
+      &__text {
         color: var(--color-text);
       }
     }

@@ -2,12 +2,12 @@ mixin section-employer-account
   section.section&attributes(attributes)
     .container-fluid
       .container
-        .card
+        .card.js-card
           h4.card__title
             span Особисті дані
             +info
 
-          .card__grid
+          .card__grid.js-card-data
             .card__column
               p.card__text Дата народження:
               .card__value
@@ -120,7 +120,7 @@ mixin section-employer-account
                     span.button__text Зберегти
                   a.card-change__link.card-change__link--warning.js-card-change-cancel Скасувати
 
-        .card
+        .card.js-card
           h4.card__title
             span Налаштування видимості особистих даних
             +info
@@ -225,7 +225,7 @@ mixin section-employer-account
                     span.button__text Зберегти
                   a.card-change__link.card-change__link--warning.js-card-change-cancel Скасувати
 
-        .card
+        .card.js-card
           h4.card__title
             span Пароль
             +info

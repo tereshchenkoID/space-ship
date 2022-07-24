@@ -5,5 +5,44 @@
     .headline {
       @include make-spacer('mb', 4);
     }
+
+    .checked {
+      @include make-spacer('mb', 2);
+    }
+
+    .options {
+      @include make-spacer('mb', 4);
+      @include make-spacer('p', 4);
+
+      background-color: var(--color-white);
+      box-shadow: var(--default-box-shadow);
+      border-radius: var(--default-border-radius);
+      overflow: hidden;
+
+      &__item,
+      &__button {
+        @include make-spacer('mb', 6);
+
+        &:last-child {
+          @include make-spacer('mb', 0);
+        }
+      }
+
+      &__grid {
+        display: grid;
+        align-items: center;
+        grid-gap: 10px;
+
+        @include media-breakpoint-up(sm) {
+          grid-template-columns: 200px 1fr;
+        }
+      }
+
+      &__link {
+        @include make-spacer('mx', 1);
+
+        color: var(--color-accent);
+      }
+    }
   }
 }

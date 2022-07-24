@@ -151,14 +151,24 @@ $('.js-career-slider').slick({
   ]
 });
 
+$('.js-language-link').on('click', function() {
+  $(this).closest('.js-language').find('.js-language-selected').text($(this).attr('data'))
+})
 
 $('.js-card-link').on('click', function() {
   $('.js-card-toggle').hide();
+  $(this).closest('.js-card').find('.js-card-data').hide()
   $(this).next('.js-card-toggle').show()
 })
 
+$('.js-card-change-apply').on('click', function() {
+  $(this).closest('.js-card').find('.js-card-data').show()
+  $(this).closest('.js-card').find('.js-card-toggle').hide()
+})
+
 $('.js-card-change-cancel').on('click', function() {
-  $(this).closest('.js-card-toggle').hide()
+  $(this).closest('.js-card').find('.js-card-data').show()
+  $(this).closest('.js-card').find('.js-card-toggle').hide()
 })
 
 
@@ -171,6 +181,9 @@ $('.js-card-search-cancel').on('click', function() {
   $(this).closest('.js-card-search').find('.js-card-search-toggle').hide()
 })
 
+$('.js-card-search-apply').on('click', function() {
+  $(this).closest('.js-card-search').find('.js-card-search-toggle').hide()
+})
 
 $('.js-agents-create-show').on('click', function() {
   $('.js-agents-create-toggle').show()
@@ -201,10 +214,19 @@ $('.js-card-create-link').on('click', function() {
   $(this).closest('.js-card-create').find('.js-card-create-toggle').show()
 })
 
+$('.js-card-create-apply').on('click', function() {
+  $(this).closest('.js-card-create').find('.js-card-create-toggle').hide()
+})
+
 $('.js-card-create-cancel').on('click', function() {
   $(this).closest('.js-card-create').find('.js-card-create-toggle').hide()
 })
 
+
+$('.js-card-invoice-icon').on('click', function() {
+  $('.js-card-invoice-toggle').hide();
+  $(this).closest('.js-card-invoice').find('.js-card-invoice-toggle').toggleClass('.card-invoice--toggle')
+})
 
 
 function initEditActionHTML() {

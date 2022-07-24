@@ -32,6 +32,13 @@
   &__top,
   &__bottom {
     position: relative;
+  }
+
+  &__top {
+    z-index: 2;
+  }
+
+  &__bottom {
     z-index: 1;
   }
 
@@ -74,6 +81,7 @@
     }
   }
 
+  .language,
   .subtitle,
   .text {
     @include make-spacer('mb', 4);

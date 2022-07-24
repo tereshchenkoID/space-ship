@@ -1,0 +1,57 @@
+mixin section-employer-purchased-services
+  section.section&attributes(attributes)
+    .container-fluid
+      .container
+        .content
+          +headline(
+            'Придбанні послуги',
+            false,
+            true
+          )
+
+        .tab.js-tab
+          .tab__header
+            a(data-link-tab="0").tab__link.tab__link--active.js-tab-link В наявності
+            a(data-link-tab="1").tab__link.js-tab-link Включені
+            a(data-link-tab="2").tab__link.js-tab-link Виключені
+          .tab__body(data-body-tab="0").tab__body--active.js-tab-body
+            .card
+              .card__header
+                h6.card__title Публикация Стандарт бесплатная
+                a(href="./employer/jobs-create.html").card__link Створити вакансію
+              .card__body
+                p.card__date до 31.07.2022
+                p.card__count 1 шт.
+
+            .card
+              .card__header
+                h6.card__title Публикация Стандарт бесплатная
+                a(href="./employer/jobs-create.html").card__link Створити вакансію
+              .card__body
+                p.card__date до 31.07.2022
+                p.card__count 1 шт.
+
+          .tab__body(data-body-tab="1").js-tab-body
+            .card
+              .card__header
+                h6.card__title Пакет Бесплатный
+                p.card__date до 31.07.2022
+            .card
+              .card__header
+                h6.card__title Публикация Стандарт бесплатная
+                a(href="./employer/jobs-create.html").card__link Продлить
+              .card__body
+                p.card__date до 31.07.2022
+                p.card__count 1 шт.
+
+          .tab__body(data-body-tab="2").js-tab-body
+            .card
+              .card__header
+                h6.card__title Публикация Стандарт бесплатная
+                a(href="./employer/jobs-create.html").card__link Створити вакансію
+              .card__body
+                p.card__date до 31.07.2022
+                p.card__count 1 шт.
+
+        a(href="./index.html#section-choose-plan").button.button--sm.button--primary
+          span.button__tex Замовити послуги

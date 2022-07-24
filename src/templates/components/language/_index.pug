@@ -1,0 +1,11 @@
+mixin language
+  .language&attributes(attributes)
+    .language__text
+      p.language__selected.js-language-selected En
+      span.language__icon
+        i.fa.fa-angle-down
+    .language__dropdown
+      .language__wrapper
+        a(data="en").language__item.js-language-link En
+        a(data="ua").language__item.js-language-link Ua
+        a(data="de").language__item.js-language-link De

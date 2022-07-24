@@ -1,0 +1,13 @@
+mixin card-invoice
+  .card-invoice&attributes(attributes)
+    .card-invoice__header
+      .card-invoice__meta
+        h4.card-invoice__id № 1497929
+        p.card-invoice__data 17.05.2021
+      p.card-invoice__icon.js-card-invoice-icon
+        i.fa.fa-info
+      h5.card-invoice__price 390 грн
+    .card-invoice__body
+      p.card-invoice__status Оплачен 17.05.2021. Услуги начислены 17.05.2021.
+    .card-invoice__dropdown.js-card-invoice-dropdown
+      +billing

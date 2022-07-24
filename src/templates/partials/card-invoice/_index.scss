@@ -1,0 +1,95 @@
+.card-invoice {
+  @include make-spacer('mb', 4);
+  @include make-spacer('py', 4);
+  @include make-spacer('px', 6);
+
+  background-color: var(--color-white);
+  box-shadow: var(--default-box-shadow);
+  border-radius: var(--default-border-radius);
+  overflow: hidden;
+
+  &:last-child {
+    @include make-spacer('mb', 0);
+  }
+
+  &--active {
+
+    .card-invoice {
+
+      &__status {
+        color: var(--color-red);
+      }
+    }
+  }
+
+  &--done {
+
+    .card-invoice {
+
+      &__status {
+        color: var(--color-green);
+      }
+    }
+  }
+
+  &--dropdown {
+
+    .card-invoice {
+
+      &__dropdown {
+        display: block;
+      }
+    }
+  }
+
+  &__header {
+    @include make-spacer('mb', 2);
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+
+    @include media-breakpoint-up(md) {
+      grid-template-columns: 1fr 50px 200px;
+    }
+  }
+
+  &__dropdown {
+    @include make-spacer('mt', 4);
+
+    display: none;
+  }
+
+  &__meta {
+    @include flex($align-items: center, $wrap: wrap);
+
+    & > * {
+      @include make-spacer('my', 1);
+    }
+  }
+
+  &__id {
+    @include make-spacer('mr', 2);
+
+    color: var(--color-accent);
+  }
+
+  &__price {
+    text-align: right;
+  }
+
+  &__icon {
+    @include flex(center, center);
+    @include font-size(13px);
+    @include size(20px);
+
+    cursor: pointer;
+    border-radius: 50%;
+    color: var(--color-white);
+    background-color: var(--color-grey-100);
+  }
+
+  &__link {
+    color: var(--color-red);
+  }
+}
