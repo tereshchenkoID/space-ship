@@ -87,11 +87,11 @@
     right: 0;
     left: 0;
     background-color: var(--color-white);
-    z-index: 0;
     border-radius: 0 0 var(--default-border-radius) var(--default-border-radius);
     box-shadow: var(--default-box-shadow);
     overflow-y: auto;
     max-height: 300px;
+    z-index: 1;
 
     &--active {
       display: block;

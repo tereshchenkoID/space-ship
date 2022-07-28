@@ -1,0 +1,89 @@
+.job {
+  @include make-spacer('p', 8);
+
+  color: #5f5f5f;
+  background-color: var(--color-white);
+  border-radius: var(--default-border-radius);
+  overflow: hidden;
+
+  &__title,
+  &__wrapper {
+    @include make-spacer('mb', 4);
+  }
+
+  &__image,
+  &__header {
+    @include make-spacer('mb', 8);
+  }
+
+  &__image {
+    @include make-spacer('mx', -8);
+  }
+
+  &__header {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 25px;
+    align-items: center;
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: 98px 1fr;
+    }
+  }
+
+  &__logo {
+    @include make-spacer('p', 4);
+    @include size(98px);
+
+    display: none;
+    border-radius: var(--default-border-radius);
+    background-color: #f8f8f8;
+    overflow: hidden;
+
+    @include media-breakpoint-up(lg) {
+      display: block;
+    }
+  }
+
+  &__meta {
+    @include flex($align-items: center, $wrap: wrap);
+
+    * {
+      @include make-spacer('mr', 2);
+    }
+  }
+
+  &__link {
+    color: var(--color-accent);
+  }
+
+  &__footer {
+    @include flex($align-items: center, $wrap: wrap);
+
+    & > * {
+      @include make-spacer('my', 2);
+    }
+  }
+
+  &__button {
+    @include make-spacer('mr', 4);
+
+    min-width: 240px;
+  }
+
+  &__expires {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    grid-gap: 10px;
+
+    i {
+      @include font-size(32px);
+    }
+
+    div {
+      @include font-size(14px);
+
+      line-height: 1.2;
+    }
+  }
+}

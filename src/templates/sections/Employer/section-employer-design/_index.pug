@@ -24,8 +24,6 @@ mixin section-employer-design
                   .checked.js-checked
                     span.checked__title Картинка зверху
                   .checked.js-checked
-                    span.checked__title Картинка знизу
-                  .checked.js-checked
                     span.checked__title Логотип
                 div
                   +file
@@ -45,6 +43,6 @@ mixin section-employer-design
               a(data-link-tab="0").tab__link.tab__link--active.js-tab-link Сторінка вакансії
               a(data-link-tab="1").tab__link.js-tab-link Сторінка компанії
             .tab__body(data-body-tab="0").tab__body--active.js-tab-body
-              +card-job(jobs[0])
+              +job
             .tab__body(data-body-tab="1").js-tab-body
               +company

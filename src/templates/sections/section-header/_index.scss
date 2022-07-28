@@ -12,27 +12,30 @@
     background-attachment: fixed;
 
     @include media-breakpoint-up(md) {
-      min-height: 720px;
+      min-height: 768px;
     }
 
     .grid {
-      @include make-spacer('pt', 25, md);
+      //@include make-spacer('pt', 25, md);
 
       display: grid;
       grid-template-columns: 1fr;
       align-items: center;
 
       @include media-breakpoint-up(md) {
-        grid-template-columns: 58% 1fr;
+        grid-template-columns: 50% 1fr;
       }
     }
 
     .picture {
-      @include size(120%, auto);
+      @include size(80%, auto);
 
       display: none;
 
       @include media-breakpoint-up(md) {
+        @include make-spacer('ml', auto);
+        @include make-spacer('mr', 0);
+
         display: block;
       }
     }

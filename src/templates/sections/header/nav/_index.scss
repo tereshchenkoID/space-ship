@@ -89,6 +89,10 @@
     }
   }
 
+  &--custom {
+    background-color: var(--color-white);
+  }
+
   &--default {
     position: relative;
     background-color: var(--color-white);
