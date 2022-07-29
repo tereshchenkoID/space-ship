@@ -11,22 +11,23 @@ mixin section-employer-design
 
           .options
             .options__item
-              .options__grid
+              .options__grid.options__grid--flex-start
                 div
-                  .checked.js-checked
-                    span.checked__title Колір фону
+                  +file('https://st.work.ua/i/company_design/company-design.png?v=1').file--custom
                 div
-                  .color
-                    input(type="color").color__field
-            .options__item
-              .options__grid
-                div
-                  .checked.js-checked
-                    span.checked__title Картинка зверху
-                  .checked.js-checked
-                    span.checked__title Логотип
-                div
-                  +file
+                  .options__grid.options__grid--nowrap
+                    .checked(data-target="design-color").js-checked
+                      span.checked__title Колір фону
+                    .color
+                      input(type="color").color__field.js-design-color
+                  .options__grid
+                    div
+                      .checked(data-target="design-picture").js-checked
+                        span.checked__title Картинка зверху
+                  .options__grid
+                    div
+                      .checked(data-target="design-logo").js-checked
+                        span.checked__title Логотип
                   +dropped-modal#dropped-modal
             .options__item
               .options__grid
@@ -43,6 +44,6 @@ mixin section-employer-design
               a(data-link-tab="0").tab__link.tab__link--active.js-tab-link Сторінка вакансії
               a(data-link-tab="1").tab__link.js-tab-link Сторінка компанії
             .tab__body(data-body-tab="0").tab__body--active.js-tab-body
-              +job
+              +job.js-job
             .tab__body(data-body-tab="1").js-tab-body
-              +company
+              +company.js-company

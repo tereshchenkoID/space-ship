@@ -1,6 +1,6 @@
-mixin file
+mixin file(image)
   .file&attributes(attributes)
     .file__picture
-      img(src="./img/user.svg").img.img--cover#file-preview
+      img(src=image ? image : "./img/user.svg" data-image=image ? image : "./img/user.svg").img.img--cover#file-preview
     input(type="file" id="file-avatar").file__input
     .file__actions#file-actions

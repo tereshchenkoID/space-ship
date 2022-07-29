@@ -24,6 +24,7 @@
 
   .toggle {
     order: 3;
+    flex-shrink: 0;
 
     @include media-breakpoint-up(lg) {
       order: unset;
@@ -96,12 +97,5 @@
   &--default {
     position: relative;
     background-color: var(--color-white);
-  }
-
-  &--wide {
-
-    .container {
-      max-width: 100%;
-    }
   }
 }

@@ -305,14 +305,6 @@ $('#dropped-modal-new-input').on('change', function() {
 });
 
 $('#dropped-modal-button').on('click', function() {
-
-  // cropper.getCroppedCanvas(
-  //   {
-  //     fillColor: '#fff',
-  //     imageSmoothingQuality: 'high',
-  //   }
-  // )
-
   const path = $('#dropped-modal-image').cropper('getCroppedCanvas').toDataURL()
 
   $('#dropped-modal').toggleClass('dropped-modal--active')
@@ -327,8 +319,6 @@ $('#dropped-modal-button').on('click', function() {
 $('#dropped-modal-close').on('click', function() {
   $('#dropped-modal').toggleClass('dropped-modal--active')
 })
-
-
 
 $('body').on('click', '#dropped-add-link', function() {
   $('#dropped-modal').toggleClass('dropped-modal--active')
@@ -349,7 +339,7 @@ $('body').on('click', '#dropped-edit-link', function() {
 
 $('body').on('click', '#dropped-delete-link', function() {
   localStorage.setItem('o_photo', '')
-  $('#file-preview').attr('src', './img/user.svg')
+  $('#file-preview').attr('src', $('#file-preview').attr('data-image'))
 
   if(cropper) {
     $('#dropped-modal-image').cropper('destroy')
@@ -444,4 +434,18 @@ $('.js-tab-link').on('click', function (){
   $(this).closest('.js-tab').find('.tab__body--active').removeClass('tab__body--active')
   $(this).addClass('tab__link--active')
   $(this).closest('.js-tab').find($(`div[data-body-tab="${id}"]`)).addClass('tab__body--active')
+})
+
+
+$('.section--employer-design .js-design-color').on('input', function() {
+  $('.section--employer-design .tab__body--active').children().css( "background-color", $(this).val());
+});
+
+$('.section--employer-design .js-tab-link').on('click', function (){
+  $('.section--employer-design .js-design-color').val('#000000')
+  $('.section--employer-design .js-tab-body').children().css( "background-color", 'unset');
+})
+
+$('.section--employer-design .js-checked').on('click', function() {
+  console.log($(this).attr('data-target'))
 })

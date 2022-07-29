@@ -2,18 +2,19 @@
 
   &--employer-design {
 
-    iframe {
-      @include size(100%, 100vh);
-
-      border: 0;
-    }
-
     .headline {
       @include make-spacer('mb', 4);
     }
 
     .checked {
       @include make-spacer('mb', 2);
+    }
+
+    .file {
+      @include make-spacer('mx', auto);
+      @include make-spacer('mb', 2);
+      @include make-spacer('ml', 0, sm);
+      @include make-spacer('mb', 2, 0);
     }
 
     .options {
@@ -41,6 +42,14 @@
 
         @include media-breakpoint-up(sm) {
           grid-template-columns: 200px 1fr;
+        }
+
+        &--nowrap {
+          grid-template-columns: 200px 1fr;
+        }
+
+        &--flex-start {
+          align-items: flex-start;
         }
       }
 
