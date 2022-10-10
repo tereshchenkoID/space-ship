@@ -1,0 +1,19 @@
+.nav {
+  @include flex(space-between, center);
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  border-bottom: 1px solid #2A2B2E;
+  background-image: url('https://aviator-demo.spribegaming.com/grey-texture-bg.b22cf205f88ab054.png');
+  background-repeat: repeat;
+  padding: 0 var(--grid-outher);
+  height: 50px;
+
+  .deposit {
+    @include make-spacer('mr', 2);
+    @include make-spacer('ml', auto);
+  }
+}

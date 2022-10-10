@@ -1,42 +1,18 @@
 mixin popup
   .popup&attributes(attributes)
-    .popup__wrapper.js-popup-wrapper
-      .popup__header
-        a(data-link="sign-in").popup__link.popup__link--active.js-popup-link
-          i.fa.fa-arrow-circle-right
-          | Sign In
-        a(data-link="create-account").popup__link.js-popup-link
-          i.fa.fa-user
-          | New Account
-
-      .popup__body(data-body="sign-in").popup__body--active.js-popup-body
-        .popup__item
-          input(type="text" placeholder="Email or Username").popup__field
-        .popup__item
-          input(type="password" placeholder="Password").popup__field
-        .popup__item
-          label(for="remember").popup__label
-            input(type="checkbox")#remember
-            span
-            p Remember me
-        +button('Login')(type="button").button--primary.popup__button
-
-      .popup__body(data-body="create-account").js-popup-body
-        .popup__item
-          input(type="text" placeholder="Username*").popup__field
-        .popup__grid
-          .popup__item
-            input(type="text" placeholder="First Name*").popup__field
-          .popup__item
-            input(type="text" placeholder="Last Name").popup__field
-        .popup__item
-          input(type="email" placeholder="Email*").popup__field
-        .popup__item
-          label(for="terms").popup__label
-            input(type="checkbox")#terms
-            span
-            p
-              | I agree with the
-              a(href="#") Terms.
-              | Edit this in Settings => Ajax Login Modal => Expressions tab => Registration section
-        +button('Create Account')(type="button").button--primary.popup__button
+    .popup__content
+      .popup__wrapper
+        .popup__head
+          p Choose Game avatar
+          a.popup__close.js-popup-close
+            svg(xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 371.23 371.23' style='enable-background:new 0 0 371.23 371.23;' xml:space='preserve')
+              polygon(points='371.23,21.213 350.018,0 185.615,164.402 21.213,0 0,21.213 164.402,185.615 0,350.018 21.213,371.23   185.615,206.828 350.018,371.23 371.23,350.018 206.828,185.615 ')
+        .popup__body
+          .popup__list
+            .avatar-list
+              - var n = 1;
+              while n < 73
+                a.avatar-logo.js-avatar-logo
+                  img(src=`https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-${n++}.png?v=4.1.1`).img
+        .popup__footer
+          button(type="button").popup__button.js-popup-close Close

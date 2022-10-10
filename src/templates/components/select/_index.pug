@@ -1,7 +1,0 @@
-mixin select(options)
-  .select&attributes(attributes)
-    .select__label.js-select-label(value=options[0].id)= options[0].title
-    i.fa.fa-angle-down.select__arrow
-    .select__dropdown
-      each item in options
-        .select__item.js-select-item(value=item.id)= item.title

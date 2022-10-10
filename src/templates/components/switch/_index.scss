@@ -1,0 +1,65 @@
+.switch {
+  @include size(36px, 18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.51);
+  overflow: hidden;
+  border-radius: 9px;
+
+  &__label {
+    @include size(100%);
+  }
+
+  &__toggle {
+    @include size(100%);
+
+    display: block;
+    cursor: pointer;
+    position: relative;
+    color: white;
+    transition: all 0.5s ease;
+    padding: 2px;
+    border-radius: 3px;
+
+    &:before,
+    &:after {
+      @include flex(center,center);
+
+      position: absolute;
+      border-radius: 50%;
+      height: calc(100% - 2px);
+      width: calc(50% - 2px);
+      transition: var(--default-transition);
+      content: '';
+    }
+
+    &:before {
+      background-color: white;
+      color: black;
+      top: 1px;
+      left: 1px;
+      z-index: 10;
+      border: 2px solid #a3b98a;
+    }
+
+    &:after {
+      right: 0;
+    }
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + .switch__label > .switch__toggle {
+      background-color: #229607;
+
+      &:after {
+        left: 1px;
+      }
+
+      &:before {
+        color: #40c253;
+        left: calc(50% + 1px);
+      }
+    }
+  }
+}

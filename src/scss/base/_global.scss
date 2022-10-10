@@ -7,16 +7,21 @@
 body {
   @include smooth-font;
 
-  background-color: #f3f2fc;
+  background-color: #101011;
   min-width: var(--min-width);
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  color: #262626;
+  color: var(--color-text);
   line-height: var(--line-height);
   font-family: var(--font-family);
   font-size: var(--font-size);
   font-weight: var(--typography-regular);
+}
+
+button,
+a {
+  @include transition(all);
 }
 
 button {
@@ -24,8 +29,6 @@ button {
 }
 
 a {
-  @include transition(all);
-
   cursor: pointer;
   color: var(--color-text);
   text-decoration: none;
@@ -54,105 +57,210 @@ p {
 }
 
 .page {
+  @include size(100%, 100vh);
+
+  display: grid;
+  grid-template-columns: 410px 1fr;
+  align-items: stretch;
+  column-gap: 10px;
   position: relative;
   overflow: hidden;
-}
-
-.section {
-  padding: 85px 0;
-}
-
-.container {
-  position: relative;
-  padding: 0 var(--grid-outher);
   max-width: var(--max-width);
-  margin-right: auto;
-  margin-left: auto;
-
-  &-fluid {
-    margin-right: auto;
-    margin-left: auto;
-    width: 100%;
-  }
+  width: 100%;
 }
 
-
-.slick-slider {
-  @include make-spacer('pb', 10);
+.aside,
+.content {
+  border: 1px solid red;
 }
 
-.slick-slide {
+.aside {
+  @include make-spacer('pt', 12);
   @include make-spacer('px', 2);
 }
 
-.slick-dots {
-  @include flex(center, center);
+.content {
+  @include make-spacer('pt', 10);
+}
 
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
+.bet-table {
+  @include flex($direction: column);
 
-  li {
-    @include make-spacer('m', 1);
-    @include size(10px);
+  border: 1px solid #2A2B2E;
+  border-radius: 20px 20px 0 0;
+  background-image: url('https://aviator-demo.spribegaming.com/grey-texture-bg.b22cf205f88ab054.png');
+  height: calc(100vh - 100px);
 
-    cursor: pointer;
-    border-radius: 50%;
-    background-color: var(--color-accent);
-    opacity: 0.5;
+  &__header,
+  &__footer {
+    @include make-spacer('p', 2);
 
-    &.slick-active {
-      opacity: 1;
+    flex-shrink: 0;
+    height: 50px;
+  }
+
+  &__content {
+    @include make-spacer('p', 2);
+
+    flex-grow: 1;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-corner {
+      background-color: #474747;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: 2px solid transparent;
+      border-radius: 19px;
+      background-clip: content-box;
+      background-color: #888;
+    }
+
+    &::-webkit-scrollbar-track {
+      border: 1px solid #373737;
+      background-color: #474747;
     }
   }
 
-  button {
-    @include font-size(0);
+
+  &__header {
+    border-bottom: 1px solid #2A2B2E;
+  }
+
+  &__footer {
+    border: 1px solid #2A2B2E;
+    background-color: var(--color-black);
+    color: #5e6269;
+  }
+
+  &__row {
+    @include make-spacer('py', 1);
+
+    display: grid;
+    grid-template-columns: 130px repeat(3, 1fr);
+    align-items: center;
+    font-size: 11px;
+    color: #7b7b7b;
+  }
+
+  &__cell {
+    text-align: center;
+
+    &:nth-child(1) {
+      @include make-spacer('pl', 1);
+
+      text-align: left;
+    }
   }
 }
 
-.btn-group {
-  @include make-spacer('mx', 1);
-  @include make-spacer('mb', 1);
-  @include flex(center, center);
+.bet-item {
+  @include make-spacer('mb', half);
 
-  border-radius: var(--default-border-radius);
-  overflow: hidden;
-  background-color: var(--color-accent);
+  display: grid;
+  grid-template-columns: 30px 100px repeat(3, 1fr);
+  align-items: center;
+  column-gap: 5px;
+  background: linear-gradient(85deg, var(--color-black), #0f1214);
+  border: 2px solid var(--color-black);
+  border-radius: 17px;
+  height: 34px;
+  font-size: 14px;
   color: var(--color-white);
 
-  &__button {
-    @include flex(center, center);
+  &:last-child {
+    @include make-spacer('mb', 0);
+  }
+
+  &__logo {
     @include size(30px);
 
-    border-radius: 0;
-    opacity: 0.8;
-    padding: 5px!important;
+    background-color: var(--color-gray);
+    border-radius: 50%;
+    overflow: hidden;
+  }
 
-    svg {
-      @include make-spacer('m', 0);
-      @include size(16px);
+  &__cell {
+    text-align: center;
 
-      fill: var(--color-white);
+    &:nth-child(2) {
+      text-align: left;
     }
+  }
 
-    &:hover,
-    &--active {
-      opacity: 1;
+  &__value {
+    border-radius: 11px;
+    border: 1px solid #5e6168;
+  }
+
+  &__value,
+  &__cash,
+  &__multiply {
+
+    span {
+
+      &:last-child {
+        margin-left: 2px;
+        font-size: 9px;
+      }
+    }
+  }
+
+  &--win {
+    border: 1px solid #427F00;
+    background: #123406;
+
+    .bet-item {
+
+      &__value {
+        border: 0;
+      }
     }
   }
 }
 
-.clearfix {
+.avatar-list {
+  display: grid;
+  grid-template-columns: repeat(5, 120px);
+  grid-gap: 20px;
+  justify-content: center;
+}
 
-  &::before,
-  &::after {
-    content: " ";
-    display: table;
-  }
+.avatar-logo {
+  @include size(120px);
 
-  &::after {
-    clear: both;
+  border-radius: 50%;
+  overflow: hidden;
+
+  &--active {
+    border: 11px solid #428a12;
   }
+}
+
+.bet-multiplies {
+  @include flex($align-items: center);
+  @include make-spacer('p', 2);
+
+  overflow: hidden;
+
+  .bet-multiply {
+    @include make-spacer('mr', 2);
+  }
+}
+
+.bet-multiply {
+  @include flex(center, center);
+  @include make-spacer('px', 2);
+  @include font-size(12px, 24px);
+
+  flex-shrink: 0;
+  border-radius: 11px;
+  background-color: var(--color-dark);
+  height: 22px;
+  font-weight: var(--typography-bold);
+  color: #d7c3eb;
 }

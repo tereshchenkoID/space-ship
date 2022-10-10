@@ -1,5 +1,5 @@
 .popup {
-  @include make-spacer('px', 1);
+  @include make-spacer('p', 6);
 
   display: none;
   position: fixed;
@@ -7,139 +7,105 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(52, 54, 66, 0.9);
-  z-index: 12;
-  overflow-y: auto;
+  z-index: 11;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  &__head,
+  &__footer {
+    @include make-spacer('px', 2);
+
+    background-color: #2C2D30;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    @include size(100%, 100%);
+
+    background-color: #383A3E;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px var(--color-black);
+    max-width: 800px;
+  }
 
   &__wrapper {
-    @include make-spacer('my', 10);
-    @include make-spacer('mx', auto);
+    @include flex($direction: column);
 
-    background-color: #f3f2fc;
-    border-radius: var(--default-border-radius);
-    width: 100%;
-    max-width: 540px;
+    height: 100%;
     overflow: hidden;
   }
 
-  &__header {
-    @include flex($align-items: center);
-    @include font-size(14px);
+  &__head {
+    @include flex(space-between, center);
 
-    height: 50px;
+    height: 36px;
+    color: var(--color-white);
+    text-transform: uppercase;
+  }
 
-    @include media-breakpoint-up(sm) {
-      @include font-size(18px);
+  &__footer {
+    @include flex(center, center);
 
-      height: 70px;
-    }
+    height: 58px;
   }
 
   &__body {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  &__list {
     @include make-spacer('p', 4);
-    @include make-spacer('p', 8, sm);
 
-    display: none;
-
-    &--active {
-      display: block;
-    }
-  }
-
-  &__grid {
-
-    @include media-breakpoint-up(sm) {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      column-gap: 20px;
-    }
-  }
-
-  &__item {
-    @include make-spacer('mb', 4);
-  }
-
-  &__link {
-    @include flex(center, center);
-
-    flex: 1;
+    overflow-y: auto;
     height: 100%;
 
-    * {
-      @include make-spacer('mx', 2);
+    &::-webkit-scrollbar {
+      width: 8px;
     }
 
-    &--active {
-      background-color: var(--color-accent);
-      color: var(--color-white);
+    &::-webkit-scrollbar-corner {
+      background-color: #474747;
     }
-  }
 
-  &__field {
-    @include make-spacer('px', 2);
-    @include make-spacer('py', 3);
+    &::-webkit-scrollbar-thumb {
+      border: 2px solid transparent;
+      border-radius: 19px;
+      background-clip: content-box;
+      background-color: #888;
+    }
 
-    border: 1px solid var(--color-grey-100);
-    border-radius: var(--default-border-radius);
-    width: 100%;
-
-    &:focus {
-      border-color: var(--color-accent);
+    &::-webkit-scrollbar-track {
+      border: 1px solid #373737;
+      background-color: #474747;
     }
   }
 
-  &__label {
-    @include flex($align-items: center);
-    @include make-spacer('pl', 6);
+  &__close {
+    @include size(20px);
 
-    position: relative;
-    cursor: pointer;
-
-    input {
-      @include size(0);
-
-      position: absolute;
-      opacity: 0;
-
-      &:checked ~ span {
-
-        &::after {
-          @include size(20px);
-
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background-color: var(--color-accent);
-          color: var(--color-white);
-          font-family: 'Font Awesome 5 Free';
-          font-weight: 700;
-          text-align: center;
-          font-size: 14px;
-          content: '\f00c';
-        }
-      }
+    svg {
+      fill: var(--color-white);
     }
+  }
 
-    span {
-      @include size(20px);
+  &__button {
+    @include make-spacer('px', 4);
+    @include make-spacer('py', 1);
 
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      transition: var(--default-transition);
-      background-color: var(--color-white);
-      border: 1px solid var(--color-grey-100);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-top: -2px;
+    border: 1px solid #6c757d;
+    border-radius: 20px;
+    color: #6c757d;
+
+    &:hover {
+      color: #fff;
+      background-color: #6c757d;
+      border-color: #6c757d;
     }
+  }
 
-    a {
-      @include make-spacer('mx', 1);
-
-      color: var(--color-accent);
-    }
+  &--active {
+    @include flex(center, center);
   }
 }

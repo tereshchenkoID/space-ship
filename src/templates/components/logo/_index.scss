@@ -1,0 +1,9 @@
+.logo {
+  @include size(auto, 100%);
+
+  display: block;
+
+  &:focus {
+    outline: none;
+  }
+}

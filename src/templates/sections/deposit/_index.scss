@@ -1,0 +1,20 @@
+.deposit {
+  @include make-spacer('px', 2);
+  @include make-spacer('py', half);
+  @include flex(center, center);
+
+  color: #9b9c9e;
+  border: 1px solid #2A2B2E;
+  border-radius: 20px;
+
+  &__value {
+    font-size: 16px;
+    font-weight: var(--typography-bold);
+  }
+
+  &__currency {
+    @include make-spacer('mx', half);
+
+    font-size: 12px;
+  }
+}

@@ -1,17 +1,51 @@
 ---
-title: Rekroot
+title: SpaceShip
 lang: en
 ---
 extends ../layouts/_layout
 
 block content
-  +nav.js-nav
-  +header#header
   main
-    +section-count.section--count
-    +section-latest-startups.section--latest-startups
-    +section-looking-hire.section--looking-hire
-    +section-newest-listings.section--newest-listings
-    +section-smart-solution.section--smart-solution
-    +section-choose-plan.section--choose-plan#section-choose-plan
-    +section-subscribe-newsletter.section--subscribe-newsletter
+    .page
+      +popup.js-popup.js-popup-avatar
+      +nav
+      .aside
+        +navigation-tab.js-navigation-tab
+        .bet-table
+          .bet-table__header
+            .bet-table__row
+              .bet-table__cell User
+              .bet-table__cell Bet
+              .bet-table__cell Mult.
+              .bet-table__cell Cash out
+
+          .bet-table__content
+            - var n = 1;
+              while n < 73
+                .bet-item(class=n === 2 ? 'bet-item--win' : '')
+                  .bet-item__cell
+                    .bet-item__logo
+                      img(src=`https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-${n++}.png?v=4.1.1`).img
+                  .bet-item__cell
+                    .bet-item__name d****1
+                  .bet-item__cell
+                    .bet-item__value
+                      span 100.00
+                      span $
+                  .bet-item__cell
+                    .bet-item__multiply
+                      span 1.45x
+                      span x
+                  .bet-item__cell
+                    .bet-item__cash
+                      span 100.00
+                      span $
+
+          .bet-table__footer
+            p Footer
+
+      .content
+        .bet-multiplies
+          - var n = 0;
+            while n < 73
+              .bet-multiply= `1${n++}x`

@@ -1,5 +1,5 @@
 :root {
-  --font-size: 15px;
+  --font-size: 14px;
   --font-family: 'Roboto', sans-serif;
   --font-family-alt: 'Roboto Slab', sans-serif;
 
@@ -27,16 +27,12 @@ h6 {
   color: var(--color-title);
   font-family: var(--font-family);
   font-weight: var(--typography-semibold);
-  line-height: 1.5;
+  line-height: 1.15;
 }
 
 h1,
 .h1 {
   @include font-size(35px);
-
-  @include media-breakpoint-up(md) {
-    @include font-size(60px);
-  }
 }
 
 h2,
@@ -47,10 +43,6 @@ h2,
 h3,
 .h3 {
   @include font-size(26px);
-
-  @include media-breakpoint-up(md) {
-    @include font-size(32px);
-  }
 }
 
 h4,
