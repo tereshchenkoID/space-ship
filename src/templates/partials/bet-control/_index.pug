@@ -1,0 +1,48 @@
+mixin bet-control
+  .bet-control&attributes(attributes)
+    .bet-control__container
+      a.bet-control__remove
+      .bet-control__top.js-bet-control-top
+        .bet-control__tab
+          button(type="button").bet-control__link.bet-control__link--active.js-bet-control-link Bet
+          button(type="button").bet-control__link.js-bet-control-link Auto
+      .bet-control__center.js-bet-control-center
+        .bet-control__cell
+          .bet-control__counts.bet-control__counts--lg
+            input(type="number" value="100.00").bet-control__field.js-bet-control-field
+            button.bet-control__minus.js-bet-control-minus
+              svg(xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 16 16')
+                g(stroke='none' stroke-width='1' fill='none' fill-rule='evenodd')
+                  g(transform='translate(-197.000000, -199.000000)' fill='#767B85' fill-rule='nonzero')
+                    g(transform='translate(100.000000, 190.000000)')
+                      path(d='M105,9 C109.4,9 113,12.6 113,17 C113,21.4 109.4,25 105,25 C100.6,25 97,21.4 97,17 C97,12.6 100.6,9 105,9 Z M109,17.8 L109,16.2 L101,16.2 L101,17.8 L109,17.8 Z')
+            button.bet-control__plus.js-bet-control-plus
+              svg(xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 16 16')
+                g(stroke='none' stroke-width='1' fill='none' fill-rule='evenodd')
+                  g(transform='translate(-216.000000, -199.000000)' fill='#767B85' fill-rule='nonzero')
+                    g(transform='translate(100.000000, 190.000000)')
+                      path(d='M124,9 C119.6,9 116,12.6 116,17 C116,21.4 119.6,25 124,25 C128.4,25 132,21.4 132,17 C132,12.6 128.4,9 124,9 Z M128,17.8 L124.8,17.8 L124.8,21 L123.2,21 L123.2,17.8 L120,17.8 L120,16.2 L123.2,16.2 L123.2,13 L124.8,13 L124.8,16.2 L128,16.2 L128,17.8 Z')
+
+          .bet-control__currency
+            button(type="button" data-value="1").bet-control__button.js-bet-control-button
+              span 1
+              span $
+            button(type="button" data-value="2").bet-control__button.js-bet-control-button
+              span 2
+              span $
+            button(type="button" data-value="5").bet-control__button.js-bet-control-button
+              span 5
+              span $
+            button(type="button" data-value="10").bet-control__button.js-bet-control-button
+              span 10
+              span $
+        .bet-control__cell
+          button(type="button").bet-control__bet.js-bet-control-bet Bet
+      .bet-control__bottom.js-bet-control-bottom
+        button(type="button" data-value="auto").bet-control__button.js-bet-control-button
+          span AUTO PLAY
+        .bet-control__auto
+          span.bet-control__label Auto Cash Out
+          +switch('auto-cash').js-switch
+        .bet-control__counts.bet-control__counts--sm
+          input(type="number" value="1.1").bet-control__field.js-bet-control-field

@@ -75,12 +75,12 @@ p {
 }
 
 .aside {
-  @include make-spacer('pt', 12);
+  @include make-spacer('pt', 14);
   @include make-spacer('px', 2);
 }
 
 .content {
-  @include make-spacer('pt', 10);
+  @include make-spacer('pt', 12);
   @include make-spacer('px', 2);
 
   overflow: hidden;
@@ -244,14 +244,51 @@ p {
 }
 
 .bet-multiplies {
-  @include flex($align-items: center);
+  position: relative;
+
+  &--active {
+    border-radius: 6px;
+    background-color: #262830;
+    overflow: hidden;
+
+    .bet-multiplies {
+
+      &__list {
+        flex-wrap: wrap;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      &__header {
+        @include flex($align-items: center);
+      }
+
+      &__body {
+        background-color: #262830;
+      }
+    }
+  }
+
+  &__body {
+    @include make-spacer('pr', 14);
+  }
+
+  &__header {
+    @include make-spacer('py', 2);
+    @include make-spacer('px', 1);
+
+    display: none;
+    background-color: #1f2128;
+    color: var(--color-white);
+  }
 
   &__list {
     @include flex($align-items: center);
-    @include make-spacer('p', 2);
+    @include make-spacer('py', 1);
 
     position: relative;
-    flex-grow: 1;
     overflow: hidden;
 
     &::after {
@@ -259,7 +296,6 @@ p {
       top: 0;
       right: 0;
       bottom: 0;
-      z-index: 1;
       background-image: linear-gradient(to left, #0d0d0d, rgba(0, 0, 0, 0));
       width: 20px;
       content: '';
@@ -267,14 +303,16 @@ p {
   }
 
   &__item {
-    @include make-spacer('mr', 2);
+    @include make-spacer('m', 1);
   }
 
   &__button {
-    @include make-spacer('ml', 3);
     @include size(46px, 22px);
     @include flex(center, center);
 
+    position: absolute;
+    top: 10px;
+    right: 10px;
     flex-shrink: 0;
     border-radius: 13px;
     border: solid 1px #6f6f6f;
@@ -297,4 +335,21 @@ p {
   height: 22px;
   font-weight: var(--typography-bold);
   color: #d7c3eb;
+}
+
+.game-window {
+  @include make-spacer('mb', 2);
+  @include size(100%, 600px);
+
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: grey;
+}
+
+.bet-controls {
+  @include flex(center, center);
+
+  .bet-control {
+    @include make-spacer('mx', 1);
+  }
 }

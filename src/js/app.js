@@ -103,3 +103,7 @@ $('.js-navigation-tab-item').on('click', function() {
   $('.js-navigation-tab-item').removeClass('navigation-tab__item--active')
   $(this).addClass('navigation-tab__item--active')
 })
+
+$('.js-multiplies-button').on('click', function() {
+  $(this).closest('.js-multiplies').toggleClass('bet-multiplies--active')
+})
