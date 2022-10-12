@@ -1,0 +1,16 @@
+mixin bet-count
+  .bet-count&attributes(attributes)
+    input(type="number" value="100.00").bet-count__field.js-bet-count-field
+    .bet-count__options
+      button.bet-count__button.js-bet-count-minus
+        svg(xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 16 16')
+          g(stroke='none' stroke-width='1' fill='none' fill-rule='evenodd')
+            g(transform='translate(-197.000000, -199.000000)' fill='#767B85' fill-rule='nonzero')
+              g(transform='translate(100.000000, 190.000000)')
+                path(d='M105,9 C109.4,9 113,12.6 113,17 C113,21.4 109.4,25 105,25 C100.6,25 97,21.4 97,17 C97,12.6 100.6,9 105,9 Z M109,17.8 L109,16.2 L101,16.2 L101,17.8 L109,17.8 Z')
+      button.bet-count__button.bet-count-plus
+        svg(xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 16 16')
+          g(stroke='none' stroke-width='1' fill='none' fill-rule='evenodd')
+            g(transform='translate(-216.000000, -199.000000)' fill='#767B85' fill-rule='nonzero')
+              g(transform='translate(100.000000, 190.000000)')
+                path(d='M124,9 C119.6,9 116,12.6 116,17 C116,21.4 119.6,25 124,25 C128.4,25 132,21.4 132,17 C132,12.6 128.4,9 124,9 Z M128,17.8 L124.8,17.8 L124.8,21 L123.2,21 L123.2,17.8 L120,17.8 L120,16.2 L123.2,16.2 L123.2,13 L124.8,13 L124.8,16.2 L128,16.2 L128,17.8 Z')

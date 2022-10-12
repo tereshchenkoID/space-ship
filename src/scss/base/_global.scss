@@ -269,6 +269,8 @@ p {
       }
 
       &__body {
+        @include make-spacer('pr', 0);
+
         background-color: #262830;
       }
     }
@@ -332,6 +334,7 @@ p {
   @include make-spacer('px', 2);
   @include font-size(12px, 24px);
 
+  cursor: pointer;
   flex-shrink: 0;
   border-radius: 11px;
   background-color: var(--color-dark);

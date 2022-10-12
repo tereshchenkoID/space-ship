@@ -14,7 +14,7 @@
     .bet-control {
 
       &__remove {
-        background: #29a909 url('https://aviator-demo.spribegaming.com/btn-plus-black.6b165e6d92216cd5.svg') no-repeat center center
+        background: #29a909 url('../img/icon/plus.svg') no-repeat center center
       }
     }
   }
@@ -25,7 +25,7 @@
 
       &__remove {
         opacity: 0.6;
-        background: url('https://aviator-demo.spribegaming.com/btn-minus-grey.a1aca6d7eb065c78.svg') no-repeat;
+        background: url('../img/icon/minus.svg') no-repeat;
 
         &:hover {
           opacity: 1;
@@ -136,6 +136,7 @@
   }
 
   &__counts {
+    @include size(70px, 28px);
     @include make-spacer('px', 1);
     @include flex($align-items: center);
 
@@ -143,54 +144,29 @@
     background-color: #000000b3;
     border: solid 1px #3C3C42;
 
-    &--sm {
-      height: 28px;
+    input {
+      @include size(100%);
 
-      input {
-        width: 70px;
-        text-align: center;
+      border: 0;
+      background-color: transparent;
+      text-align: center;
+      color: var(--color-white);
+      font-weight: var(--typography-bold);
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      &:focus {
+        outline: 0;
       }
     }
 
-    &--lg {
-      height: 34px;
-
-      input {
-        @include make-spacer('px', 2);
-
-        width: 92px;
-        font-size: 22px;
-        font-weight: var(--typography-bold);
-      }
-    }
-  }
-
-  &__plus,
-  &__minus {
-    @include size(16px);
-
-    margin-left: 2px;
-    background-size: cover;
-  }
-
-  &__minus {
-    margin-left: auto;
-  }
-
-  &__field {
-    border: 0;
-    background-color: transparent;
-    height: 100%;
-    color: var(--color-white);
-
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    &:focus {
-      outline: 0;
+    &--disabled {
+      pointer-events: none;
+      opacity: 0.5;
     }
   }
 

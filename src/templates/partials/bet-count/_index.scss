@@ -1,0 +1,51 @@
+.bet-count {
+  @include make-spacer('px', 1);
+  @include size(100%, 34px);
+  @include flex($align-items: center);
+
+  border-radius: 22px;
+  background-color: #000000b3;
+  border: solid 1px #3C3C42;
+  overflow: hidden;
+  min-width: 130px;
+
+  &__options {
+    display: grid;
+    grid-template-columns: repeat(2, 16px);
+    column-gap: 2px;
+    flex-shrink: 0;
+  }
+
+  &__button {
+    @include size(16px);
+
+    background-size: cover;
+  }
+
+  &__field {
+    border: 0;
+    flex-grow: 1;
+    background-color: transparent;
+    overflow: hidden;
+    height: 100%;
+    text-align: center;
+    color: var(--color-white);
+    font-size: 22px;
+    font-weight: var(--typography-bold);
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &--disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}

@@ -64,3 +64,37 @@ block content
         .bet-controls
           +bet-control.bet-control--single.js-bet-control
           +bet-control.bet-control--twice.js-bet-control
+
+      .popup.popup--active
+        .popup__content
+          .popup__wrapper
+            .popup__head
+              p Auto play Options
+              a.popup__close.js-popup-close
+                svg(xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 371.23 371.23' style='enable-background:new 0 0 371.23 371.23;' xml:space='preserve')
+                  polygon(points='371.23,21.213 350.018,0 185.615,164.402 21.213,0 0,21.213 164.402,185.615 0,350.018 21.213,371.23   185.615,206.828 350.018,371.23 371.23,350.018 206.828,185.615 ')
+            .popup__body
+              .popup__list
+                div
+                  button(type="button" data-value="10") 10
+                  button(type="button" data-value="20") 20
+                  button(type="button" data-value="50") 50
+                  button(type="button" data-value="100") 100
+                div
+                  span Stop if cash decreases by
+                  +switch('decreases').js-switch
+                  +bet-count.bet-count--disabled.js-bet-count
+                  span $
+                div
+                  span Stop if cash increases by
+                  +switch('increases').js-switch
+                  +bet-count.bet-count--disabled.js-bet-count
+                  span $
+                div
+                  span Stop if single with exceeds
+                  +switch('increases').js-switch
+                  +bet-count.bet-count--disabled.js-bet-count
+                  span $
+            .popup__footer
+              button(type="button") Reset
+              button(type="button") Start

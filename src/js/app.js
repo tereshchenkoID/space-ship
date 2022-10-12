@@ -1,5 +1,31 @@
 function App() {
   this.user = {}
+  this.bet = [
+    {
+      value: 10.00,
+      auto: {
+        out: null,
+        options: {
+          rounds: null,
+          decreases: null,
+          increases: null,
+          exceeds: null,
+        },
+      },
+    },
+    {
+      value: 1.00,
+      auto: {
+        out: 1.23,
+        options: {
+          rounds: 10,
+          decreases: 0.2,
+          increases: 0.2,
+          exceeds: 0.2,
+        },
+      },
+    }
+  ]
 }
 
 App.prototype.init = function() {
