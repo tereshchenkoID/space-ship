@@ -76,32 +76,7 @@ block content
                 svg(xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 371.23 371.23' style='enable-background:new 0 0 371.23 371.23;' xml:space='preserve')
                   polygon(points='371.23,21.213 350.018,0 185.615,164.402 21.213,0 0,21.213 164.402,185.615 0,350.018 21.213,371.23   185.615,206.828 350.018,371.23 371.23,350.018 206.828,185.615 ')
             .popup__body
-              .popup__list
-                .bet-autoplay
-                  .bet-autoplay__text Number of Rounds:
-                  .bet-autoplay__wrapper
-                    button(type="button" data-value="10").button.button--primary.bet-autoplay__button 10
-                    button(type="button" data-value="20").button.button--primary.bet-autoplay__button 20
-                    button(type="button" data-value="50").button.button--primary.bet-autoplay__button 50
-                    button(type="button" data-value="100").button.button--primary.bet-autoplay__button 100
-                .bet-autoplay
-                  .bet-autoplay__container
-                    +switch('decreases').js-switch
-                    span Stop if cash decreases by
-                    +bet-count.bet-count--disabled.js-bet-count
-                    span $
-                .bet-autoplay
-                  .bet-autoplay__container
-                    +switch('increases').js-switch
-                    span Stop if cash increases by
-                    +bet-count.bet-count--disabled.js-bet-count
-                    span $
-                .bet-autoplay
-                  .bet-autoplay__container
-                    +switch('exceeds').js-switch
-                    span Stop if single with exceeds
-                    +bet-count.bet-count--disabled.js-bet-count
-                    span $
+              .popup__list.js-popup-list
             .popup__footer
               button(type="button").button.button--warning.popup__button Reset
               button(type="button").button.button--success.popup__button Start

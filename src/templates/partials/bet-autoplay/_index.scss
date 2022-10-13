@@ -1,20 +1,27 @@
 .bet-autoplay {
-  @include make-spacer('px', 2);
-  @include make-spacer('py', 3);
-  @include make-spacer('mb', 1);
-
-  background-color: #2c2d30;
-  border-radius: 10px;
   font-size: 14px;
   line-height: 14px;
   color: #d2d2d2;
 
   &__container {
-    display: grid;
-    grid-template-columns: 36px 1fr 140px 10px;
-    align-items: center;
-    column-gap: 5px;
+    @include make-spacer('px', 2);
+    @include make-spacer('py', 3);
+    @include make-spacer('mb', 2);
+
+    background-color: #2c2d30;
+    border-radius: 10px;
     width: 100%;
+
+    &:last-child {
+      @include make-spacer('mb', 0);
+    }
+
+    &--custom {
+      display: grid;
+      grid-template-columns: 36px 1fr 140px 10px;
+      align-items: center;
+      column-gap: 5px;
+    }
   }
 
   &__wrapper {
@@ -31,5 +38,10 @@
     @include make-spacer('mx', half);
 
     border-radius: 50px!important;
+
+    &--active {
+      border-color: #60ae05;
+    }
   }
 }
+
