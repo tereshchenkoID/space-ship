@@ -5,6 +5,8 @@
   border-radius: 10px;
   text-align: center;
   color: #83878e;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-family-alt);
 
   span {
 
@@ -36,5 +38,15 @@
       background-color: var(--color-secondary);
       color: var(--color-white);
     }
+  }
+
+  &--success {
+    background-color: #28a909;
+    color: var(--color-white);
+  }
+
+  &--warning {
+    background-color: #d07206;
+    color: var(--color-white);
   }
 }

@@ -3,16 +3,10 @@ mixin popup
     .popup__content
       .popup__wrapper
         .popup__head
-          p Choose Game avatar
+          p Popup Title
           a.popup__close.js-popup-close
             svg(xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 371.23 371.23' style='enable-background:new 0 0 371.23 371.23;' xml:space='preserve')
               polygon(points='371.23,21.213 350.018,0 185.615,164.402 21.213,0 0,21.213 164.402,185.615 0,350.018 21.213,371.23   185.615,206.828 350.018,371.23 371.23,350.018 206.828,185.615 ')
         .popup__body
-          .popup__list
-            .avatar-list
-              - var n = 1;
-              while n < 73
-                a.avatar-logo.js-avatar-logo
-                  img(src=`https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-${n++}.png?v=4.1.1`).img
         .popup__footer
           button(type="button").button.button--outline.popup__button.js-popup-close Close

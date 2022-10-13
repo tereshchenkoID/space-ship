@@ -7,7 +7,6 @@ extends ../layouts/_layout
 block content
   main
     .page
-      +popup.js-popup.js-popup-avatar
       +nav
       .aside
         +navigation-tab.js-navigation-tab
@@ -49,36 +48,60 @@ block content
         +game-window.js-game-window
         .bet-controls.js-bet-controls
 
-      //.popup.popup--active
-      //  .popup__content
-      //    .popup__wrapper
-      //      .popup__head
-      //        p Auto play Options
-      //        a.popup__close.js-popup-close
-      //          svg(xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 371.23 371.23' style='enable-background:new 0 0 371.23 371.23;' xml:space='preserve')
-      //            polygon(points='371.23,21.213 350.018,0 185.615,164.402 21.213,0 0,21.213 164.402,185.615 0,350.018 21.213,371.23   185.615,206.828 350.018,371.23 371.23,350.018 206.828,185.615 ')
-      //      .popup__body
-      //        .popup__list
-      //          div
-      //            button(type="button" data-value="10").button.button--primary 10
-      //            button(type="button" data-value="20").button.button--primary 20
-      //            button(type="button" data-value="50").button.button--primary 50
-      //            button(type="button" data-value="100").button.button--primary 100
-      //          div
-      //            span Stop if cash decreases by
-      //            +switch('decreases').js-switch
-      //            +bet-count.bet-count--disabled.js-bet-count
-      //            span $
-      //          div
-      //            span Stop if cash increases by
-      //            +switch('increases').js-switch
-      //            +bet-count.bet-count--disabled.js-bet-count
-      //            span $
-      //          div
-      //            span Stop if single with exceeds
-      //            +switch('increases').js-switch
-      //            +bet-count.bet-count--disabled.js-bet-count
-      //            span $
-      //      .popup__footer
-      //        button(type="button") Reset
-      //        button(type="button") Start
+
+      .popup.popup--full.js-popup.js-popup-avatar
+        .popup__content
+          .popup__wrapper
+            .popup__head
+              p Choose Game avatar
+              a.popup__close.js-popup-close
+                svg(xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 371.23 371.23' style='enable-background:new 0 0 371.23 371.23;' xml:space='preserve')
+                  polygon(points='371.23,21.213 350.018,0 185.615,164.402 21.213,0 0,21.213 164.402,185.615 0,350.018 21.213,371.23   185.615,206.828 350.018,371.23 371.23,350.018 206.828,185.615 ')
+            .popup__body
+              .popup__list
+                .avatar-list
+                  - var n = 1;
+                  while n < 73
+                    a.avatar-logo.js-avatar-logo
+                      img(src=`https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-${n++}.png?v=4.1.1`).img
+            .popup__footer
+              button(type="button").button.button--outline.popup__button.js-popup-close Close
+
+      .popup.js-popup.js-popup-autoplay
+        .popup__content
+          .popup__wrapper
+            .popup__head
+              p Auto play Options
+              a.popup__close.js-popup-close
+                svg(xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 371.23 371.23' style='enable-background:new 0 0 371.23 371.23;' xml:space='preserve')
+                  polygon(points='371.23,21.213 350.018,0 185.615,164.402 21.213,0 0,21.213 164.402,185.615 0,350.018 21.213,371.23   185.615,206.828 350.018,371.23 371.23,350.018 206.828,185.615 ')
+            .popup__body
+              .popup__list
+                .bet-autoplay
+                  .bet-autoplay__text Number of Rounds:
+                  .bet-autoplay__wrapper
+                    button(type="button" data-value="10").button.button--primary.bet-autoplay__button 10
+                    button(type="button" data-value="20").button.button--primary.bet-autoplay__button 20
+                    button(type="button" data-value="50").button.button--primary.bet-autoplay__button 50
+                    button(type="button" data-value="100").button.button--primary.bet-autoplay__button 100
+                .bet-autoplay
+                  .bet-autoplay__container
+                    +switch('decreases').js-switch
+                    span Stop if cash decreases by
+                    +bet-count.bet-count--disabled.js-bet-count
+                    span $
+                .bet-autoplay
+                  .bet-autoplay__container
+                    +switch('increases').js-switch
+                    span Stop if cash increases by
+                    +bet-count.bet-count--disabled.js-bet-count
+                    span $
+                .bet-autoplay
+                  .bet-autoplay__container
+                    +switch('exceeds').js-switch
+                    span Stop if single with exceeds
+                    +bet-count.bet-count--disabled.js-bet-count
+                    span $
+            .popup__footer
+              button(type="button").button.button--warning.popup__button Reset
+              button(type="button").button.button--success.popup__button Start

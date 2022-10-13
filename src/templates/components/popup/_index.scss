@@ -20,13 +20,12 @@
   }
 
   &__content {
-    @include size(100%, 100%);
-
     background-color: #383A3E;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 4px var(--color-black);
     max-width: 800px;
+    width: 100%;
   }
 
   &__wrapper {
@@ -42,6 +41,7 @@
     height: 36px;
     color: var(--color-white);
     text-transform: uppercase;
+    font-family: var(--font-family-alt);
   }
 
   &__footer {
@@ -83,7 +83,7 @@
   }
 
   &__close {
-    @include size(20px);
+    @include size(18px);
 
     svg {
       fill: var(--color-white);
@@ -91,12 +91,23 @@
   }
 
   &__button {
+    @include make-spacer('mx', 1);
     @include make-spacer('px', 4);
 
     border-radius: 20px;
   }
 
   &--active {
-    @include flex(center, center);
+    @include flex(center, flex-start);
+  }
+
+  &--full {
+
+    .popup {
+
+      &__content {
+        height: 100%;
+      }
+    }
   }
 }

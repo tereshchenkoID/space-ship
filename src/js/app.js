@@ -151,7 +151,7 @@ App.prototype.htmlBetControl = function(item, index) {
               </label>
             </div>
           </div>
-          <div class="bet-control__counts ${item.auto.out ? '' : 'bet-control__counts--disabled'}">
+          <div class="bet-control__counts ${item.auto.out ? '' : 'bet-control__counts--disabled'} js-bet-control-counts">
             <input class="bet-control__field js-bet-control-field" type="number" value="${item.auto.value.toFixed(1)}">
           </div>
         </div>
@@ -251,6 +251,8 @@ $('.js-bet-multiplies-button').on('click', function() {
   $(this).closest('.js-bet-multiplies').toggleClass('bet-multiplies--active')
 })
 
+
+
 $('body').on('click', '.js-bet-control-link', function() {
   const parent = $(this).closest('.js-bet-control')
 
@@ -269,10 +271,14 @@ $('body').on('click', '.js-bet-control-button', function() {
   const value = $(this).attr('data-value')
   const field = parent.find('.js-bet-count-field')
 
-  app.bet[index].value += parseInt(value, 10)
-  field.val(app.bet[index].value.toFixed(1))
+  if (value !== 'auto') {
+    app.bet[index].value += parseInt(value, 10)
+    field.val(app.bet[index].value.toFixed(1))
+  }
+  else {
+    $('.js-popup-autoplay').addClass('popup--active')
+  }
 });
-
 
 $('body').on('click', '.js-bet-count-button', function() {
   const parent = $(this).closest('.js-bet-control')
@@ -298,3 +304,29 @@ $('body').on('input', '.js-bet-count-field', function() {
 
   $(this).val(app.bet[index].value)
 });
+
+$('body').on('change', '.js-bet-control input[type="checkbox"]:checkbox', function() {
+  const parent = $(this).closest('.js-bet-control')
+  const index = parent.attr('data-index')
+
+  if ($(this).is(':checked')) {
+    $(this).prop("checked", true)
+    app.bet[index].auto.out = true
+  }
+  else {
+    $(this).prop("checked", false)
+    app.bet[index].auto.out = false
+  }
+
+  parent.find('.js-bet-control-counts').toggleClass('bet-control__counts--disabled')
+})
+
+$('body').on('input', '.js-bet-control-field', function() {
+  const parent = $(this).closest('.js-bet-control')
+  const index = parent.attr('data-index')
+
+  app.bet[index].auto.value = parseInt($(this).val(), 10)
+
+  $(this).val(app.bet[index].auto.value)
+});
+
