@@ -10,22 +10,22 @@ mixin bet-control
         .bet-control__cell
           +bet-count.js-bet-count
           .bet-control__currency
-            button(type="button" data-value="1").bet-control__button.js-bet-control-button
+            button(type="button" data-value="1").button.button--primary.bet-control__button.js-bet-control-button
               span 1
               span $
-            button(type="button" data-value="2").bet-control__button.js-bet-control-button
+            button(type="button" data-value="2").button.button--primary.bet-control__button.js-bet-control-button
               span 2
               span $
-            button(type="button" data-value="5").bet-control__button.js-bet-control-button
+            button(type="button" data-value="5").button.button--primary.bet-control__button.js-bet-control-button
               span 5
               span $
-            button(type="button" data-value="10").bet-control__button.js-bet-control-button
+            button(type="button" data-value="10").button.button--primary.bet-control__button.js-bet-control-button
               span 10
               span $
         .bet-control__cell
           button(type="button").bet-control__bet.js-bet-control-bet Bet
       .bet-control__bottom.js-bet-control-bottom
-        button(type="button" data-value="auto").bet-control__button.js-bet-control-button
+        button(type="button" data-value="auto").button.button--primary.bet-control__button.js-bet-control-button
           span AUTO PLAY
         .bet-control__auto
           span.bet-control__label Auto Cash Out

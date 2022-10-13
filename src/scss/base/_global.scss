@@ -243,127 +243,64 @@ p {
   }
 }
 
-.bet-multiplies {
-  @include make-spacer('mb', 2);
-
-  position: relative;
-  z-index: 1;
-
-  &--active {
-    border-radius: 6px;
-    background-color: #262830;
-    overflow: hidden;
-
-    .bet-multiplies {
-
-      &__list {
-        flex-wrap: wrap;
-
-        &::after {
-          display: none;
-        }
-      }
-
-      &__header {
-        @include flex($align-items: center);
-      }
-
-      &__body {
-        @include make-spacer('pr', 0);
-
-        background-color: #262830;
-      }
-    }
-  }
-
-  &__body {
-    @include make-spacer('pr', 14);
-  }
-
-  &__header {
-    @include make-spacer('py', 2);
-    @include make-spacer('px', 1);
-
-    display: none;
-    background-color: #1f2128;
-    color: var(--color-white);
-  }
-
-  &__list {
-    @include flex($align-items: center);
-    @include make-spacer('py', 1);
-
-    position: relative;
-    overflow: hidden;
-
-    &::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      background-image: linear-gradient(to left, #0d0d0d, rgba(0, 0, 0, 0));
-      width: 20px;
-      content: '';
-    }
-  }
-
-  &__item {
-    @include make-spacer('m', 1);
-  }
-
-  &__button {
-    @include size(46px, 22px);
-    @include flex(center, center);
-
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    flex-shrink: 0;
-    border-radius: 13px;
-    border: solid 1px #6f6f6f;
-    background-color: #1e1e1e;
-
-    svg {
-      margin: 0 2px;
-    }
-  }
-}
-
-.bet-multiply {
-  @include flex(center, center);
-  @include make-spacer('px', 2);
-  @include font-size(12px, 24px);
-
-  cursor: pointer;
-  flex-shrink: 0;
-  border-radius: 11px;
-  background-color: var(--color-dark);
-  height: 22px;
-  font-weight: var(--typography-bold);
-  color: #d7c3eb;
-}
-
-.game-window {
-  @include make-spacer('mb', 2);
-
-  position: absolute;
-  top: 105px;
-  left: var(--grid-outher);
-  right: var(--grid-outher);
-  bottom: 220px;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: grey;
-}
-
 .bet-controls {
   @include flex(center, center);
 
   .bet-control {
     @include make-spacer('mr', 2);
 
+    &:nth-child(1) {
+
+      .bet-control {
+
+        &__remove {
+          background: #29a909 url('../img/icon/plus.svg') no-repeat center center
+        }
+      }
+    }
+
+    &:nth-child(2) {
+
+      .bet-control {
+
+        &__remove {
+          opacity: 0.6;
+          background: url('../img/icon/minus.svg') no-repeat;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
     &:last-child {
       @include make-spacer('mr', 0);
+    }
+  }
+
+  &--multiply {
+
+    .bet-control {
+
+      &:nth-child(1) {
+
+        .bet-control {
+
+          &__remove {
+            display: none;
+          }
+        }
+      }
+
+      &__remove {
+        opacity: 0.6;
+        background: url('../img/icon/minus.svg') no-repeat;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
   }
 }

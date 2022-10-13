@@ -9,27 +9,12 @@
   min-width: 310px;
   height: 190px;
 
-  &--single {
+  &--auto {
 
     .bet-control {
 
-      &__remove {
-        background: #29a909 url('../img/icon/plus.svg') no-repeat center center
-      }
-    }
-  }
-
-  &--twice {
-
-    .bet-control {
-
-      &__remove {
-        opacity: 0.6;
-        background: url('../img/icon/minus.svg') no-repeat;
-
-        &:hover {
-          opacity: 1;
-        }
+      &__bottom {
+        @include flex(center, center);
       }
     }
   }
@@ -99,8 +84,8 @@
     @include make-spacer('mx', auto);
     @include make-spacer('mt', 2);
     @include make-spacer('px', 2);
-    @include flex(center, center);
 
+    display: none;
     border-radius: 20px;
     background: #111215;
     max-width: 390px;
@@ -108,31 +93,11 @@
   }
 
   &__button {
+    @include make-spacer('py', 0);
     @include make-spacer('px', 2);
 
-    border-radius: 100px;
-    border: 1px solid #36363C;
-    background-color: #252528;
     height: 20px;
     min-width: 65px;
-    text-align: center;
-    color: #83878e;
-
-    span {
-      &:nth-child(1) {
-        font-size: 13px;
-      }
-
-      &:nth-child(2) {
-        margin-left: 2px;
-        font-size: 10px;
-      }
-    }
-
-    &:hover {
-      color: var(--color-white);
-      background-color: #36363c;
-    }
   }
 
   &__counts {

@@ -1,0 +1,13 @@
+.bet-multiply {
+  @include flex(center, center);
+  @include make-spacer('px', 2);
+  @include font-size(12px, 24px);
+
+  cursor: pointer;
+  flex-shrink: 0;
+  border-radius: 11px;
+  background-color: var(--color-dark);
+  height: 22px;
+  font-weight: var(--typography-bold);
+  color: #d7c3eb;
+}

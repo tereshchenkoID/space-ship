@@ -1,0 +1,12 @@
+.game-window {
+  @include make-spacer('mb', 2);
+
+  position: absolute;
+  top: 105px;
+  left: var(--grid-outher);
+  right: var(--grid-outher);
+  bottom: 220px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: grey;
+}
