@@ -89,7 +89,7 @@ App.prototype.htmlBetControl = function(item, index) {
         <div class="bet-control__center js-bet-control-center">
           <div class="bet-control__cell">
             <div class="bet-count js-bet-count">
-              <input class="bet-count__field js-bet-count-field" type="number" value="${item.value.toFixed(1)}">
+              <input class="bet-count__field js-bet-count-field" type="number" step="0.1" value="${item.value.toFixed(1)}">
               <div class="bet-count__options">
                 <button class="bet-count__button js-bet-count-button" data-value="decrement">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 16 16">
@@ -152,7 +152,7 @@ App.prototype.htmlBetControl = function(item, index) {
             </div>
           </div>
           <div class="bet-control__counts ${item.auto.out ? '' : 'bet-control__counts--disabled'} js-bet-control-counts">
-            <input class="bet-control__field js-bet-control-field" type="number" value="${item.auto.value.toFixed(1)}">
+            <input class="bet-control__field js-bet-control-field" type="number" step="0.1" value="${item.auto.value.toFixed(1)}">
           </div>
         </div>
       </div>
@@ -220,21 +220,21 @@ App.prototype.htmlPopupAutoplay = function(index) {
                </label>
              </div>
              <span>Stop if cash decreases by</span>
-             <div class="bet-count ${this.bet[index].auto.options.decreases ? '' : 'bet-count--disabled'} js-bet-count" id="bet-count-decreases">
-               <input class="bet-count__field js-bet-count-field" type="number" value="${this.bet[index].auto.options.decreases ? this.bet[index].auto.options.decreases.toFixed(1) : (0).toFixed(1)}">
+             <div class="bet-count ${this.bet[index].auto.options.decreases ? '' : 'bet-count--disabled'} js-bet-count" id="bet-count-decreases" data-value="decreases">
+               <input class="bet-count__field js-bet-count-field" type="number" step="0.1" value="${this.bet[index].auto.options.decreases ? this.bet[index].auto.options.decreases.toFixed(1) : (0).toFixed(1)}">
                <div class="bet-count__options">
-                 <button class="bet-count__button js-bet-count-minus">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 16 16">
-                   <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                     <g transform="translate(-197.000000, -199.000000)" fill="#767B85" fill-rule="nonzero">
-                       <g transform="translate(100.000000, 190.000000)">
-                         <path d="M105,9 C109.4,9 113,12.6 113,17 C113,21.4 109.4,25 105,25 C100.6,25 97,21.4 97,17 C97,12.6 100.6,9 105,9 Z M109,17.8 L109,16.2 L101,16.2 L101,17.8 L109,17.8 Z"></path>
+                 <button class="bet-count__button js-bet-count-button" data-value="decrement"">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 16 16">
+                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                       <g transform="translate(-197.000000, -199.000000)" fill="#767B85" fill-rule="nonzero">
+                         <g transform="translate(100.000000, 190.000000)">
+                           <path d="M105,9 C109.4,9 113,12.6 113,17 C113,21.4 109.4,25 105,25 C100.6,25 97,21.4 97,17 C97,12.6 100.6,9 105,9 Z M109,17.8 L109,16.2 L101,16.2 L101,17.8 L109,17.8 Z"></path>
+                         </g>
                        </g>
                      </g>
-                   </g>
                    </svg>
                  </button>
-                 <button class="bet-count__button bet-count-plus">
+                 <button class="bet-count__button js-bet-count-button" data-value="increment">
                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 16 16">
                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                        <g transform="translate(-216.000000, -199.000000)" fill="#767B85" fill-rule="nonzero">
@@ -257,10 +257,10 @@ App.prototype.htmlPopupAutoplay = function(index) {
                </label>
               </div>
              <span>Stop if cash increases by</span>
-             <div class="bet-count ${this.bet[index].auto.options.increases ? '' : 'bet-count--disabled'} js-bet-count" id="bet-count-increases">
-               <input class="bet-count__field js-bet-count-field" type="number" value="${this.bet[index].auto.options.increases ? this.bet[index].auto.options.increases.toFixed(1) : (0).toFixed(1)}">
+             <div class="bet-count ${this.bet[index].auto.options.increases ? '' : 'bet-count--disabled'} js-bet-count" id="bet-count-increases" data-value="increases">
+               <input class="bet-count__field js-bet-count-field" type="number" step="0.1" value="${this.bet[index].auto.options.increases ? this.bet[index].auto.options.increases.toFixed(1) : (0).toFixed(1)}">
                <div class="bet-count__options">
-                 <button class="bet-count__button js-bet-count-minus">
+                 <button class="bet-count__button js-bet-count-button" data-value="decrement">
                  <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 16 16">
                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                      <g transform="translate(-197.000000, -199.000000)" fill="#767B85" fill-rule="nonzero">
@@ -271,7 +271,7 @@ App.prototype.htmlPopupAutoplay = function(index) {
                    </g>
                  </svg>
                  </button>
-                 <button class="bet-count__button bet-count-plus">
+                 <button class="bet-count__button js-bet-count-button" data-value="increment">
                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 16 16">
                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                        <g transform="translate(-216.000000, -199.000000)" fill="#767B85" fill-rule="nonzero">
@@ -294,10 +294,10 @@ App.prototype.htmlPopupAutoplay = function(index) {
                </label>
              </div>
              <span>Stop if single with exceeds</span>
-             <div class="bet-count ${this.bet[index].auto.options.exceeds ? '' : 'bet-count--disabled' } js-bet-count" id="bet-count-exceeds">
-               <input class="bet-count__field js-bet-count-field" type="number" value="${this.bet[index].auto.options.exceeds ? this.bet[index].auto.options.exceeds.toFixed(1) : (0).toFixed(1)}">
+             <div class="bet-count ${this.bet[index].auto.options.exceeds ? '' : 'bet-count--disabled' } js-bet-count" id="bet-count-exceeds" data-value="exceeds">
+               <input class="bet-count__field js-bet-count-field" type="number" step="0.1" value="${this.bet[index].auto.options.exceeds ? this.bet[index].auto.options.exceeds.toFixed(1) : (0).toFixed(1)}">
                <div class="bet-count__options">
-                 <button class="bet-count__button js-bet-count-minus">
+                 <button class="bet-count__button js-bet-count-button" data-value="decrement"">
                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 16 16">
                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                        <g transform="translate(-197.000000, -199.000000)" fill="#767B85" fill-rule="nonzero">
@@ -308,7 +308,7 @@ App.prototype.htmlPopupAutoplay = function(index) {
                      </g>
                    </svg>
                  </button>
-                 <button class="bet-count__button bet-count-plus">
+                 <button class="bet-count__button js-bet-count-button" data-value="increment">
                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 16 16">
                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                        <g transform="translate(-216.000000, -199.000000)" fill="#767B85" fill-rule="nonzero">
@@ -334,6 +334,34 @@ const app = new App();
 
 app.init()
 app.initBetControl()
+
+function Count (min, max) {
+  this.min = min || 0
+  this.max = max || 100
+  this.value = 0
+}
+
+Count.prototype.setField = function (field, value) {
+  $(field).val(value.toFixed(1))
+}
+
+Count.prototype.checkValue = function (value) {
+  const data = value
+
+  if(data >= this.max) {
+    this.value = this.max
+  }
+  else if(data <= this.min) {
+    this.value = this.min
+  }
+  else {
+    this.value = data
+  }
+
+  return this.value
+}
+
+
 
 $('.js-toggle').on('click', function(){
   $(this).toggleClass('toggle--active')
@@ -381,7 +409,7 @@ $('.js-bet-multiplies-button').on('click', function() {
 
 
 /* Autoplay bet control */
-$('body').on('click', '.js-bet-control-link', function() {
+$('body').on('click', '.js-bet-control .js-bet-control-link', function() {
   const parent = $(this).closest('.js-bet-control')
 
   parent.toggleClass('bet-control--auto')
@@ -389,19 +417,22 @@ $('body').on('click', '.js-bet-control-link', function() {
   $(this).addClass('bet-control__link--active')
 })
 
-$('body').on('click', '.js-bet-control-action', function() {
+$('body').on('click', '.js-bet-control .js-bet-control-action', function() {
   app.actionBetControl()
 });
 
-$('body').on('click', '.js-bet-control-button', function() {
+$('body').on('click', '.js-bet-control .js-bet-control-button', function() {
+  const count = new Count(0, 100)
+
   const parent = $(this).closest('.js-bet-control')
   const index = parent.attr('data-index')
   const value = $(this).attr('data-value')
   const field = parent.find('.js-bet-count-field')
 
   if (value !== 'auto') {
-    app.bet[index].value += parseInt(value, 10)
-    field.val(app.bet[index].value.toFixed(1))
+    app.bet[index].value = count.checkValue(app.bet[index].value + parseInt(value, 10))
+
+    count.setField(field, app.bet[index].value)
   }
   else {
     $('.js-popup-autoplay').addClass('popup--active')
@@ -409,32 +440,36 @@ $('body').on('click', '.js-bet-control-button', function() {
   }
 });
 
-$('body').on('click', '.js-bet-count-button', function() {
+
+$('body').on('change', '.js-bet-control .js-bet-count-field', function() {
+  const count = new Count(0, 100)
+
+  const parent = $(this).closest('.js-bet-control')
+  const index = parent.attr('data-index')
+
+  app.bet[index].value = count.checkValue(parseFloat($(this).val()))
+
+  count.setField($(this), app.bet[index].value)
+})
+
+$('body').on('click', '.js-bet-control .js-bet-count-button', function() {
+  const count = new Count(0, 100)
+
   const parent = $(this).closest('.js-bet-control')
   const index = parent.attr('data-index')
   const value = $(this).attr('data-value')
   const field = parent.find('.js-bet-count-field')
 
   if (value === 'increment') {
-    app.bet[index].value += 0.1
+    app.bet[index].value = count.checkValue(app.bet[index].value + 0.1)
   }
   else {
-    app.bet[index].value -= 0.1
+    app.bet[index].value = count.checkValue(app.bet[index].value - 0.1)
   }
 
-  field.val(app.bet[index].value.toFixed(1))
-});
-
-$('body').on('input', '.js-bet-count-field', function() {
-  const parent = $(this).closest('.js-bet-control')
-  const index = parent.attr('data-index')
-
-  app.bet[index].value = parseInt($(this).val(), 10)
-
-  $(this).val(app.bet[index].value)
+  count.setField(field, app.bet[index].value)
 });
 /* End bet control events */
-
 
 
 /* Autoplay events */
@@ -454,7 +489,7 @@ $('body').on('change', '.js-bet-control input[type="checkbox"]:checkbox', functi
   parent.find('.js-bet-control-counts').toggleClass('bet-control__counts--disabled')
 })
 
-$('body').on('input', '.js-bet-control-field', function() {
+$('body').on('input', '.js-bet-control .js-bet-control-field', function() {
   const parent = $(this).closest('.js-bet-control')
   const index = parent.attr('data-index')
 
@@ -463,7 +498,6 @@ $('body').on('input', '.js-bet-control-field', function() {
   $(this).val(app.bet[index].auto.value)
 });
 /* End Autoplay events */
-
 
 
 /* Autoplay popup events */
@@ -496,4 +530,65 @@ $('body').on('change', '.js-bet-autoplay input[type="checkbox"]:checkbox', funct
   $counts.toggleClass('bet-count--disabled')
   field.val((0).toFixed(1))
 })
+
+$('body').on('click', '.js-bet-autoplay .js-bet-count-button', function() {
+  const count = new Count(0, 10000000)
+
+  const parent = $(this).closest('.js-bet-autoplay')
+  const index = parent.attr('data-index')
+  const value = $(this).closest('.js-bet-count').attr('data-value')
+  const $field = $(`#bet-count-${value}`).find('input')
+
+  if ($(this).attr('data-value') === 'increment') {
+    app.bet[index].auto.options[value] = count.checkValue(app.bet[index].auto.options[value] + 0.1)
+  }
+  else {
+    app.bet[index].auto.options[value] = count.checkValue(app.bet[index].auto.options[value] - 0.1)
+  }
+
+  count.setField($field, app.bet[index].auto.options[value])
+})
+
+$('body').on('change', '.js-bet-autoplay .js-bet-count-field', function() {
+  const count = new Count(0, 10000000)
+
+  const parent = $(this).closest('.js-bet-autoplay')
+  const value = $(this).closest('.js-bet-count').attr('data-value')
+  const index = parent.attr('data-index')
+
+  app.bet[index].auto.options[value] = count.checkValue(parseFloat($(this).val()))
+
+  count.setField($(this), app.bet[index].auto.options[value])
+})
 /* End Autoplay popup events */
+
+
+$('body').on('click', '.js-bet-auto-reset', function() {
+  const parent = $(this).closest('.js-popup').find('.js-bet-autoplay')
+  const index = parent.attr('data-index')
+  const toggles = parent.find('.js-switch')
+  const counts = parent.find('.js-bet-count')
+  const value = 0
+
+  parent.find('.js-bet-autoplay-button').removeClass('bet-autoplay__button--active')
+
+  $.each(counts, function (idx, el) {
+    $(el).addClass('bet-count--disabled')
+    $(el).find('input').val(value.toFixed(1))
+    $(this).prop("checked", true)
+  })
+
+  $.each(toggles, function (idx, el) {
+    $(this).find('input').prop("checked", false)
+  })
+
+  app.bet[index].auto.options = {
+    rounds: null,
+    decreases: null,
+    increases: null,
+    exceeds: null
+  }
+})
+
+
+  // .js-bet-auto-start
