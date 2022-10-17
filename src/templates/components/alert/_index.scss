@@ -1,0 +1,13 @@
+.alert {
+  @include make-spacer('p', 3);
+  @include make-spacer('mb', 2);
+
+  display: none;
+  border-radius: 10px;
+  color: var(--color-white);
+
+  &--danger {
+    border-color: #d8001e;
+    background-color: #b3021b;
+  }
+}

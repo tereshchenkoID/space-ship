@@ -203,6 +203,9 @@ App.prototype.initBetControl = function() {
 
 App.prototype.htmlPopupAutoplay = function(index) {
   return `<div class="bet-autoplay js-bet-autoplay" data-index="${index}">
+           <div class="bet-autoplay__alert">
+             <div class="alert alert--danger js-alert"></div>
+           </div>
            <div class="bet-autoplay__container">
              <div class="bet-autoplay__text">Number of Rounds:</div>
              <div class="bet-autoplay__wrapper">
@@ -440,7 +443,6 @@ $('body').on('click', '.js-bet-control .js-bet-control-button', function() {
   }
 });
 
-
 $('body').on('change', '.js-bet-control .js-bet-count-field', function() {
   const count = new Count(0, 100)
 
@@ -489,13 +491,15 @@ $('body').on('change', '.js-bet-control input[type="checkbox"]:checkbox', functi
   parent.find('.js-bet-control-counts').toggleClass('bet-control__counts--disabled')
 })
 
-$('body').on('input', '.js-bet-control .js-bet-control-field', function() {
+$('body').on('change', '.js-bet-control .js-bet-control-field', function() {
+  const count = new Count(0, 100)
+
   const parent = $(this).closest('.js-bet-control')
   const index = parent.attr('data-index')
 
-  app.bet[index].auto.value = parseInt($(this).val(), 10)
+  app.bet[index].auto.value = count.checkValue(parseFloat($(this).val()))
 
-  $(this).val(app.bet[index].auto.value)
+  count.setField($(this), app.bet[index].auto.value)
 });
 /* End Autoplay events */
 
@@ -560,8 +564,6 @@ $('body').on('change', '.js-bet-autoplay .js-bet-count-field', function() {
 
   count.setField($(this), app.bet[index].auto.options[value])
 })
-/* End Autoplay popup events */
-
 
 $('body').on('click', '.js-bet-auto-reset', function() {
   const parent = $(this).closest('.js-popup').find('.js-bet-autoplay')
@@ -579,7 +581,7 @@ $('body').on('click', '.js-bet-auto-reset', function() {
   })
 
   $.each(toggles, function (idx, el) {
-    $(this).find('input').prop("checked", false)
+    $(el).find('input').prop("checked", false)
   })
 
   app.bet[index].auto.options = {
@@ -590,5 +592,26 @@ $('body').on('click', '.js-bet-auto-reset', function() {
   }
 })
 
+$('body').on('click', '.js-bet-auto-start', function() {
+  const parent = $(this).closest('.js-popup').find('.js-bet-autoplay')
+  const index = parent.attr('data-index')
+  const alert = parent.find('.js-alert')
 
-  // .js-bet-auto-start
+  if (app.bet[index].auto.options.rounds === null) {
+    alert.html('Please, set number of rounds')
+    alert.show()
+  }
+  else if (app.bet[index].auto.options.decreases === null && app.bet[index].auto.options.increases === null && app.bet[index].auto.options.exceeds === null) {
+    alert.html('Please, specify decrease or exceed stop point')
+    alert.show()
+  }
+  else if (app.bet[index].auto.options.decreases === 0 || app.bet[index].auto.options.increases === 0 || app.bet[index].auto.options.exceeds === 0) {
+    alert.html('PleaseCan\'t set 0.00 as stop point ')
+    alert.show()
+  }
+  else {
+    alert.hide()
+    $('.js-popup-autoplay').removeClass('popup--active')
+  }
+})
+/* End Autoplay popup events */
