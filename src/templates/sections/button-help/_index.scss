@@ -1,0 +1,28 @@
+.button-help {
+  @include make-spacer('p', 1);
+  @include make-spacer('px', 3, md);
+
+  background-color: var(--color-warning);
+  border-radius: 50%;
+  text-shadow: unset;
+  flex-shrink: 0;
+
+  @include media-breakpoint-up(md) {
+    border-radius: 30px;
+  }
+
+  &__icon {
+    @include size(18px);
+  }
+
+  &__text {
+    display: none;
+    margin-left: 5px!important;
+    font-size: 16px!important;
+    color: #5f3816;
+
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
+  }
+}

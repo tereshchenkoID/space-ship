@@ -48,7 +48,6 @@ block content
         +game-window.js-game-window
         .bet-controls.js-bet-controls
 
-
       .popup.popup--full.js-popup.js-popup-avatar
         .popup__content
           .popup__wrapper
@@ -62,8 +61,7 @@ block content
                 .avatar-list
                   - var n = 1;
                   while n < 73
-                    a.avatar-logo.js-avatar-logo
-                      img(src=`https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-${n++}.png?v=4.1.1`).img
+                    +avatar-logo(n++).js-avatar-logo
             .popup__footer
               button(type="button").button.button--outline.popup__button.js-popup-close Close
 

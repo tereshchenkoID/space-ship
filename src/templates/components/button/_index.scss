@@ -1,4 +1,5 @@
 .button {
+  @include flex(center, center);
   @include make-spacer('py', 1);
   @include make-spacer('px', 3);
 

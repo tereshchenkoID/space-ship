@@ -12,8 +12,12 @@
   padding: 0 10px;
   height: 50px;
 
+  .button-help,
   .deposit {
     @include make-spacer('mr', 2);
+  }
+
+  .button-help {
     @include make-spacer('ml', auto);
   }
 }

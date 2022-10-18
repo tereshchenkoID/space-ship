@@ -1,24 +1,10 @@
 .game-window {
   @include make-spacer('mb', 2);
 
-  //position: absolute;
-  //top: 105px;
-  //left: 0;
-  //right: var(--grid-outher);
-  //bottom: 220px;
   border-radius: 10px;
   overflow: hidden;
   background-color: grey;
-
+  flex-grow: 1;
   height: calc(40vh - 38px)!important;
   min-height: 200px;
-  flex-grow: 1;
-
-  @include media-breakpoint-up(lg) {
-    //position: absolute;
-    //top: 105px;
-    //left: 0;
-    //right: var(--grid-outher);
-    //height: unset!important;
-  }
 }

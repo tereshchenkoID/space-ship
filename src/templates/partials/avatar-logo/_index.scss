@@ -1,0 +1,10 @@
+.avatar-logo {
+  @include size(100%);
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  &--active {
+    border: 11px solid #428a12;
+  }
+}
