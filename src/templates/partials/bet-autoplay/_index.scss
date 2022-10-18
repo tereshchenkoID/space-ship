@@ -18,9 +18,13 @@
 
     &--custom {
       display: grid;
-      grid-template-columns: 36px 1fr 140px 10px;
+      grid-template-columns: repeat(auto-fit, minmax(36px, 100px));
       align-items: center;
-      column-gap: 5px;
+      grid-gap: 10px;
+
+      @include media-breakpoint-up(sm) {
+        grid-template-columns: 36px 1fr 140px 10px;
+      }
     }
   }
 

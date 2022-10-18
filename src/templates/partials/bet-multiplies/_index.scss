@@ -7,7 +7,6 @@
   &--active {
     border-radius: 6px;
     background-color: #262830;
-    overflow: hidden;
 
     .bet-multiplies {
 
@@ -21,11 +20,18 @@
 
       &__header {
         @include flex($align-items: center);
+
+        border-radius: 6px 6px 0 0;
       }
 
       &__body {
         @include make-spacer('pr', 0);
 
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        border-radius: 0 0 6px 6px;
         background-color: #262830;
       }
     }
@@ -37,7 +43,7 @@
 
   &__header {
     @include make-spacer('py', 2);
-    @include make-spacer('px', 1);
+    @include make-spacer('px', 2);
 
     display: none;
     background-color: #1f2128;

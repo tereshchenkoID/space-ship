@@ -1,4 +1,5 @@
 .bet-control {
+  @include make-spacer('px', 2);
   @include size(100%);
 
   position: relative;
@@ -6,7 +7,7 @@
   border: 1px solid #2A2B2E;
   background-image: url('https://aviator-demo.spribegaming.com/grey-texture-bg.b22cf205f88ab054.png');
   max-width: 750px;
-  min-width: 310px;
+  min-width: 290px;
   height: 190px;
 
   &--auto-play {
@@ -118,6 +119,7 @@
     grid-template-columns: 140px 1fr;
     align-items: stretch;
     column-gap: 5px;
+    width: 100%;
   }
 
   &__bottom {
@@ -138,11 +140,15 @@
     @include make-spacer('px', 2);
 
     height: 20px;
-    min-width: 65px;
     line-height: 1;
+    white-space: nowrap;
 
     &--auto {
       text-transform: uppercase;
+    }
+
+    @include media-breakpoint-up(md) {
+      min-width: 65px;
     }
   }
 
@@ -202,6 +208,7 @@
   }
 
   &__label {
+    @include make-spacer('ml', 2);
     @include make-spacer('mr', 2);
 
     font-size: 12px;

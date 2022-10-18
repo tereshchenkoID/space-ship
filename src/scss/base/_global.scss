@@ -57,33 +57,46 @@ p {
 }
 
 .page {
-  @include size(100%, 100vh);
+  //@include size(100%, 100vh);
 
   display: grid;
-  grid-template-columns: 410px 1fr;
   align-items: stretch;
+  grid-template-areas: 'b'
+                       'a';
   position: relative;
   overflow: hidden;
   max-width: var(--max-width);
   width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    grid-template-areas: 'a b';
+    grid-template-columns: 320px 1fr;
+  }
+
+  @include media-breakpoint-up(xl) {
+    grid-template-columns: 410px 1fr;
+  }
 }
 
-//.aside,
-//.content {
-//  border: 1px solid red;
-//}
-
 .aside {
-  @include make-spacer('pt', 14);
+  @include make-spacer('pt', 3);
+  @include make-spacer('pt', 14, lg);
   @include make-spacer('px', 2);
+
+  grid-area: a;
 }
 
 .content {
   @include flex($justify-content: space-between, $direction: column);
 
   position: relative;
-  padding: 60px var(--grid-outher) var(--grid-outher);
+  padding: 60px 10px 10px;
   overflow: hidden;
+  grid-area: b;
+
+  @include media-breakpoint-up(lg) {
+    @include make-spacer('pl', 0)
+  }
 }
 
 .bet-table {
@@ -107,6 +120,7 @@ p {
 
     flex-grow: 1;
     overflow-y: auto;
+    overflow-x: hidden;
 
     &::-webkit-scrollbar {
       width: 8px;
@@ -164,7 +178,7 @@ p {
   @include make-spacer('mb', half);
 
   display: grid;
-  grid-template-columns: 30px 100px repeat(3, 1fr);
+  grid-template-columns: 30px 1fr repeat(3, minmax(50px, 1fr));
   align-items: center;
   column-gap: 5px;
   background: linear-gradient(85deg, var(--color-black), #0f1214);
@@ -227,13 +241,27 @@ p {
 
 .avatar-list {
   display: grid;
-  grid-template-columns: repeat(5, 120px);
-  grid-gap: 20px;
+  grid-template-columns: repeat(2, 100px);
+  grid-gap: 10px;
   justify-content: center;
+  overflow-x: hidden;
+
+  @include media-breakpoint-up(sm) {
+    grid-gap: 20px;
+    grid-template-columns: repeat(3, 120px);
+  }
+
+  @include media-breakpoint-up(md) {
+    grid-template-columns: repeat(4, 120px);
+  }
+
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(5, 120px);
+  }
 }
 
 .avatar-logo {
-  @include size(120px);
+  @include size(100%);
 
   border-radius: 50%;
   overflow: hidden;
@@ -244,10 +272,15 @@ p {
 }
 
 .bet-controls {
-  @include flex(center, center);
+  @include flex(center, center, column);
+
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+  }
 
   .bet-control {
-    @include make-spacer('mr', 2);
+    @include make-spacer('mb', 2);
+    @include make-spacer('mr', 2, md);
 
     &:nth-child(1) {
 
@@ -275,7 +308,7 @@ p {
     }
 
     &:last-child {
-      @include make-spacer('mr', 0);
+      @include make-spacer('m', 0);
     }
   }
 

@@ -1,7 +1,7 @@
 .navigation-tab {
   @include make-spacer('mx', auto);
   @include make-spacer('mb', 2);
-  @include size(310px, 25px);
+  @include size(100%, 25px);
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -9,6 +9,7 @@
   border-radius: 10px;
   border: 1px solid #363738;
   overflow: hidden;
+  max-width: 310px;
 
   &__item {
     @include flex(center, center);
