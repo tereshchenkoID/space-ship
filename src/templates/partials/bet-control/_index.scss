@@ -9,6 +9,46 @@
   min-width: 310px;
   height: 190px;
 
+  &--auto-play {
+
+    .bet-control {
+
+      &__button {
+
+        &--auto {
+          background-color: #cb011a;
+          box-shadow: 0 10px 15px -10px #cb011a, inset 0 1px 1px var(--color-white);
+          color: var(--color-white);
+          font-size: 11px;
+        }
+      }
+    }
+  }
+
+  &--set {
+    border-color: #cb011a;
+
+    .bet-control {
+
+      &__bet {
+        background-color: #cb011a;
+        box-shadow: 0 10px 15px -10px #cb011a, inset 0 1px 1px var(--color-white);
+      }
+    }
+  }
+
+  &--out {
+    border-color: #d07206;
+
+    .bet-control {
+
+      &__bet {
+        background-color: #d07206;
+        box-shadow: 0 10px 15px -10px #d07206, inset 0 1px 1px var(--color-white);
+      }
+    }
+  }
+
   &--auto {
 
     .bet-control {
@@ -93,11 +133,17 @@
   }
 
   &__button {
+    @include flex(center, center);
     @include make-spacer('py', 0);
     @include make-spacer('px', 2);
 
     height: 20px;
     min-width: 65px;
+    line-height: 1;
+
+    &--auto {
+      text-transform: uppercase;
+    }
   }
 
   &__counts {

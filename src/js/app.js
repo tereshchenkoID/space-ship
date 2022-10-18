@@ -75,6 +75,65 @@ App.prototype.changeOption = function(el, id) {
   this.init()
 }
 
+App.prototype.resetPopupAutoplay = function(id) {
+  const parent = $('.js-popup-autoplay').find('.js-bet-autoplay')
+  const index = id || parent.attr('data-index')
+  const toggles = parent.find('.js-switch')
+  const counts = parent.find('.js-bet-count')
+  const value = 0
+
+  if (this.bet[index].auto) {
+    parent.find('.js-bet-autoplay-button').removeClass('bet-autoplay__button--active')
+
+    $.each(counts, function (idx, el) {
+      $(el).addClass('bet-count--disabled')
+      $(el).find('input').val(value.toFixed(1))
+      $(this).prop("checked", true)
+    })
+
+    $.each(toggles, function (idx, el) {
+      $(el).find('input').prop("checked", false)
+    })
+
+    this.bet[index].auto.options = {
+      rounds: null,
+      decreases: null,
+      increases: null,
+      exceeds: null
+    }
+  }
+}
+
+App.prototype.setAutoBetControl = function(index) {
+  const $parent = $(`.js-bet-control[data-index="${index}"]`)
+
+  $parent.addClass('bet-control--auto-play')
+  $parent.addClass('bet-control--set')
+
+  $parent.find('.js-bet-control-bet').html('Cancel')
+  $parent.find('.js-bet-control-button[data-value="auto"]').html(`Stop (${this.bet[index].auto.options.rounds})`)
+}
+
+App.prototype.setBetControl = function(index) {
+  const $parent = $(`.js-bet-control[data-index="${index}"]`)
+
+  if ($parent.hasClass('bet-control--set')) {
+    $parent.removeClass('bet-control--set')
+    $parent.find('.js-bet-control-bet').html('Bet')
+
+    $parent.removeClass('bet-control--auto-play')
+    $parent.removeClass('bet-control--set')
+    $parent.find('.js-bet-control-button[data-value="auto"]').html('Auto play')
+
+    this.resetPopupAutoplay(index)
+    console.log(this.bet[index])
+  }
+  else {
+    $parent.addClass('bet-control--set')
+    $parent.find('.js-bet-control-bet').html('Cancel')
+  }
+}
+
 App.prototype.htmlBetControl = function(item, index) {
   return `
     <div class="bet-control js-bet-control" data-index="${index}">
@@ -139,7 +198,7 @@ App.prototype.htmlBetControl = function(item, index) {
           </div>
         </div>
         <div class="bet-control__bottom js-bet-control-bottom">
-          <button class="button button--primary bet-control__button js-bet-control-button" type="button" data-value="auto">
+          <button class="button button--primary bet-control__button bet-control__button--auto js-bet-control-button" type="button" data-value="auto">
             <span>AUTO PLAY</span>
           </button>
           <div class="bet-control__auto">
@@ -471,6 +530,13 @@ $('body').on('click', '.js-bet-control .js-bet-count-button', function() {
 
   count.setField(field, app.bet[index].value)
 });
+
+$('body').on('click', '.js-bet-control .js-bet-control-bet', function() {
+  const parent = $(this).closest('.js-bet-control')
+  const index = parent.attr('data-index')
+
+  app.setBetControl(index)
+})
 /* End bet control events */
 
 
@@ -566,30 +632,7 @@ $('body').on('change', '.js-bet-autoplay .js-bet-count-field', function() {
 })
 
 $('body').on('click', '.js-bet-auto-reset', function() {
-  const parent = $(this).closest('.js-popup').find('.js-bet-autoplay')
-  const index = parent.attr('data-index')
-  const toggles = parent.find('.js-switch')
-  const counts = parent.find('.js-bet-count')
-  const value = 0
-
-  parent.find('.js-bet-autoplay-button').removeClass('bet-autoplay__button--active')
-
-  $.each(counts, function (idx, el) {
-    $(el).addClass('bet-count--disabled')
-    $(el).find('input').val(value.toFixed(1))
-    $(this).prop("checked", true)
-  })
-
-  $.each(toggles, function (idx, el) {
-    $(el).find('input').prop("checked", false)
-  })
-
-  app.bet[index].auto.options = {
-    rounds: null,
-    decreases: null,
-    increases: null,
-    exceeds: null
-  }
+  app.resetPopupAutoplay()
 })
 
 $('body').on('click', '.js-bet-auto-start', function() {
@@ -612,6 +655,7 @@ $('body').on('click', '.js-bet-auto-start', function() {
   else {
     alert.hide()
     $('.js-popup-autoplay').removeClass('popup--active')
+    app.setAutoBetControl(index)
   }
 })
 /* End Autoplay popup events */
