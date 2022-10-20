@@ -69,6 +69,7 @@ p {
   @include media-breakpoint-up(lg) {
     grid-template-areas: 'a b';
     grid-template-columns: 320px 1fr;
+    height: 100vh;
   }
 
   @include media-breakpoint-up(xl) {
@@ -80,8 +81,26 @@ p {
   @include make-spacer('pt', 3);
   @include make-spacer('pt', 14, lg);
   @include make-spacer('px', 2);
+  @include flex($direction: column);
 
   grid-area: a;
+  overflow: hidden;
+
+  &__body {
+    flex-grow: 1;
+  }
+
+  &__footer {
+    @include flex($align-items: center);
+    @include make-spacer('py', 1);
+    @include make-spacer('px', 2);
+
+    flex-shrink: 0;
+    min-height: 50px;
+    border: 1px solid #2A2B2E;
+    background-color: var(--color-black);
+    color: #5e6269;
+  }
 }
 
 .content {
@@ -97,20 +116,56 @@ p {
   }
 }
 
+.navigation-body {
+  display: none;
+  overflow: hidden;
+  flex-grow: 1;
+  height: 100%;
+
+  &--active {
+    display: block;
+  }
+}
+
+.total-bets {
+  text-transform: uppercase;
+
+  span {
+
+    &:last-child {
+      @include make-spacer('ml', 1);
+
+      color: var(--color-green);
+    }
+  }
+}
+
+.previous-hand {
+  border-radius: 20px!important;
+
+  span {
+    color: var(--color-white);
+    font-size: 14px!important;
+
+    &:nth-child(1) {
+      @include make-spacer('mr', 1);
+    }
+  }
+}
+
 .bet-table {
   @include flex($direction: column);
 
   border: 1px solid #2A2B2E;
   border-radius: 20px 20px 0 0;
   background-image: url('https://aviator-demo.spribegaming.com/grey-texture-bg.b22cf205f88ab054.png');
-  height: calc(100vh - 100px);
+  height: 100%;
 
-  &__header,
-  &__footer {
-    @include make-spacer('p', 2);
+  &__container {
+    @include flex(space-between, center);
+    @include make-spacer('mb', 2);
 
-    flex-shrink: 0;
-    height: 50px;
+    color: var(--color-white);
   }
 
   &__content {
@@ -142,13 +197,20 @@ p {
   }
 
   &__header {
-    border-bottom: 1px solid #2A2B2E;
-  }
+    @include flex($justify-content: center, $direction: column);
+    @include make-spacer('py', 1);
+    @include make-spacer('px', 2);
 
-  &__footer {
-    border: 1px solid #2A2B2E;
-    background-color: var(--color-black);
-    color: #5e6269;
+    flex-shrink: 0;
+    min-height: 50px;
+    border-bottom: 1px solid #2A2B2E;
+
+    .bet-table {
+
+      &__row {
+        @include make-spacer('p', 0);
+      }
+    }
   }
 
   &__row {
@@ -165,8 +227,6 @@ p {
     text-align: center;
 
     &:nth-child(1) {
-      @include make-spacer('pl', 1);
-
       text-align: left;
     }
   }
@@ -182,12 +242,26 @@ p {
   background: linear-gradient(85deg, var(--color-black), #0f1214);
   border: 2px solid var(--color-black);
   border-radius: 17px;
+  padding-left: 1px;
   height: 34px;
   font-size: 14px;
   color: var(--color-white);
 
   &:last-child {
     @include make-spacer('mb', 0);
+  }
+
+  &__value,
+  &__cash,
+  &__multiply {
+
+    span {
+
+      &:last-child {
+        margin-left: 2px;
+        font-size: 9px;
+      }
+    }
   }
 
   &__logo {
@@ -209,24 +283,36 @@ p {
   &__value {
     border-radius: 11px;
     border: 1px solid #5e6168;
+    text-align: center;
   }
 
-  &__value,
-  &__cash,
-  &__multiply {
+  &__icon {
+    @include make-spacer('mx', auto);
+    @include size(14px, 16px);
 
-    span {
+    display: block;
 
-      &:last-child {
-        margin-left: 2px;
-        font-size: 9px;
+    svg {
+      @include size(100%);
+
+      display: block;
+    }
+  }
+
+  &--won {
+    border: 1px solid #427F00;
+    background: #123406;
+
+    .bet-item {
+
+      &__value {
+        border: 0;
       }
     }
   }
 
-  &--win {
-    border: 1px solid #427F00;
-    background: #123406;
+  &--custom {
+    grid-template-columns: repeat(5, minmax(50px, 1fr));
 
     .bet-item {
 

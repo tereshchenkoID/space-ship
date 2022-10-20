@@ -7,7 +7,10 @@
   background-color: #000000b3;
   border: solid 1px #3C3C42;
   overflow: hidden;
-  min-width: 130px;
+
+  @include media-breakpoint-up(lg) {
+    min-width: 130px;
+  }
 
   &__options {
     display: grid;

@@ -1,0 +1,15 @@
+{
+  "UserID":69041,
+  "Username":"d*****25",
+  "Avatar":"https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-1.png?v=4.1.1",
+  "Sound":"On",
+  "Music":"Off",
+  "Animation":"On",
+  "TimeZone":"+3",
+  "MinBet":"1.00",
+  "MaxBet":"1000.00",
+  "Step":"0.10",
+  "QuickBet":"1.00,2.00,5.00,10.00",
+  "Currency":"USD",
+  "Symbol":"$"
+}

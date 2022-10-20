@@ -23,7 +23,8 @@ gulp.task('server', done => {
     files: [
       `${config.dest.html  }/*.html`,
       `${config.dest.css  }/*.css`,
-      `${config.dest.img  }/**/*`
+      `${config.dest.img  }/**/*`,
+      `${config.dest.json  }/**/*`
     ],
     port: util.env.port || 8080,
     logLevel: 'info', // 'debug', 'info', 'silent', 'warn'

@@ -5,11 +5,12 @@
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  align-items: center;
+  align-items: stretch;
   border-radius: 10px;
   border: 1px solid #363738;
   overflow: hidden;
   max-width: 310px;
+  flex-shrink: 0;
 
   &__item {
     @include flex(center, center);
