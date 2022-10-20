@@ -1,6 +1,6 @@
 .navigation-tab {
   @include make-spacer('mx', auto);
-  @include make-spacer('mb', 2);
+  @include make-spacer('mb', 3);
   @include size(100%, 25px);
 
   display: grid;

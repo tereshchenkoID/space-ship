@@ -194,7 +194,8 @@ App.prototype.changeBets = function() {
                 }
     html += `</div>
               <div class="bet-item__cell">
-                <a class="bet-item__icon">
+                <div class="bet-item__icon">
+                  <div class="bet-item__alert">Check fairness</div>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 26">
                     <defs>
                       <linearGradient id="linearGradient-1" x1="9.96556713%" y1="0%" x2="97.7427662%" y2="0%">
@@ -217,7 +218,7 @@ App.prototype.changeBets = function() {
                       </g>
                     </g>
                   </svg>
-                </a>
+                </div>
               </div>
             </div>`
   })
@@ -670,13 +671,15 @@ $('#animation:checkbox').change(function() {
 })
 
 $('.js-navigation-tab-item').on('click', function() {
+  const parent = $(this).closest('.js-navigation')
+  const navigation = $(this).closest('.js-navigation-tab')
   const value = $(this).attr('data-href')
 
-  $('.js-navigation-tab-item').removeClass('navigation-tab__item--active')
+  navigation.find('.js-navigation-tab-item').removeClass('navigation-tab__item--active')
   $(this).addClass('navigation-tab__item--active')
 
-  $('.js-navigation-body').removeClass('navigation-body--active')
-  $(`.js-navigation-body[data-tab="${value}"]`).addClass('navigation-body--active')
+  parent.children('.js-navigation-body').removeClass('navigation-body--active')
+  parent.children(`.js-navigation-body[data-tab="${value}"]`).addClass('navigation-body--active')
 })
 
 $('.js-bet-multiplies-button').on('click', function() {
