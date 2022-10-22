@@ -8,6 +8,19 @@
   border-radius: 11px;
   background-color: var(--color-dark);
   height: 22px;
-  font-weight: var(--typography-bold);
   color: #d7c3eb;
+  font-weight: var(--typography-bold);
+
+  span {
+    font-size: 11px;
+
+    &:first-child {
+      font-weight: var(--typography-bold);
+    }
+
+    &:last-child {
+      margin-left: 2px;
+      font-size: 9px;
+    }
+  }
 }

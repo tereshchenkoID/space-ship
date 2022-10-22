@@ -1,0 +1,78 @@
+.bet-table {
+  @include flex($direction: column);
+
+  border: 1px solid #2A2B2E;
+  border-radius: 10px 10px 0 0;
+  background-image: url('https://aviator-demo.spribegaming.com/grey-texture-bg.b22cf205f88ab054.png');
+  height: 100%;
+
+  &__container {
+    @include flex(space-between, center);
+    @include make-spacer('mb', 2);
+
+    color: var(--color-white);
+  }
+
+  &__content {
+    @include make-spacer('p', 2);
+
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-corner {
+      background-color: #474747;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: 2px solid transparent;
+      border-radius: 19px;
+      background-clip: content-box;
+      background-color: #888;
+    }
+
+    &::-webkit-scrollbar-track {
+      border: 1px solid #373737;
+      background-color: #474747;
+    }
+  }
+
+  &__header {
+    @include flex($justify-content: center, $direction: column);
+    @include make-spacer('py', 1);
+    @include make-spacer('px', 2);
+
+    flex-shrink: 0;
+    min-height: 50px;
+    border-bottom: 1px solid #2A2B2E;
+
+    .bet-table {
+
+      &__row {
+        @include make-spacer('p', 0);
+      }
+    }
+  }
+
+  &__row {
+    @include make-spacer('py', 1);
+
+    display: grid;
+    grid-template-columns: 130px repeat(3, 1fr);
+    align-items: center;
+    font-size: 11px;
+    color: #7b7b7b;
+  }
+
+  &__cell {
+    text-align: center;
+
+    &:nth-child(1) {
+      text-align: left;
+    }
+  }
+}

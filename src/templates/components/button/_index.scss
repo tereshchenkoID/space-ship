@@ -21,6 +21,11 @@
     }
   }
 
+  &__icon {
+    @include make-spacer('mr', 1);
+    @include size(20px);
+  }
+
   &--primary {
     border: 1px solid #36363C;
     background-color: #252528;

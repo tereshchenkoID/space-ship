@@ -14,18 +14,24 @@
   &__footer {
     @include make-spacer('px', 2);
 
+    position: relative;
     background-color: #2C2D30;
-    font-size: 16px;
+    font-size: 14px;
     flex-shrink: 0;
   }
 
   &__content {
+    @include size(100%);
+
     background-color: #383A3E;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 4px var(--color-black);
     max-width: 800px;
-    width: 100%;
+
+    @include media-breakpoint-up(md) {
+      height: unset;
+    }
   }
 
   &__wrapper {
@@ -36,7 +42,7 @@
   }
 
   &__head {
-    @include flex(space-between, center);
+    @include flex($align-items: center);
 
     height: 36px;
     color: var(--color-white);
@@ -84,6 +90,11 @@
 
   &__close {
     @include size(18px);
+
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
 
     svg {
       fill: var(--color-white);

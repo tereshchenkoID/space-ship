@@ -1,0 +1,55 @@
+mixin bet-info
+  .bet-info&attributes(attributes)
+    .bet-info__container
+      .bet-info__head
+        .bet-info__icon
+          img(src="./img/icon/server.svg")
+        div
+          .bet-info__title Server Seed:
+          .bet-info__subtitle Generated on our side
+
+      .bet-info__box
+        input(type="text" readonly="true" value="VxSPa9NDhmPHSbIZciIZzoGYiEnFG2lfJe2HZpBJ")
+
+    .bet-info__container
+      .bet-info__head
+        .bet-info__icon
+          img(src="./img/icon/client.svg")
+        div
+          .bet-info__title Client Seed:
+          .bet-info__subtitle Generated on players side
+
+      - var n = 0;
+        while n < 3
+          .bet-info__box.bet-info__box--custom
+            .bet-info__value
+              span= `Player N${n++}:`
+            .bet-info__about
+              .bet-info__logo
+                img(src=`https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-${n}.png?v=4.1.1`).img
+              .bet-info__nickname d*****25
+            .bet-info__value
+              span Seed:
+              span BPV6qWrC1trPATJp7vjo
+
+    .bet-info__container
+      .bet-info__head
+        .bet-info__icon
+          img(src="./img/icon/hash.svg")
+        div
+          .bet-info__title Combined SHA512 Hash:
+          .bet-info__subtitle Above seeds combined and converted to SHA512 Hash. This is your game result
+
+      .bet-info__box
+        input(type="text" readonly="true" value="2debe0db8ffbf112ec656af7043d2b83213117819449d54ab669b44c1847f9498e1c9147a351e231016402f36298b8699b5a36f0c7e15347354d032153c6448f")
+
+      .bet-info__box
+        .bet-info__value
+          span Hex:
+          span 2debe0db8ffbf
+        .bet-info__value
+          span Decimal:
+          span 807857808801727
+        .bet-info__value
+          span Result:
+          span 1.18

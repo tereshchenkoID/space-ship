@@ -1,0 +1,43 @@
+.fairness {
+  position: relative;
+
+  &:hover {
+
+    .fairness {
+
+      &__alert {
+        display: block;
+      }
+    }
+  }
+
+  &__icon {
+    @include make-spacer('mx', auto);
+    @include size(14px, 16px);
+
+    display: block;
+    position: relative;
+    cursor: pointer;
+
+    svg {
+      @include size(100%);
+
+      display: block;
+    }
+  }
+
+  &__alert {
+    @include make-spacer('py', half);
+    @include make-spacer('px', 1);
+
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: var(--color-green);
+    transform: translate(calc(-100% - 15px), -50%);
+    border-radius: 5px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+}

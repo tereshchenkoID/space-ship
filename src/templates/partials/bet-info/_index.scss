@@ -1,0 +1,109 @@
+.bet-info {
+  color: #d2d2d2;
+
+  &__container {
+    @include make-spacer('mb', 4);
+
+    &:last-child {
+      @include make-spacer('mb', 0);
+    }
+  }
+
+  &__head {
+    @include make-spacer('mb', 2);
+
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  &__title {
+    font-weight: var(--typography-bold);
+    color: var(--color-white);
+    line-height: 1;
+  }
+
+  &__box {
+    @include make-spacer('mb', 4);
+    @include make-spacer('py', 2);
+    @include make-spacer('px', 4);
+
+    border-radius: 6px;
+    border: solid 1px rgba(255, 255, 255, 0.1);
+    width: 100%;
+    overflow: hidden;
+
+    &:last-child {
+      @include make-spacer('mb', 0);
+    }
+
+    input {
+      background: transparent;
+      border: none;
+      width: 100%;
+      color: var(--color-white);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &--custom {
+      @include make-spacer('mb', 1);
+
+      display: grid;
+      align-items: center;
+      row-gap: 5px;
+
+      @include media-breakpoint-up(md) {
+        grid-template-columns: 100px 200px 1fr;
+      }
+    }
+  }
+
+  &__value {
+    @include make-spacer('mb', 1);
+
+    display: grid;
+    align-items: center;
+    column-gap: 5px;
+    text-align: center;
+
+    @include media-breakpoint-up(md) {
+      grid-template-columns: minmax(70px, 100px) 1fr;
+      text-align: unset;
+    }
+
+    span {
+
+      &:nth-child(2) {
+        color: var(--color-white);
+        font-weight: var(--typography-bold);
+      }
+    }
+
+    &:last-child {
+      @include make-spacer('mb', 0);
+    }
+  }
+
+  &__about {
+    @include make-spacer('mx', auto);
+    @include make-spacer('mx', 0, md);
+
+    display: grid;
+    grid-template-columns: 25px 1fr;
+    align-items: center;
+    column-gap: 5px;
+  }
+
+  &__logo {
+    border-radius: 50%;
+    border: 2px solid var(--color-gray);
+  }
+
+  &__nickname {
+    color: var(--color-white);
+  }
+}

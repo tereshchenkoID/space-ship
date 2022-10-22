@@ -1,17 +1,21 @@
 [
   {
+    "StakeId": 23423542,
     "Start": "1666196065",
     "Round": "786d8310663cf442aa3a58358545351c",
     "Stake": "100.00",
     "Status": "Open",
+    "Odds": "1.25",
     "Currency": "USD",
     "Symbol": "$",
     "Username": "d*****25",
     "UserID": 69041,
     "Created": "1666196065",
-    "Updated": "1666196065"
+    "Updated": "1666196065",
+    "Color": "#f00"
   },
   {
+    "StakeId": 23423542,
     "Avatar":"https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-2.png?v=4.1.1",
     "Start": "1666196065",
     "Round": "786d8310663cf442aa3a58358545351c",
@@ -24,6 +28,7 @@
     "Username": "d*****25",
     "UserID": 69041,
     "Created": "1666196065",
-    "Updated": "1666196065"
+    "Updated": "1666196065",
+    "Color": "#000"
   }
 ]

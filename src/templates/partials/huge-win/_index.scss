@@ -1,0 +1,69 @@
+.huge-win {
+  @include make-spacer('px', 2);
+  @include make-spacer('py', 1);
+
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  border-radius: 17px;
+  background-image: linear-gradient(82deg, var(--color-black), #0f1214);
+  border: solid 1px var(--color-black);
+  margin-bottom: 3px;
+  font-size: 12px;
+  color: var(--color-white);
+
+  &__logo {
+    @include size(30px);
+  }
+
+  &__info {
+    @include make-spacer('my', 1);
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5px;
+  }
+
+  &__label {
+    font-size: 12px;
+    text-align: right;
+    color: #6b6b6b;
+  }
+
+  &__multiply,
+  &__value {
+    border-radius: 11px;
+    text-align: center;
+
+    span {
+
+      &:last-child {
+        margin-left: 2px;
+        font-size: 9px;
+      }
+    }
+  }
+
+  &__value {
+
+    &--win {
+      border: solid 1px #457f05;
+      background-color: #123405;
+    }
+
+    &--cash {
+      background-color: #900087;
+      color: #e9c2e7;
+    }
+  }
+
+  &__multiply {
+    border: 0;
+    color: #900087;
+  }
+
+  .bet-tooltip,
+  .fairness {
+    @include make-spacer('my', 1);
+  }
+}

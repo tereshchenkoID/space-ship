@@ -1,0 +1,33 @@
+{
+  "OddId": "1962993",
+  "Odd": "1.25",
+  "Color": "#f00",
+  "Created": "1666196065",
+  "ServerSeed": "VxSPa9NDhmPHSbIZciIZzoGYiEnFG2lfJe2HZpBJ",
+  "ClientSeed": [
+    {
+      "Username": "d*****25",
+      "Avatar":"https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-2.png?v=4.1.1",
+      "UserID": 69041,
+      "Seed": "BPV6qWrC1trPATJp7vjo"
+    },
+    {
+      "Username": "d*****25",
+      "Avatar":"https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-2.png?v=4.1.1",
+      "UserID": 69041,
+      "Seed": "BPV6qWrC1trPATJp7vjo"
+    },
+    {
+      "Username": "d*****25",
+      "Avatar":"https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-2.png?v=4.1.1",
+      "UserID": 69041,
+      "Seed": "BPV6qWrC1trPATJp7vjo"
+    }
+  ],
+  "CombinedSeed": {
+    "Seed": "2debe0db8ffbf112ec656af7043d2b83213117819449d54ab669b44c1847f9498e1c9147a351e231016402f36298b8699b5a36f0c7e15347354d032153c6448f",
+    "Hex": "2debe0db8ffbf",
+    "Decimal": "807857808801727",
+    "Result": "1.18"
+  }
+}

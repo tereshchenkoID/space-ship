@@ -1,0 +1,29 @@
+.aside {
+  @include make-spacer('pt', 3);
+  @include make-spacer('pt', 14, lg);
+  @include make-spacer('px', 2);
+  @include flex($direction: column);
+
+  grid-area: a;
+  overflow: hidden;
+
+  &__body {
+    flex-grow: 1;
+  }
+
+  &__footer {
+    @include flex(space-between, center);
+    @include make-spacer('py', 1);
+    @include make-spacer('px', 2);
+
+    flex-shrink: 0;
+    min-height: 50px;
+    border: 1px solid #2A2B2E;
+    background-color: var(--color-black);
+    color: #5e6269;
+  }
+
+  &__wrapper {
+    @include flex($align-items: center);
+  }
+}
