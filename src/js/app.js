@@ -155,8 +155,6 @@ App.prototype.init = function() {
 
   localStorage.setItem('user', JSON.stringify(this.user))
 
-  console.log(this.user)
-
   $('.js-app-photo').attr('src', this.user.Avatar)
   $('.js-app-nickname').text(this.user.Username)
   $('#sound').prop("checked", this.user.Sound === 'On')
@@ -213,54 +211,82 @@ App.prototype.changeBets = function() {
   $('.js-bet-table-my-bets').html(html)
 }
 
+App.prototype.htmlStake = function(data) {
+    let html = ``;
+
+    html += `<div class="bet-item bet-item--${data.Status.toLowerCase()} js-bet-item" data-id="${data.StakeId}">
+                <div class="bet-item__cell">
+                  <div class="bet-item__logo">`
+                    if(data.Avatar) {
+                      html += `<img class="img" src="${data.Avatar}">`
+                    }
+         html += `</div>
+                </div>
+                <div class="bet-item__cell">
+                  <div class="bet-item__name">${data.Username}</div>
+                </div>
+                <div class="bet-item__cell">
+                  <div class="bet-item__value">
+                    <span>${data.Stake}</span>
+                    <span>${data.Symbol || data.Currency}</span>
+                  </div>
+                </div>
+                <div class="bet-item__cell">`
+                  if(data.Odds) {
+                    html += `<div class="bet-item__multiply" style="background-color: ${data.Color}">
+                               <span>${data.Odds}</span>
+                               <span>x</span>
+                             </div>`
+                  }
+                  else {
+                    html += `-`
+                  }
+       html += `</div>
+                <div class="bet-item__cell">`
+                  if(data.CashOut) {
+                    html += `<div class="bet-item__cash">
+                                <span>${data.CashOut || '-'}</span>
+                                <span>${data.Symbol || data.Currency}</span>
+                             </div>`
+                  }
+                  else {
+                    html += `-`
+                  }
+       html += `</div>
+            </div>`
+
+    return html;
+}
+
 App.prototype.changeStakes = function() {
-  let html = '';
+  const self = this
+  let html = ''
 
   $.each(this.stakes, function (index, item) {
-    html += `<div class="bet-item bet-item--${item.Status.toLowerCase()}">
-              <div class="bet-item__cell">
-                <div class="bet-item__logo">`
-                  if(item.Avatar) {
-                    html += `<img class="img" src="${item.Avatar}">`
-                  }
-      html += `</div>
-              </div>
-              <div class="bet-item__cell">
-                <div class="bet-item__name">${item.Username}</div>
-              </div>
-              <div class="bet-item__cell">
-                <div class="bet-item__value">
-                  <span>${item.Stake}</span>
-                  <span>${item.Symbol || item.Currency}</span>
-                </div>
-              </div>
-              <div class="bet-item__cell">`
-                if(item.Odds) {
-                  html += `<div class="bet-item__multiply" style="background-color: ${item.Color}">
-                            <span>${item.Odds}</span>
-                            <span>x</span>
-                          </div>`
-                }
-                else {
-                  html += `-`
-                }
-      html += `</div>
-              <div class="bet-item__cell">`
-                if(item.CashOut) {
-                  html += `<div class="bet-item__cash">
-                            <span>${item.CashOut || '-'}</span>
-                            <span>${item.Symbol || item.Currency}</span>
-                          </div>`
-                }
-                else {
-                  html += `-`
-                }
-      html += `</div>
-            </div>`
-      })
+    html += self.htmlStake(item)
+  })
 
   $('.js-bet-table-stakes').html(html)
   $('.total-bets-value').html(this.stakes.length)
+}
+
+App.prototype.addStake = function(data) {
+  const self = this
+  let html = ``
+
+  $.each(data, function(index, item) {
+    html += self.htmlStake(item)
+  })
+
+  $('.js-bet-table-stakes').prepend(html);
+  $('.total-bets-value').html($('.js-bet-table-stakes .js-bet-item').length)
+}
+
+App.prototype.setStakeStatus = function(data) {
+
+  $.each(data, function(index, item) {
+    $('.js-bet-table-stakes').find(`.js-bet-item[data-id="${item.StakeId}"]`).addClass('bet-item--won')
+  })
 }
 
 App.prototype.htmlOdd = function(data) {
@@ -283,16 +309,9 @@ App.prototype.changeOdds = function() {
   $('.js-bet-multiplies-list').html(html)
 }
 
-App.prototype.updateOdd = function() {
+App.prototype.updateOdd = function(data) {
   const max = 100
   const {length} = $('.js-bet-multiplies-list .js-bet-multiply')
-
-  const item = {
-    "Start": "1666196065",
-    "Round": "786d8310663cf442aa3a58358545351c",
-    "Odds": Math.random().toFixed(1),
-    "Color": `#${genRanHex(6)}`
-  }
 
   if (length >= max) {
     $('.js-bet-multiplies-list').children().last().remove()
@@ -300,7 +319,7 @@ App.prototype.updateOdd = function() {
 
   $('.js-bet-multiplies-list').prepend(
     `<div class="bet-multiplies__item">
-        ${this.htmlOdd(item)}
+        ${this.htmlOdd(data)}
     </div>`
   )
 }
@@ -584,7 +603,14 @@ app.getBets()
 
 /* Test events */
 setInterval(function() {
-  app.updateOdd()
+  app.updateOdd(
+    {
+      "Start": "1666196065",
+      "Round": "786d8310663cf442aa3a58358545351c",
+      "Odds": Math.random().toFixed(1),
+      "Color": `#${genRanHex(6)}`
+    }
+  )
   app.changeBalance(
     {
       "UserID":69041,
@@ -594,7 +620,87 @@ setInterval(function() {
       "FreBet": Math.random().toFixed(2)
     }
   )
+  app.addStake(
+    [
+      {
+        "StakeId": 234235,
+        "Avatar":"https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-2.png?v=4.1.1",
+        "Start": "1666196065",
+        "Round": "786d8310663cf442aa3a58358545351c",
+        "Stake": Math.random().toFixed(2),
+        "Status": "Open",
+        "Odds": Math.random().toFixed(2),
+        "CashOut": Math.random().toFixed(2),
+        "Currency": "USD",
+        "Symbol": "$",
+        "Username": "d*****25",
+        "UserID": 69041,
+        "Created": "1666196065",
+        "Updated": "1666196065",
+        "Color": `#${genRanHex(6)}`
+      },
+      {
+        "StakeId": 234237,
+        "Avatar":"https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-2.png?v=4.1.1",
+        "Start": "1666196065",
+        "Round": "786d8310663cf442aa3a58358545351c",
+        "Stake": Math.random().toFixed(2),
+        "Status": "Open",
+        "Odds": Math.random().toFixed(2),
+        "CashOut": Math.random().toFixed(2),
+        "Currency": "USD",
+        "Symbol": "$",
+        "Username": "d*****25",
+        "UserID": 69041,
+        "Created": "1666196065",
+        "Updated": "1666196065",
+        "Color": `#${genRanHex(6)}`
+      }
+    ]
+  )
 }, 2000);
+
+
+setInterval(function() {
+  app.setStakeStatus (
+    [
+      {
+        "StakeId": 234237,
+        "Avatar":"https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-2.png?v=4.1.1",
+        "Start": "1666196065",
+        "Round": "786d8310663cf442aa3a58358545351c",
+        "Stake": Math.random().toFixed(2),
+        "Status": "Open",
+        "Odds": Math.random().toFixed(2),
+        "CashOut": Math.random().toFixed(2),
+        "Currency": "USD",
+        "Symbol": "$",
+        "Username": "d*****25",
+        "UserID": 69041,
+        "Created": "1666196065",
+        "Updated": "1666196065",
+        "Color": `#${genRanHex(6)}`
+      },
+      {
+        "StakeId": 234235,
+        "Avatar":"https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-2.png?v=4.1.1",
+        "Start": "1666196065",
+        "Round": "786d8310663cf442aa3a58358545351c",
+        "Stake": Math.random().toFixed(2),
+        "Status": "Open",
+        "Odds": Math.random().toFixed(2),
+        "CashOut": Math.random().toFixed(2),
+        "Currency": "USD",
+        "Symbol": "$",
+        "Username": "d*****25",
+        "UserID": 69041,
+        "Created": "1666196065",
+        "Updated": "1666196065",
+        "Color": `#${genRanHex(6)}`
+      }
+    ]
+  )
+}, 4000);
 /* End Test events */
 
 
