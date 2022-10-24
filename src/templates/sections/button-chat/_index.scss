@@ -1,0 +1,8 @@
+.button-chat {
+  @include make-spacer('p', 1);
+  @include flex(center, center, column);
+  @include size(34px);
+
+  border-radius: 3px;
+  background-color: #2c2d30;
+}

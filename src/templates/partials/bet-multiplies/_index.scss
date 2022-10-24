@@ -5,7 +5,7 @@
   z-index: 1;
 
   &--active {
-    border-radius: 6px;
+    border-radius: 5px;
     background-color: #262830;
 
     .bet-multiplies {
@@ -21,7 +21,7 @@
       &__header {
         @include flex($align-items: center);
 
-        border-radius: 6px 6px 0 0;
+        border-radius: 5px 5px 0 0;
       }
 
       &__body {
@@ -31,7 +31,7 @@
         top: 100%;
         left: 0;
         right: 0;
-        border-radius: 0 0 6px 6px;
+        border-radius: 0 0 5px 5px;
         background-color: #262830;
       }
     }
@@ -80,7 +80,7 @@
     top: 10px;
     right: 10px;
     flex-shrink: 0;
-    border-radius: 13px;
+    border-radius: 5px;
     border: solid 1px #6f6f6f;
     background-color: #1e1e1e;
 

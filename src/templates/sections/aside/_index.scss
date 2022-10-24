@@ -9,6 +9,7 @@
 
   &__body {
     flex-grow: 1;
+    overflow: hidden;
   }
 
   &__footer {
@@ -21,6 +22,7 @@
     border: 1px solid #2A2B2E;
     background-color: var(--color-black);
     color: #5e6269;
+    font-size: 11px;
   }
 
   &__wrapper {

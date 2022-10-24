@@ -1,0 +1,31 @@
+.previous-hand {
+  border-radius: 5px!important;
+
+  span {
+    color: var(--color-white);
+    font-size: 14px!important;
+
+    &:nth-child(1) {
+      @include size(16px);
+      @include make-spacer('mr', 1);
+    }
+  }
+
+  &:hover {
+    background-color: transparent!important;
+    border-color: #e90000!important;
+
+    span {
+      color: #e90000;
+    }
+  }
+
+  &--active {
+    border-color: #e90000!important;
+    background-color: #600;
+
+    span {
+      opacity: 0.8;
+    }
+  }
+}

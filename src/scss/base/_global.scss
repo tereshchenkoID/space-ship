@@ -67,13 +67,34 @@ p {
   width: 100%;
 
   @include media-breakpoint-up(lg) {
-    grid-template-areas: 'a b';
+    grid-template-areas: 'a b c';
     grid-template-columns: 320px 1fr;
     height: 100vh;
   }
 
   @include media-breakpoint-up(xl) {
     grid-template-columns: 410px 1fr;
+  }
+
+  &--wide {
+    grid-template-areas: 'b'
+                         'a'
+                         'c';
+
+    @include media-breakpoint-up(lg) {
+      grid-template-areas: 'a b'
+                           'c c';
+      grid-template-columns: 320px 1fr;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      grid-template-areas: 'a b c';
+      grid-template-columns: 410px 1fr 280px;
+    }
+
+    .chat {
+      @include flex($direction: column);
+    }
   }
 }
 
@@ -90,33 +111,314 @@ p {
   }
 }
 
-.navigation {
+.chat {
+  @include make-spacer('pt', 3);
+  @include make-spacer('pt', 14, lg);
+  @include make-spacer('pr', 2);
+
+  display: none;
+  grid-area: c;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+
+  @include media-breakpoint-up(lg) {
+    position: relative;
+  }
+
+  &__header,
+  &__footer {
+    flex-shrink: 0;
+  }
+
+  &__header {
+    @include make-spacer('px', 2);
+    @include make-spacer('py', 1);
+    @include flex(space-between, center);
+
+    border-bottom: 1px solid #2A2B2E;
+    height: 40px;
+  }
+
+  &__footer {
+    @include flex(space-between, center);
+
+    position: relative;
+    border: 1px solid #2A2B2E;
+    background-color: var(--color-black);
+    height: 100px;
+    color: #5e6269;
+  }
+
+  &__text-count {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    font-size: 12px;
+  }
+
+  &__send {
+    @include size(16px);
+
+    position: absolute;
+    right: 5px;
+    bottom: 30px;
+  }
+
+  &__textarea {
+    @include make-spacer('pt', 1);
+    @include make-spacer('pl', 2);
+    @include make-spacer('pr', 7);
+    @include size(100%);
+
+    resize: none;
+    border: 0;
+    background-color: transparent;
+    color: var(--color-white);
+    font-size: 13px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-corner {
+      background-color: #474747;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: 2px solid transparent;
+      border-radius: 5px;
+      background-clip: content-box;
+      background-color: #888;
+    }
+
+    &::-webkit-scrollbar-track {
+      border: 1px solid #373737;
+      background-color: #474747;
+    }
+  }
+
+  &__table {
+    @include flex($direction: column);
+
+    position: relative;
+    border: 1px solid #2A2B2E;
+    border-radius: 5px 5px 0 0;
+    background-image: url('https://aviator-demo.spribegaming.com/grey-texture-bg.b22cf205f88ab054.png');
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  &__container {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  &__list {
+    @include make-spacer('p', 2);
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-corner {
+      background-color: #474747;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: 2px solid transparent;
+      border-radius: 5px;
+      background-clip: content-box;
+      background-color: #888;
+    }
+
+    &::-webkit-scrollbar-track {
+      border: 1px solid #373737;
+      background-color: #474747;
+    }
+  }
+
+  &__count {
+    text-transform: uppercase;
+    font-family: var(--font-family-alt);
+    color: var(--color-white);
+
+    span {
+
+      &:last-child {
+        @include make-spacer('ml', 1);
+
+        min-width: 50px;
+        color: var(--color-green);
+      }
+    }
+  }
+
+  &__close {
+    @include size(18px);
+
+    display: block;
+  }
+}
+
+.bet-chat {
+  margin-bottom: 2.5px;
+  background: linear-gradient(85deg, var(--color-black), #0f1214);
+  border: 2px solid var(--color-black);
+  border-radius: 5px;
+  color: var(--color-white);
+  font-size: 13px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .fairness {
+    @include make-spacer('mr', 0);
+    @include make-spacer('ml', auto);
+
+    width: fit-content;
+  }
+
+  .bet-multiply {
+    height: 20px;
+    width: fit-content;
+  }
+
+  &__header,
+  &__body {
+    @include make-spacer('p', 1);
+  }
+
+  &__avatar,
+  &__logo {
+    background-color: var(--color-gray);
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  &__text,
+  &__label {
+    color: #7b7b7b;
+  }
+
+  &__header {
+    @include flex($align-items: center);
+
+    height: 35px;
+    border-bottom: 2px solid var(--color-black);
+
+    & > * {
+      @include make-spacer('mr', 1);
+    }
+  }
+
+  &__avatar {
+    @include size(20px);
+  }
+
+  &__nickname {
+    color: var(--color-white);
+
+    &:hover {
+      color: var(--color-red);
+    }
+  }
+
+  &__block {
+    @include flex(center, center);
+
+    padding: 3px 5px;
+    text-transform: uppercase;
+    font-size: 9px;
+    line-height: 1;
+    border-radius: 3px;
+    background-color: #6b07d2;
+  }
+
+  &__text {
+    font-size: 12px;
+  }
+
+  &__value {
+    font-size: 12px;
+
+    span {
+
+      &:last-child {
+        font-size: 9px;
+      }
+    }
+  }
+
+  &__table {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+  }
+
+  &__info {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    align-items: center;
+    column-gap: 5px;
+  }
+
+  &__logo {
+    @include size(30px);
+  }
+
+  &__head {
+    @include make-spacer('mb', 2);
+
+    display: grid;
+    grid-template-columns: 1fr 30px;
+    align-items: center;
+  }
+
+  &__description {
+    font-size: 12px;
+  }
+
+  &--sm {
+    @include make-spacer('p', 2);
+
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    column-gap: 5px;
+  }
+}
+
+.navigation   {
+  @include flex($direction: column);
+
   flex-grow: 1;
   height: 100%;
 }
 
 .total-bets {
+  @include flex($align-items: center);
   text-transform: uppercase;
 
   span {
+    font-family: var(--font-family-alt);
 
     &:last-child {
       @include make-spacer('ml', 1);
 
+      min-width: 50px;
       color: var(--color-green);
-    }
-  }
-}
-
-.previous-hand {
-  border-radius: 20px!important;
-
-  span {
-    color: var(--color-white);
-    font-size: 14px!important;
-
-    &:nth-child(1) {
-      @include make-spacer('mr', 1);
     }
   }
 }
@@ -152,6 +454,7 @@ p {
   .bet-control {
     @include make-spacer('mb', 2);
     @include make-spacer('mr', 2, md);
+    @include make-spacer('mb', 0, md);
 
     &:nth-child(1) {
 
@@ -206,5 +509,34 @@ p {
         }
       }
     }
+  }
+}
+
+.youtube-iframe {
+  @include size(100%, 210px);
+
+  display: block;
+
+  @include media-breakpoint-up(md) {
+    height: 280px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    height: 450px;
+  }
+}
+
+.step {
+  @include make-spacer('p', 2);
+
+  display: grid;
+  grid-template-columns: 20px 40px 1fr;
+  align-items: center;
+  column-gap: 10px;
+  color: #5f3816;
+
+  &__id {
+    font-size: 18px;
+    font-weight: var(--typography-bold);
   }
 }

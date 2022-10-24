@@ -1,7 +1,7 @@
 .game-window {
   @include make-spacer('mb', 2);
 
-  border-radius: 10px;
+  border-radius: 5px;
   overflow: hidden;
   background-color: grey;
   flex-grow: 1;

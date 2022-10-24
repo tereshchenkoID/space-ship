@@ -2,9 +2,10 @@
   @include flex($direction: column);
 
   border: 1px solid #2A2B2E;
-  border-radius: 10px 10px 0 0;
+  border-radius: 5px 5px 0 0;
   background-image: url('https://aviator-demo.spribegaming.com/grey-texture-bg.b22cf205f88ab054.png');
   height: 100%;
+  position: relative;
 
   &__container {
     @include flex(space-between, center);
@@ -30,7 +31,7 @@
 
     &::-webkit-scrollbar-thumb {
       border: 2px solid transparent;
-      border-radius: 19px;
+      border-radius: 5px;
       background-clip: content-box;
       background-color: #888;
     }

@@ -5,7 +5,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-  border-radius: 17px;
+  border-radius: 5px;
   background-image: linear-gradient(82deg, var(--color-black), #0f1214);
   border: solid 1px var(--color-black);
   margin-bottom: 3px;
@@ -14,6 +14,10 @@
 
   &__logo {
     @include size(30px);
+
+    background-color: var(--color-gray);
+    border-radius: 50%;
+    overflow: hidden;
   }
 
   &__info {
@@ -32,7 +36,7 @@
 
   &__multiply,
   &__value {
-    border-radius: 11px;
+    border-radius: 5px;
     text-align: center;
 
     span {

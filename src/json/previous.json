@@ -1,0 +1,39 @@
+{
+  "Roundinfo":{
+    "Start": "1666196065",
+    "Round": "786d8310663cf442aa3a58358545351c",
+    "Odds": "1.25",
+    "TotalBets": 2,
+    "Color": "#f00"
+  },
+  "Stakes": [
+    {
+      "StakeId": 23423542,
+      "Start": "1666196065",
+      "Round": "786d8310663cf442aa3a58358545351c",
+      "Stake": "100.00",
+      "Status": "Lose",
+      "Currency": "USD",
+      "Symbol": "$",
+      "Username": "d*****25",
+      "UserID": 69041,
+      "Created": "1666196065",
+      "Updated": "1666196065"
+    },
+    {
+      "StakeId": 23423545,
+      "Start": "1666196065",
+      "Round": "786d8310663cf442aa3a58358545351c",
+      "Stake": "100.00",
+      "Status": "Won",
+      "Odds": "1.25",
+      "CashOut": "125.00",
+      "Currency": "USD",
+      "Symbol": "$",
+      "Username": "d*****25",
+      "UserID": 69041,
+      "Created": "1666196065",
+      "Updated": "1666196065"
+    }
+  ]
+}

@@ -6,7 +6,7 @@ extends ../layouts/_layout
 
 block content
   main
-    .page
+    .page.js-page
       +nav
       .aside
         .aside__body
@@ -19,16 +19,15 @@ block content
                     p.total-bets
                       span.total-bets-label Total bets:
                       span.total-bets-value
-                    button(type="button").button.button--outline.previous-hand
-                      span
-                        img(src="./img/icon/history.svg").img
-                      span Previous hand
+                    .js-previous-multiply
+                    +previous-hand(type="button").button.button--outline.js-previous-hand
                   .bet-table__row
                     .bet-table__cell User
                     .bet-table__cell Bet
                     .bet-table__cell Mult.
                     .bet-table__cell Cash out
                 .bet-table__content.js-bet-table-stakes
+                +previous-table.js-previous-table
 
             .navigation-body(data-tab="my_bets").js-navigation-body
               .bet-table
@@ -47,27 +46,7 @@ block content
                     .navigation-body(data-tab="huge_wins").navigation-body--active.js-navigation-body
                       .navigation.js-navigation
                         +navigation-tab(['Day', 'Month', 'Year']).js-navigation-tab.navigation-tab--disabled
-                        .navigation-body(data-tab="day").navigation-body--active.js-navigation-body
-                          .huge-win
-                            .huge-win__cell
-                              .huge-win__logo
-                                img(src="https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-2.png?v=4.1.1").img
-                              .huge-win__nickname d****5
-                            .huge-win__cell
-                              .huge-win__info
-                                .huge-win__label Cashed out:
-                                .huge-win__value.huge-win__value--cash
-                                  span 22804.19
-                                  span x
-                              .huge-win__info
-                                .huge-win__label Win:
-                                .huge-win__value
-                                  span 22804.19
-                                  span $
-                            .huge-win__cell
-                              +bet-tooltip
-                              +fairness.js-bet-multiply
-
+                        .navigation-body(data-tab="day").navigation-body--active.js-navigation-body.js-huge-wins-list
                     .navigation-body(data-tab="biggest_wins").js-navigation-body
                       .navigation.js-navigation
                         +navigation-tab(['Day', 'Month', 'Year']).js-navigation-tab.navigation-tab--disabled
@@ -127,8 +106,96 @@ block content
         +bet-multiplies.js-bet-multiplies
         +game-window.js-game-window
         .bet-controls.js-bet-controls
+      .chat.js-chat
+        .chat__table.js-chat-table
+          .chat__header
+            p.chat__count
+              span Online:
+              span 10
+            a.chat__close.js-chat-close
+              img(src="./img/icon/close.svg").img
+          .chat__container
+            .chat__list
+              - var n = 1;
+              while n < 5
+                .bet-chat.bet-chat--sm.js-bet-chat
+                  .bet-chat__logo
+                    img(src=`https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-${n++}.png?v=4.1.1`).img
+                  .bet-chat__description
+                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dignissimos error, ipsa laudantium numquam perferendis
 
+              - var n = 0;
+              while n < 10
+                .bet-chat.bet-chat--lg.js-bet-chat
+                  .bet-chat__header
+                    .bet-chat__avatar
+                      img(src="https://aviator-next.spribegaming.com/assets/static/avatars/v2/av-bot.png?v=1.4.1.2").img
+                    a.bet-chat__nickname captain
+                    .bet-chat__block bot
+                    p.bet-chat__text Wow!
+                  .bet-chat__body
+                    .bet-chat__head
+                      .bet-chat__info
+                        .bet-chat__logo
+                          img(src="https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-2.png?v=4.1.1").img
+                        p.bet-chat__nickname d*****25
+                      +fairness.js-bet-multiply
+                    .bet-chat__table
+                      .bet-chat__cell
+                        .bet-chat__label Cashed out:
+                        .bet-chat__value
+                          .bet-multiply.js-bet-multiply(style='background-color: #6b07d2')
+                            span 1.8
+                            span x
+                      .bet-chat__cell
+                        .bet-chat__label Win:
+                        .bet-chat__value
+                          span= `52.${n++}`
+                          span $
+                      .bet-chat__cell
+                        .bet-chat__label Round:
+                        .bet-chat__value
+                          span 52123.41
+                          span x
+                      .bet-chat__cell
+                        .bet-chat__label Round:
+                        .bet-chat__value
+                          span 0.7
+                          span $
+        .chat__footer
+          textarea(minlength="1" maxlength="160" placeholder="Replay").chat__textarea
+          button(type="button").chat__send
+            img(src="./img/icon/enter.svg").img
+          .chat__text-count 20
 
+      .popup.js-popup.js-popup-rules
+        .popup__content
+          .popup__wrapper
+            .popup__head(style="background-color: #e69308")
+              p How to play?
+              a.popup__close.js-popup-close
+                img(src="./img/icon/close.svg").img
+            .popup__body(style="background-color: #f5a623")
+              .popup__list(style="padding-left:0;padding-right:0;padding-bottom:0;")
+                iframe(src="https://www.youtube.com/embed/PZejs3XDCSY?playsinline=1" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" frameborder="0" allowfullscreen).youtube-iframe
+                .step
+                  .step__id 01
+                  .step__icon
+                    img(src="./img/icon/how-playing-1.svg").img
+                  .step__description Make a bet, or even two at same time and wait for the round to start.
+                .step
+                  .step__id 02
+                  .step__icon
+                    img(src="./img/icon/how-playing-2.svg").img
+                  .step__description Look after the lucky plane. Your win is bet multiplied by a coefficient of lucky plane.
+                .step
+                  .step__id 03
+                  .step__icon
+                    img(src="./img/icon/how-playing-3.svg").img
+                  .step__description Cash Out before plane flies away and money is yours!
+
+            .popup__footer(style="background-color: #e69308")
+              a(href="#").button.button--default.popup__button.js-popup-close Detailed rules
       .popup.js-popup.js-popup-provably-fair
         .popup__content
           .popup__wrapper
@@ -144,14 +211,16 @@ block content
         .popup__content
           .popup__wrapper
             .popup__head
-              p ROUND N1962993
-              +bet-multiply(1.2)(style="margin: 0 5px")
-              p 17:24:42
+              p
+                span ROUND N
+                span.js-popup-bet-round
+              .js-popup-bet-multiply(style="margin: 0 5px")
+              p
+                span.js-popup-bet-time
               a.popup__close.js-popup-close
                 img(src="./img/icon/close.svg").img
             .popup__body
-              .popup__list
-                +bet-info
+              .popup__list.js-popup-list
             .popup__footer
               button(type="button").button.button--outline.popup__button.js-popup-close Close
 

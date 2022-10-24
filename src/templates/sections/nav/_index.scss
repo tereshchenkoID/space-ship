@@ -13,6 +13,7 @@
   height: 50px;
 
   .button-help,
+  .toggle,
   .deposit {
     @include make-spacer('mr', 2);
   }

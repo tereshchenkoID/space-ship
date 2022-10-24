@@ -1,0 +1,38 @@
+.previous-table {
+  @include make-spacer('p', 2);
+
+  display: none;
+  position: absolute;
+  top: 66px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-image: url('https://aviator-demo.spribegaming.com/grey-texture-bg.b22cf205f88ab054.png');
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: #474747;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 5px;
+    background-clip: content-box;
+    background-color: #888;
+  }
+
+  &::-webkit-scrollbar-track {
+    border: 1px solid #373737;
+    background-color: #474747;
+  }
+
+  &--active {
+    display: block;
+  }
+}

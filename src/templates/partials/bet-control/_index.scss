@@ -3,7 +3,7 @@
   @include size(100%);
 
   position: relative;
-  border-radius: 20px;
+  border-radius: 5px;
   border: 1px solid #2A2B2E;
   background-image: url('https://aviator-demo.spribegaming.com/grey-texture-bg.b22cf205f88ab054.png');
   max-width: 750px;
@@ -93,7 +93,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: stretch;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
     border: solid 1px #363738;
   }
@@ -128,7 +128,7 @@
     @include make-spacer('px', 2);
 
     display: none;
-    border-radius: 20px;
+    border-radius: 5px;
     background: #111215;
     max-width: 390px;
     height: 40px;
@@ -157,7 +157,7 @@
     @include make-spacer('px', 1);
     @include flex($align-items: center);
 
-    border-radius: 22px;
+    border-radius: 5px;
     background-color: #000000b3;
     border: solid 1px #3C3C42;
 
@@ -191,7 +191,7 @@
     @include size(100%);
 
     background-color: #28a909;
-    border-radius: 20px;
+    border-radius: 5px;
     color: var(--color-white);
     text-transform: uppercase;
     text-align: center;

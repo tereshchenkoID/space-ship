@@ -1,5 +1,11 @@
 /* Remove for test */
-const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+const colors = ['#6b07d2', '#005d91', '#900087']
+// eslint-disable-next-line camelcase
+const r_color = () => {
+  return Math.floor(Math.random() * colors.length)
+}
+
+
 /* End Remove for test */
 
 function Count (min, max) {
@@ -32,8 +38,11 @@ function App() {
   this.user = {}
   this.balance = {}
   this.odds = []
+  this.odd = {}
   this.stakes = []
+  this.previous = []
   this.bets = []
+  this.top = []
   this.bet = [
     {
       value: 1.0,
@@ -51,13 +60,13 @@ function App() {
   ]
 }
 
-App.prototype.getTime = function(time) {
+App.prototype.getTime = function(time, isFull) {
   const date = new Date(time * 1000);
   const hours = date.getHours();
   const minutes = `0${date.getMinutes()}`;
-  // const seconds = `0${date.getSeconds()}`;
+  const seconds = `0${date.getSeconds()}`;
 
-  return `${hours}:${minutes.substr(-2)}`;
+  return isFull ? `${hours}:${minutes.substr(-2)}:${seconds.substr(-2)}` : `${hours}:${minutes.substr(-2)}`;
 }
 
 App.prototype.getConfig = function() {
@@ -129,6 +138,23 @@ App.prototype.getStakes = function() {
   });
 }
 
+App.prototype.getTopBets = function() {
+  const self = this
+
+  $.ajax({
+    url: './json/top.json',
+    method: "GET",
+    dataType: "json",
+    success (data) {
+      self.top = data;
+      self.changeTopBets()
+    },
+    error(xhr, status, error){
+      console.log(xhr.responseText, status, error);
+    }
+  });
+}
+
 App.prototype.getBets = function() {
   const self = this
 
@@ -139,6 +165,40 @@ App.prototype.getBets = function() {
     success (data) {
       self.bets = data;
       self.changeBets()
+    },
+    error(xhr, status, error){
+      console.log(xhr.responseText, status, error);
+    }
+  });
+}
+
+App.prototype.getOddInfo = function() {
+  const self = this
+
+  $.ajax({
+    url: './json/odd.json',
+    method: "GET",
+    dataType: "json",
+    success (data) {
+      self.odd = data;
+      self.changeOddInfo()
+    },
+    error(xhr, status, error){
+      console.log(xhr.responseText, status, error);
+    }
+  });
+}
+
+App.prototype.getPreviousStakes = function() {
+  const self = this
+
+  $.ajax({
+    url: './json/previous.json',
+    method: "GET",
+    dataType: "json",
+    success (data) {
+      self.previous = data;
+      self.changePreviousStakes()
     },
     error(xhr, status, error){
       console.log(xhr.responseText, status, error);
@@ -162,40 +222,199 @@ App.prototype.init = function() {
   $('#animation').prop("checked", this.user.Animation === 'On')
 }
 
-App.prototype.changeBets = function() {
+App.prototype.htmlOddInfo = function(data) {
+  let html = ''
+  html += `
+    <div class="bet-info">
+      <div class="bet-info__container">
+        <div class="bet-info__head">
+          <div class="bet-info__icon"><img src="./img/icon/server.svg"></div>
+          <div>
+            <div class="bet-info__title">Server Seed:</div>
+            <div class="bet-info__subtitle">Generated on our side</div>
+          </div>
+        </div>
+        <div class="bet-info__box">
+          <input type="text" readonly="true" value="${data.ServerSeed}">
+        </div>
+      </div>
+      <div class="bet-info__container">
+        <div class="bet-info__head">
+          <div class="bet-info__icon"><img src="./img/icon/client.svg"></div>
+          <div>
+            <div class="bet-info__title">Client Seed:</div>
+            <div class="bet-info__subtitle">Generated on players side</div>
+          </div>
+        </div>`
+
+        $.each(data.ClientSeed, function (index, item) {
+          html += `
+            <div class="bet-info__box bet-info__box--custom">
+              <div class="bet-info__value">
+                <span>Player N${index + 1}:</span>
+              </div>
+              <div class="bet-info__about">
+                <div class="bet-info__logo">`
+                if(item.Avatar) {
+                    html += `<img class="img" src="${item.Avatar}">`
+                }
+
+        html += `</div>
+                <div class="bet-info__nickname">${item.Username}</div>
+              </div>
+              <div class="bet-info__value">
+                <span>Seed:</span>
+                <span>${item.Seed}</span>
+              </div>
+            </div>
+          `
+        })
+
+html += `</div>
+        <div class="bet-info__container">
+          <div class="bet-info__head">
+            <div class="bet-info__icon"><img src="./img/icon/hash.svg"></div>
+            <div>
+              <div class="bet-info__title">Combined SHA512 Hash:</div>
+              <div class="bet-info__subtitle">Above seeds combined and converted to SHA512 Hash. This is your game result</div>
+            </div>
+          </div>
+          <div class="bet-info__box">
+            <input type="text" readonly="true" value="${data.CombinedSeed.Seed}">
+          </div>
+          <div class="bet-info__box">
+            <div class="bet-info__value">
+                <span>Hex:</span>
+                <span>${data.CombinedSeed.Hex}</span>
+            </div>
+            <div class="bet-info__value">
+              <span>Decimal:</span>
+              <span>${data.CombinedSeed.Decimal}</span>
+            </div>
+            <div class="bet-info__value">
+              <span>Result:</span>
+              <span>${data.CombinedSeed.Result}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  `
+
+  return html
+}
+
+App.prototype.changeOddInfo = function() {
+  $('.js-popup-bet .js-popup-list').html(this.htmlOddInfo(this.odd))
+  $('.js-popup-bet-round').html(this.odd.OddId)
+  $('.js-popup-bet-time').html(this.getTime(this.odd.Created, true))
+  $('.js-popup-bet-multiply').html(this.htmlOdd(this.odd))
+}
+
+App.prototype.changeTopBets = function() {
   const self = this
   let html = '';
 
-  $.each(this.bets, function (index, item) {
-    html += `<div class="bet-item bet-item--custom bet-item--${item.Status.toLowerCase()}">
+  $.each(this.top, function (index, item) {
+    html += self.hugeWin(item)
+  })
+
+  $('.js-huge-wins-list').html(html)
+}
+
+App.prototype.hugeWin = function(data) {
+  let html = ''
+
+  html += `<div class="huge-win">
+            <div class="huge-win__cell">
+              <div class="huge-win__logo">`
+                if(data.Avatar) {
+                  html += `<img class="img" src="${data.Avatar}">`
+                }
+     html += `</div>
+              <div class="huge-win__nickname">${data.Username}</div>
+            </div>
+            <div class="huge-win__cell">
+              <div class="huge-win__info">
+                <div class="huge-win__label">Cashed out:</div>
+                <div class="huge-win__value huge-win__value--cash">
+                  <span>${data.CashOut}</span>
+                  <span>x</span>
+                </div>
+              </div>
+              <div class="huge-win__info">
+                <div class="huge-win__label">Win:</div>
+                <div class="huge-win__value">
+                  <span>${data.Win}</span>
+                  <span>${data.Symbol || data.Currency}</span>
+                </div>
+              </div>
+            </div>
+            <div class="huge-win__cell">
+              <div class="bet-tooltip">
+                <div class="bet-tooltip__alert">
+                  <div class="bet-tooltip__container">
+                    <div class="bet-tooltip__label">Date</div>
+                    <div class="bet-tooltip__value">15 Oct</div>
+                  </div>
+                  <div class="bet-tooltip__container">
+                    <div class="bet-tooltip__label">Round</div>
+                    <div class="bet-tooltip__value">285.47x</div>
+                  </div>
+                  <div class="bet-tooltip__container">
+                    <div class="bet-tooltip__label">Bet</div>
+                    <div class="bet-tooltip__value">44.13$</div>
+                  </div>
+                </div>
+                <div class="bet-tooltip__icon">
+                  <img class="img" src="./img/icon/info.svg">
+                </div>
+              </div>
+              <div class="fairness js-bet-multiply">
+                <div class="fairness__alert">Check fairness</div>
+                <div class="fairness__icon">
+                  <img class="img" src="./img/icon/fairness.svg">
+                </div>
+              </div>
+            </div>
+          </div>`
+
+  return html
+}
+
+
+App.prototype.htmlBet = function(data) {
+  const self = this
+  let html = '';
+
+  html += `<div class="bet-item bet-item--custom bet-item--${data.Status.toLowerCase()}">
               <div class="bet-item__cell">
                 <div class="bet-item__date">
-                  <span>${self.getTime(item.Start)}</span>
+                  <span>${self.getTime(data.Start, false)}</span>
                 </div>
               </div>
               <div class="bet-item__cell">
                 <div class="bet-item__value">
-                  <span>${item.Stake}</span>
-                  <span>${item.Symbol || item.Currency}</span>
+                  <span>${data.Stake}</span>
+                  <span>${data.Symbol || data.Currency}</span>
                 </div>
               </div>
               <div class="bet-item__cell">
-                <div class="bet-item__multiply" style="background-color: ${item.Color}">
-                  <span>${item.Odds}</span>
+                <div class="bet-item__multiply" style="background-color: ${data.Color}">
+                  <span>${data.Odds}</span>
                   <span>x</span>
                 </div>
               </div>
               <div class="bet-item__cell">`
-                if(item.CashOut) {
+                if(data.CashOut) {
                   html += `<div class="bet-item__cash">
-                             <span>${item.CashOut || '-'}</span>
-                             <span>${item.Symbol || item.Currency}</span>
-                           </div>`
+                            <span>${data.CashOut || '-'}</span>
+                            <span>${data.Symbol || data.Currency}</span>
+                          </div>`
                 }
                 else {
                   html += `-`
                 }
-    html += `</div>
+  html += `</div>
               <div class="bet-item__cell">
                 <div class="fairness js-bet-multiply">
                   <div class="fairness__alert">Check fairness</div>
@@ -206,6 +425,27 @@ App.prototype.changeBets = function() {
                 </div>
               </div>
             </div>`
+
+  return html
+}
+
+App.prototype.addBets = function(data) {
+  const self = this
+  let html = '';
+
+  $.each(data, function (index, item) {
+    html += self.htmlBet(item)
+  })
+
+  $('.js-bet-table-my-bets').prepend(html)
+}
+
+App.prototype.changeBets = function() {
+  const self = this
+  let html = '';
+
+  $.each(this.bets, function (index, item) {
+    html += self.htmlBet(item)
   })
 
   $('.js-bet-table-my-bets').html(html)
@@ -258,6 +498,19 @@ App.prototype.htmlStake = function(data) {
     return html;
 }
 
+App.prototype.changePreviousStakes = function() {
+  const self = this
+  let html = ''
+
+  $.each(this.previous.Stakes, function (index, item) {
+    html += self.htmlStake(item)
+  })
+
+  $('.js-previous-table').html(html)
+  $('.js-previous-multiply').html(this.htmlOdd(this.previous.Roundinfo));
+  $('.total-bets-value').html(this.previous.Roundinfo.TotalBets || this.previous.Stakes.length)
+}
+
 App.prototype.changeStakes = function() {
   const self = this
   let html = ''
@@ -278,8 +531,16 @@ App.prototype.addStake = function(data) {
     html += self.htmlStake(item)
   })
 
-  $('.js-bet-table-stakes').prepend(html);
-  $('.total-bets-value').html($('.js-bet-table-stakes .js-bet-item').length)
+  $('.js-bet-table-stakes').prepend(html)
+
+  if ($('.previous-table--active').length === 0) {
+    $('.total-bets-value').html($('.js-bet-table-stakes .js-bet-item').length)
+  }
+}
+
+App.prototype.removeStake = function() {
+  $('.js-bet-table-stakes').html('');
+  $('.total-bets-value').html(0)
 }
 
 App.prototype.setStakeStatus = function(data) {
@@ -600,17 +861,10 @@ app.getConfig()
 app.getOdds()
 app.getStakes()
 app.getBets()
+app.getTopBets()
 
 /* Test events */
 setInterval(function() {
-  app.updateOdd(
-    {
-      "Start": "1666196065",
-      "Round": "786d8310663cf442aa3a58358545351c",
-      "Odds": Math.random().toFixed(1),
-      "Color": `#${genRanHex(6)}`
-    }
-  )
   app.changeBalance(
     {
       "UserID":69041,
@@ -629,7 +883,7 @@ setInterval(function() {
         "Round": "786d8310663cf442aa3a58358545351c",
         "Stake": Math.random().toFixed(2),
         "Status": "Open",
-        "Odds": Math.random().toFixed(2),
+        "Odds": (Math.random() + 1).toFixed(2),
         "CashOut": Math.random().toFixed(2),
         "Currency": "USD",
         "Symbol": "$",
@@ -637,7 +891,7 @@ setInterval(function() {
         "UserID": 69041,
         "Created": "1666196065",
         "Updated": "1666196065",
-        "Color": `#${genRanHex(6)}`
+        "Color": colors[r_color()]
       },
       {
         "StakeId": 234237,
@@ -654,7 +908,27 @@ setInterval(function() {
         "UserID": 69041,
         "Created": "1666196065",
         "Updated": "1666196065",
-        "Color": `#${genRanHex(6)}`
+        "Color": colors[r_color()]
+      }
+    ]
+  )
+  app.addBets(
+    [
+      {
+        "Avatar":"https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-2.png?v=4.1.1",
+        "Start": "1666196065",
+        "Round": "786d8310663cf442aa3a58358545351c",
+        "Stake": Math.random().toFixed(2),
+        "Status": "Won",
+        "Odds": (Math.random() + 1).toFixed(2),
+        "CashOut": Math.random().toFixed(2),
+        "Currency": "USD",
+        "Symbol": "$",
+        "Username": "d*****25",
+        "UserID": 69041,
+        "Created": "1666196065",
+        "Updated": "1666196065",
+        "Color": colors[r_color()]
       }
     ]
   )
@@ -671,7 +945,7 @@ setInterval(function() {
         "Round": "786d8310663cf442aa3a58358545351c",
         "Stake": Math.random().toFixed(2),
         "Status": "Open",
-        "Odds": Math.random().toFixed(2),
+        "Odds": (Math.random() + 1).toFixed(2),
         "CashOut": Math.random().toFixed(2),
         "Currency": "USD",
         "Symbol": "$",
@@ -679,7 +953,7 @@ setInterval(function() {
         "UserID": 69041,
         "Created": "1666196065",
         "Updated": "1666196065",
-        "Color": `#${genRanHex(6)}`
+        "Color": colors[r_color()]
       },
       {
         "StakeId": 234235,
@@ -688,7 +962,7 @@ setInterval(function() {
         "Round": "786d8310663cf442aa3a58358545351c",
         "Stake": Math.random().toFixed(2),
         "Status": "Open",
-        "Odds": Math.random().toFixed(2),
+        "Odds": (Math.random() + 1).toFixed(2),
         "CashOut": Math.random().toFixed(2),
         "Currency": "USD",
         "Symbol": "$",
@@ -696,17 +970,53 @@ setInterval(function() {
         "UserID": 69041,
         "Created": "1666196065",
         "Updated": "1666196065",
-        "Color": `#${genRanHex(6)}`
+        "Color": colors[r_color()]
       }
     ]
   )
+  // app.removeStake()
 }, 4000);
+
+
+setInterval(function() {
+  app.updateOdd(
+    {
+      "Start": "1666196065",
+      "Round": "786d8310663cf442aa3a58358545351c",
+      "Odds": (Math.random() + 1).toFixed(1),
+      "Color": colors[r_color()]
+    }
+  )
+}, 20000);
 /* End Test events */
 
+$('.js-previous-hand').on('click', function() {
+  $(this).toggleClass('previous-hand--active')
 
+  if ($('.previous-table').hasClass('previous-table--active')) {
+    $('.total-bets-value').html($('.js-bet-table-stakes .js-bet-item').length)
+    $('.js-previous-table').removeClass('previous-table--active')
+    $('.js-previous-multiply').html('')
+    $(this).find('img').attr('src', "./img/icon/history.svg")
+  }
+  else {
+    app.getPreviousStakes()
+    $('.js-previous-table').addClass('previous-table--active')
+    $(this).find('img').attr('src', "./img/icon/close.svg")
+  }
+})
 
 $('.js-provably-fair').on('click', function() {
   $('.js-popup-provably-fair').addClass('popup--active')
+})
+
+
+$('.js-button-chat').on('click', function(){
+  $('.js-page').toggleClass('page--wide')
+})
+
+$('.js-chat-close').on('click', function(){
+  $('.js-page').toggleClass('page--wide')
 })
 
 $('.js-toggle').on('click', function(){
@@ -760,10 +1070,14 @@ $('.js-bet-multiplies-button').on('click', function() {
   $(this).closest('.js-bet-multiplies').toggleClass('bet-multiplies--active')
 })
 
-$('body').on('click', '.js-bet-multiply', function() {
-  $('.js-popup-bet').toggleClass('popup--active')
+$('.js-button-help').on('click', function() {
+  $('.js-popup-rules').toggleClass('popup--active')
 })
 
+$('body').on('click', '.js-bet-multiply', function() {
+  app.getOddInfo()
+  $('.js-popup-bet').toggleClass('popup--active')
+})
 
 /* Autoplay bet control */
 $('body').on('click', '.js-bet-control .js-bet-control-link', function() {
