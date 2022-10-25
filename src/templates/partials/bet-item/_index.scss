@@ -13,6 +13,12 @@
   font-size: 14px;
   color: var(--color-white);
 
+  .copy,
+  .fairness {
+    margin: 0 2.5px;
+    flex-shrink: 0;
+  }
+
   &:last-child {
     @include make-spacer('mb', 0);
   }
@@ -57,6 +63,10 @@
     &:nth-child(2) {
       text-align: left;
     }
+
+    &:last-child {
+      @include flex(center, center);
+    }
   }
 
   &__value {
@@ -77,6 +87,8 @@
 
   &--custom {
     grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+
+    font-size: 12px;
 
     .bet-item {
 
@@ -99,10 +111,6 @@
 
       &__cell {
         text-align: center;
-
-        &:first-child {
-          text-align: left;
-        }
       }
     }
   }

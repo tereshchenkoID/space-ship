@@ -1,0 +1,164 @@
+.chat {
+  @include make-spacer('pt', 3);
+  @include make-spacer('pt', 14, lg);
+  @include make-spacer('pr', 2);
+
+  display: none;
+  grid-area: c;
+  overflow: hidden;
+
+  @include media-breakpoint-up(lg) {
+    position: relative;
+  }
+
+  &__header,
+  &__footer {
+    flex-shrink: 0;
+  }
+
+  &__header {
+    @include make-spacer('px', 2);
+    @include make-spacer('py', 1);
+    @include flex(space-between, center);
+
+    border-bottom: 1px solid #2A2B2E;
+    height: 40px;
+  }
+
+  &__footer {
+    @include flex(space-between, center);
+
+    position: relative;
+    border: 1px solid #2A2B2E;
+    background-color: var(--color-black);
+    height: 100px;
+    color: #5e6269;
+  }
+
+  &__title {
+    @include make-spacer('pr', 4);
+
+    flex-grow: 1;
+    color: var(--color-white);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__text-count {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    font-size: 12px;
+  }
+
+  &__send {
+    @include size(16px);
+
+    position: absolute;
+    right: 5px;
+    bottom: 30px;
+  }
+
+  &__textarea {
+    @include make-spacer('pt', 1);
+    @include make-spacer('pl', 2);
+    @include make-spacer('pr', 7);
+    @include size(100%);
+
+    resize: none;
+    border: 0;
+    background-color: transparent;
+    color: var(--color-white);
+    font-size: 13px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-corner {
+      background-color: #474747;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: 2px solid transparent;
+      border-radius: 5px;
+      background-clip: content-box;
+      background-color: #888;
+    }
+
+    &::-webkit-scrollbar-track {
+      border: 1px solid #373737;
+      background-color: #474747;
+    }
+  }
+
+  &__table {
+    @include flex($direction: column);
+
+    position: relative;
+    border: 1px solid #2A2B2E;
+    border-radius: 5px 5px 0 0;
+    background-image: url('../img/grey-texture-bg.png');
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  &__container {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  &__list {
+    @include make-spacer('p', 2);
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-corner {
+      background-color: #474747;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: 2px solid transparent;
+      border-radius: 5px;
+      background-clip: content-box;
+      background-color: #888;
+    }
+
+    &::-webkit-scrollbar-track {
+      border: 1px solid #373737;
+      background-color: #474747;
+    }
+  }
+
+  &__count {
+    text-transform: uppercase;
+    font-family: var(--font-family-alt);
+    color: var(--color-white);
+
+    span {
+
+      &:last-child {
+        @include make-spacer('ml', 1);
+
+        min-width: 50px;
+        color: var(--color-green);
+      }
+    }
+  }
+
+  &__close {
+    @include size(18px);
+
+    display: block;
+  }
+}

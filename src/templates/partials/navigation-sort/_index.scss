@@ -1,0 +1,33 @@
+.navigation-sort {
+  @include make-spacer('mx', auto);
+  @include make-spacer('mb', 3);
+  @include size(100%, 25px);
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
+  border-radius: 5px;
+  border: 1px solid #363738;
+  overflow: hidden;
+  max-width: 310px;
+  flex-shrink: 0;
+
+  &__item {
+    @include flex(center, center);
+
+    color: var(--color-white);
+
+    &:hover {
+      color: var(--color-red);
+    }
+
+    &--active {
+      background-color: rgba(44, 45, 48, 1);
+    }
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

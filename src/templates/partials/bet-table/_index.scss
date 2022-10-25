@@ -3,7 +3,7 @@
 
   border: 1px solid #2A2B2E;
   border-radius: 5px 5px 0 0;
-  background-image: url('https://aviator-demo.spribegaming.com/grey-texture-bg.b22cf205f88ab054.png');
+  background-image: url('../img/grey-texture-bg.png');
   height: 100%;
   position: relative;
 
@@ -63,7 +63,8 @@
     @include make-spacer('py', 1);
 
     display: grid;
-    grid-template-columns: 130px repeat(3, 1fr);
+    grid-template-columns: 1fr 30px repeat(3, minmax(50px, 1fr));
+    column-gap: 5px;
     align-items: center;
     font-size: 11px;
     color: #7b7b7b;
@@ -74,6 +75,23 @@
 
     &:nth-child(1) {
       text-align: left;
+    }
+  }
+
+  &--custom {
+
+    .bet-table {
+
+      &__row {
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+      }
+
+      &__cell {
+
+        &:nth-child(1) {
+          text-align: center;
+        }
+      }
     }
   }
 }

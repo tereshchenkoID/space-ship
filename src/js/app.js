@@ -60,6 +60,408 @@ function App() {
   ]
 }
 
+
+App.prototype.htmlBet = function(data) {
+  const self = this
+  let html = '';
+
+  html += `<div class="bet-item bet-item--custom bet-item--${data.Status.toLowerCase()}">
+              <div class="bet-item__cell">
+                <div class="bet-item__date">
+                  <span>${self.getTime(data.Start, false)}</span>
+                </div>
+              </div>
+              <div class="bet-item__cell">
+                <div class="bet-item__value">
+                  <span>${data.Stake}</span>
+                  <span>${data.Symbol || data.Currency}</span>
+                </div>
+              </div>
+              <div class="bet-item__cell">
+                <div class="bet-item__multiply" style="background-color: ${data.Color}">
+                  <span>${data.Odds}</span>
+                  <span>x</span>
+                </div>
+              </div>
+              <div class="bet-item__cell">`
+  if(data.CashOut) {
+    html += `<div class="bet-item__cash">
+                            <span>${data.CashOut || '-'}</span>
+                            <span>${data.Symbol || data.Currency}</span>
+                          </div>`
+  }
+  else {
+    html += `-`
+  }
+  html += `</div>
+            </div>`
+
+  return html
+}
+
+App.prototype.htmlStake = function(data) {
+  let html = ``;
+
+  html += `<div class="bet-item bet-item--${data.Status.toLowerCase()} js-bet-item" data-id="${data.StakeId}">
+                <div class="bet-item__cell">
+                  <div class="bet-item__logo">`
+  if(data.Avatar) {
+    html += `<img class="img" src="${data.Avatar}">`
+  }
+  html += `</div>
+                </div>
+                <div class="bet-item__cell">
+                  <div class="bet-item__name">${data.Username}</div>
+                </div>
+                <div class="bet-item__cell">
+                  <div class="bet-item__value">
+                    <span>${data.Stake}</span>
+                    <span>${data.Symbol || data.Currency}</span>
+                  </div>
+                </div>
+                <div class="bet-item__cell">`
+  if(data.Odds) {
+    html += `<div class="bet-item__multiply" style="background-color: ${data.Color}">
+                               <span>${data.Odds}</span>
+                               <span>x</span>
+                             </div>`
+  }
+  else {
+    html += `-`
+  }
+  html += `</div>
+                <div class="bet-item__cell">`
+  if(data.CashOut) {
+    html += `<div class="bet-item__cash">
+                                <span>${data.CashOut || '-'}</span>
+                                <span>${data.Symbol || data.Currency}</span>
+                             </div>`
+  }
+  else {
+    html += `-`
+  }
+  html += `</div>
+            </div>`
+
+  return html;
+}
+
+App.prototype.htmlOdd = function(data) {
+  return `<div class="bet-multiply js-bet-multiply" style="background-color: ${data.Color}">
+             <span>${data.Odds}</span>
+             <span>x</span>
+          </div>`
+}
+
+App.prototype.htmlOddInfo = function(data) {
+  let html = ''
+  html += `
+    <div class="bet-info">
+      <div class="bet-info__container">
+        <div class="bet-info__head">
+          <div class="bet-info__icon"><img src="./img/icon/server.svg"></div>
+          <div>
+            <div class="bet-info__title">Server Seed:</div>
+            <div class="bet-info__subtitle">Generated on our side</div>
+          </div>
+        </div>
+        <div class="bet-info__box">
+          <input type="text" readonly="true" value="${data.ServerSeed}">
+        </div>
+      </div>
+      <div class="bet-info__container">
+        <div class="bet-info__head">
+          <div class="bet-info__icon"><img src="./img/icon/client.svg"></div>
+          <div>
+            <div class="bet-info__title">Client Seed:</div>
+            <div class="bet-info__subtitle">Generated on players side</div>
+          </div>
+        </div>`
+
+  $.each(data.ClientSeed, function (index, item) {
+    html += `
+            <div class="bet-info__box bet-info__box--custom">
+              <div class="bet-info__value">
+                <span>Player N${index + 1}:</span>
+              </div>
+              <div class="bet-info__about">
+                <div class="bet-info__logo">`
+    if(item.Avatar) {
+      html += `<img class="img" src="${item.Avatar}">`
+    }
+
+    html += `</div>
+                <div class="bet-info__nickname">${item.Username}</div>
+              </div>
+              <div class="bet-info__value">
+                <span>Seed:</span>
+                <span>${item.Seed}</span>
+              </div>
+            </div>
+          `
+  })
+
+  html += `</div>
+        <div class="bet-info__container">
+          <div class="bet-info__head">
+            <div class="bet-info__icon"><img src="./img/icon/hash.svg"></div>
+            <div>
+              <div class="bet-info__title">Combined SHA512 Hash:</div>
+              <div class="bet-info__subtitle">Above seeds combined and converted to SHA512 Hash. This is your game result</div>
+            </div>
+          </div>
+          <div class="bet-info__box">
+            <input type="text" readonly="true" value="${data.CombinedSeed.Seed}">
+          </div>
+          <div class="bet-info__box">
+            <div class="bet-info__value">
+                <span>Hex:</span>
+                <span>${data.CombinedSeed.Hex}</span>
+            </div>
+            <div class="bet-info__value">
+              <span>Decimal:</span>
+              <span>${data.CombinedSeed.Decimal}</span>
+            </div>
+            <div class="bet-info__value">
+              <span>Result:</span>
+              <span>${data.CombinedSeed.Result}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  `
+
+  return html
+}
+
+App.prototype.htmlBetControl = function(item, index) {
+  const self = this
+  let html = ''
+
+  html += `
+    <div class="bet-control js-bet-control" data-index="${index}">
+      <div class="bet-control__container">
+        <a class="bet-control__remove js-bet-control-action"></a>
+        <div class="bet-control__top js-bet-control-top">
+          <div class="bet-control__tab">
+            <button class="bet-control__link bet-control__link--active js-bet-control-link" type="button">Bet</button>
+            <button class="bet-control__link js-bet-control-link" type="button">Auto</button>
+          </div>
+        </div>
+        <div class="bet-control__center js-bet-control-center">
+          <div class="bet-control__cell">
+            <div class="bet-count js-bet-count">
+              <input class="bet-count__field js-bet-count-field" type="number" step="${this.user.Step}" value="${item.value.toFixed(1)}">
+              <div class="bet-count__options">
+                <button class="bet-count__button js-bet-count-button" data-value="decrement">
+                  <img src="./img/icon/count-minus.svg" alt="" class="img">
+                </button>
+                <button class="bet-count__button js-bet-count-button" data-value="increment">
+                  <img src="./img/icon/count-plus.svg" alt="" class="img">
+                </button>
+              </div>
+            </div>
+            <div class="bet-control__currency">`
+  $.each(self.user.QuickBet.split(','), function (idx, el) {
+    html += `<button class="button button--primary bet-control__button js-bet-control-button" type="button" data-value="${el}">
+                        <span>${el}</span>
+                        <span>${self.user.Symbol || self.user.Currency}</span>
+                      </button>`
+  })
+  html += `</div>
+          </div>
+          <div class="bet-control__cell">
+            <button class="bet-control__bet js-bet-control-bet" type="button">Bet</button>
+          </div>
+        </div>
+        <div class="bet-control__bottom js-bet-control-bottom">
+          <button class="button button--primary bet-control__button bet-control__button--auto js-bet-control-button" type="button" data-value="auto">
+            <span>AUTO PLAY</span>
+          </button>
+          <div class="bet-control__auto">
+            <span class="bet-control__label">Auto Cash Out</span>
+            <div class="switch js-switch">
+              <input class="switch__input" id="auto-cash-${index}" type="checkbox" name="auto-cash" ${item.auto.out && 'checked="true"'}>
+              <label class="switch__label" for="auto-cash-${index}">
+                <span class="switch__toggle"></span>
+              </label>
+            </div>
+          </div>
+          <div class="bet-control__counts ${item.auto.out ? '' : 'bet-control__counts--disabled'} js-bet-control-counts">
+            <input class="bet-control__field js-bet-control-field" type="number" step="${this.user.Step}" value="${item.auto.value.toFixed(1)}">
+          </div>
+        </div>
+      </div>
+    </div>`
+
+  return html
+}
+
+App.prototype.htmlPopupAutoplay = function(index) {
+  return `<div class="bet-autoplay js-bet-autoplay" data-index="${index}">
+           <div class="bet-autoplay__alert">
+             <div class="alert alert--danger js-alert"></div>
+           </div>
+           <div class="bet-autoplay__container">
+             <div class="bet-autoplay__text">Number of Rounds:</div>
+             <div class="bet-autoplay__wrapper">
+               <button class="button button--primary bet-autoplay__button js-bet-autoplay-button" type="button" data-value="10">10</button>
+               <button class="button button--primary bet-autoplay__button js-bet-autoplay-button" type="button" data-value="20">20</button>
+               <button class="button button--primary bet-autoplay__button js-bet-autoplay-button" type="button" data-value="50">50</button>
+               <button class="button button--primary bet-autoplay__button js-bet-autoplay-button" type="button" data-value="100">100</button>
+             </div>
+           </div>
+           <div class="bet-autoplay__container bet-autoplay__container--custom">
+             <div class="switch js-switch">
+               <input class="switch__input" id="decreases" type="checkbox" name="decreases" ${this.bet[index].auto.options.decreases && 'checked="true"'}>
+               <label class="switch__label" for="decreases">
+                 <span class="switch__toggle"></span>
+               </label>
+             </div>
+             <span>Stop if cash decreases by</span>
+             <div class="bet-count ${this.bet[index].auto.options.decreases ? '' : 'bet-count--disabled'} js-bet-count" id="bet-count-decreases" data-value="decreases">
+               <input class="bet-count__field js-bet-count-field" type="number" step="${this.user.Step}" value="${this.bet[index].auto.options.decreases ? this.bet[index].auto.options.decreases.toFixed(1) : (0).toFixed(1)}">
+               <div class="bet-count__options">
+                 <button class="bet-count__button js-bet-count-button" data-value="decrement"">
+                   <img src="./img/icon/count-minus.svg" alt="" class="img">
+                 </button>
+                 <button class="bet-count__button js-bet-count-button" data-value="increment">
+                    <img src="./img/icon/count-plus.svg" alt="" class="img">
+                 </button>
+               </div>
+             </div>
+             <span>${this.user.Symbol || this.user.Currency}</span>
+           </div>
+           <div class="bet-autoplay__container bet-autoplay__container--custom">
+             <div class="switch js-switch">
+               <input class="switch__input" id="increases" type="checkbox" name="increases" ${this.bet[index].auto.options.increases && 'checked="true"'}>
+               <label class="switch__label" for="increases">
+                 <span class="switch__toggle"></span>
+               </label>
+              </div>
+             <span>Stop if cash increases by</span>
+             <div class="bet-count ${this.bet[index].auto.options.increases ? '' : 'bet-count--disabled'} js-bet-count" id="bet-count-increases" data-value="increases">
+               <input class="bet-count__field js-bet-count-field" type="number" step="${this.user.Step}" value="${this.bet[index].auto.options.increases ? this.bet[index].auto.options.increases.toFixed(1) : (0).toFixed(1)}">
+               <div class="bet-count__options">
+                 <button class="bet-count__button js-bet-count-button" data-value="decrement">
+                    <img src="./img/icon/count-minus.svg" alt="" class="img">
+                 </button>
+                 <button class="bet-count__button js-bet-count-button" data-value="increment">
+                    <img src="./img/icon/count-plus.svg" alt="" class="img">
+                 </button>
+               </div>
+             </div>
+             <span>${this.user.Symbol || this.user.Currency}</span>
+           </div>
+           <div class="bet-autoplay__container bet-autoplay__container--custom">
+             <div class="switch js-switch">
+               <input class="switch__input" id="exceeds" type="checkbox" name="exceeds" ${this.bet[index].auto.options.exceeds && 'checked="true"'}>
+               <label class="switch__label" for="exceeds">
+                 <span class="switch__toggle"></span>
+               </label>
+             </div>
+             <span>Stop if single with exceeds</span>
+             <div class="bet-count ${this.bet[index].auto.options.exceeds ? '' : 'bet-count--disabled' } js-bet-count" id="bet-count-exceeds" data-value="exceeds">
+               <input class="bet-count__field js-bet-count-field" type="number" step="${this.user.Step}" value="${this.bet[index].auto.options.exceeds ? this.bet[index].auto.options.exceeds.toFixed(1) : (0).toFixed(1)}">
+               <div class="bet-count__options">
+                 <button class="bet-count__button js-bet-count-button" data-value="decrement">
+                   <img src="./img/icon/count-minus.svg" alt="" class="img">
+                 </button>
+                 <button class="bet-count__button js-bet-count-button" data-value="increment">
+                    <img src="./img/icon/count-plus.svg" alt="" class="img">
+                 </button>
+               </div>
+             </div>
+             <span>${this.user.Symbol || this.user.Currency}</span>
+           </div>
+        </div>`
+}
+
+App.prototype.htmlHugeWin = function(data) {
+  let html = ''
+
+  html += `<div class="huge-win">
+            <div class="huge-win__cell">
+              <div class="huge-win__logo">`
+  if(data.Avatar) {
+    html += `<img class="img" src="${data.Avatar}">`
+  }
+  html += `</div>
+              <div class="huge-win__nickname">${data.Username}</div>
+            </div>
+            <div class="huge-win__cell">
+              <div class="huge-win__info">
+                <div class="huge-win__label">Cashed out:</div>
+                <div class="huge-win__value huge-win__value--cash">
+                  <span>${data.CashOut}</span>
+                  <span>x</span>
+                </div>
+              </div>
+              <div class="huge-win__info">
+                <div class="huge-win__label">Win:</div>
+                <div class="huge-win__value">
+                  <span>${data.Win}</span>
+                  <span>${data.Symbol || data.Currency}</span>
+                </div>
+              </div>
+            </div>
+            <div class="huge-win__cell">
+              <div class="bet-tooltip">
+                <div class="bet-tooltip__alert">
+                  <div class="bet-tooltip__container">
+                    <div class="bet-tooltip__label">Date</div>
+                    <div class="bet-tooltip__value">15 Oct</div>
+                  </div>
+                  <div class="bet-tooltip__container">
+                    <div class="bet-tooltip__label">Round</div>
+                    <div class="bet-tooltip__value">285.47x</div>
+                  </div>
+                  <div class="bet-tooltip__container">
+                    <div class="bet-tooltip__label">Bet</div>
+                    <div class="bet-tooltip__value">44.13$</div>
+                  </div>
+                </div>
+                <div class="bet-tooltip__icon">
+                  <img class="img" src="./img/icon/info.svg">
+                </div>
+              </div>
+              <div class="fairness js-bet-multiply">
+                <div class="fairness__alert">Check fairness</div>
+                <div class="fairness__icon">
+                  <img class="img" src="./img/icon/fairness.svg">
+                </div>
+              </div>
+              <div class="copy js-bet-copy">
+                <div class="copy__alert">Share to chat</div>
+                <div class="copy__icon">
+                   <img src="./img/icon/comment.svg" class="img">
+                </div>
+              </div>
+            </div>
+          </div>`
+
+  return html
+}
+
+
+
+
+App.prototype.init = function() {
+  const user = JSON.parse(localStorage.getItem('user')) || undefined
+
+  if (user) {
+    this.user = user
+  }
+
+  localStorage.setItem('user', JSON.stringify(this.user))
+
+  $('.js-app-photo').attr('src', this.user.Avatar)
+  $('.js-app-nickname').text(this.user.Username)
+  $('#sound').prop("checked", this.user.Sound === 'On')
+  $('#music').prop("checked", this.user.Music === 'On')
+  $('#animation').prop("checked", this.user.Animation === 'On')
+}
+
 App.prototype.getTime = function(time, isFull) {
   const date = new Date(time * 1000);
   const hours = date.getHours();
@@ -206,102 +608,6 @@ App.prototype.getPreviousStakes = function() {
   });
 }
 
-App.prototype.init = function() {
-  const user = JSON.parse(localStorage.getItem('user')) || undefined
-
-  if (user) {
-    this.user = user
-  }
-
-  localStorage.setItem('user', JSON.stringify(this.user))
-
-  $('.js-app-photo').attr('src', this.user.Avatar)
-  $('.js-app-nickname').text(this.user.Username)
-  $('#sound').prop("checked", this.user.Sound === 'On')
-  $('#music').prop("checked", this.user.Music === 'On')
-  $('#animation').prop("checked", this.user.Animation === 'On')
-}
-
-App.prototype.htmlOddInfo = function(data) {
-  let html = ''
-  html += `
-    <div class="bet-info">
-      <div class="bet-info__container">
-        <div class="bet-info__head">
-          <div class="bet-info__icon"><img src="./img/icon/server.svg"></div>
-          <div>
-            <div class="bet-info__title">Server Seed:</div>
-            <div class="bet-info__subtitle">Generated on our side</div>
-          </div>
-        </div>
-        <div class="bet-info__box">
-          <input type="text" readonly="true" value="${data.ServerSeed}">
-        </div>
-      </div>
-      <div class="bet-info__container">
-        <div class="bet-info__head">
-          <div class="bet-info__icon"><img src="./img/icon/client.svg"></div>
-          <div>
-            <div class="bet-info__title">Client Seed:</div>
-            <div class="bet-info__subtitle">Generated on players side</div>
-          </div>
-        </div>`
-
-        $.each(data.ClientSeed, function (index, item) {
-          html += `
-            <div class="bet-info__box bet-info__box--custom">
-              <div class="bet-info__value">
-                <span>Player N${index + 1}:</span>
-              </div>
-              <div class="bet-info__about">
-                <div class="bet-info__logo">`
-                if(item.Avatar) {
-                    html += `<img class="img" src="${item.Avatar}">`
-                }
-
-        html += `</div>
-                <div class="bet-info__nickname">${item.Username}</div>
-              </div>
-              <div class="bet-info__value">
-                <span>Seed:</span>
-                <span>${item.Seed}</span>
-              </div>
-            </div>
-          `
-        })
-
-html += `</div>
-        <div class="bet-info__container">
-          <div class="bet-info__head">
-            <div class="bet-info__icon"><img src="./img/icon/hash.svg"></div>
-            <div>
-              <div class="bet-info__title">Combined SHA512 Hash:</div>
-              <div class="bet-info__subtitle">Above seeds combined and converted to SHA512 Hash. This is your game result</div>
-            </div>
-          </div>
-          <div class="bet-info__box">
-            <input type="text" readonly="true" value="${data.CombinedSeed.Seed}">
-          </div>
-          <div class="bet-info__box">
-            <div class="bet-info__value">
-                <span>Hex:</span>
-                <span>${data.CombinedSeed.Hex}</span>
-            </div>
-            <div class="bet-info__value">
-              <span>Decimal:</span>
-              <span>${data.CombinedSeed.Decimal}</span>
-            </div>
-            <div class="bet-info__value">
-              <span>Result:</span>
-              <span>${data.CombinedSeed.Result}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-  `
-
-  return html
-}
 
 App.prototype.changeOddInfo = function() {
   $('.js-popup-bet .js-popup-list').html(this.htmlOddInfo(this.odd))
@@ -315,129 +621,10 @@ App.prototype.changeTopBets = function() {
   let html = '';
 
   $.each(this.top, function (index, item) {
-    html += self.hugeWin(item)
+    html += self.htmlHugeWin(item)
   })
 
   $('.js-huge-wins-list').html(html)
-}
-
-App.prototype.hugeWin = function(data) {
-  let html = ''
-
-  html += `<div class="huge-win">
-            <div class="huge-win__cell">
-              <div class="huge-win__logo">`
-                if(data.Avatar) {
-                  html += `<img class="img" src="${data.Avatar}">`
-                }
-     html += `</div>
-              <div class="huge-win__nickname">${data.Username}</div>
-            </div>
-            <div class="huge-win__cell">
-              <div class="huge-win__info">
-                <div class="huge-win__label">Cashed out:</div>
-                <div class="huge-win__value huge-win__value--cash">
-                  <span>${data.CashOut}</span>
-                  <span>x</span>
-                </div>
-              </div>
-              <div class="huge-win__info">
-                <div class="huge-win__label">Win:</div>
-                <div class="huge-win__value">
-                  <span>${data.Win}</span>
-                  <span>${data.Symbol || data.Currency}</span>
-                </div>
-              </div>
-            </div>
-            <div class="huge-win__cell">
-              <div class="bet-tooltip">
-                <div class="bet-tooltip__alert">
-                  <div class="bet-tooltip__container">
-                    <div class="bet-tooltip__label">Date</div>
-                    <div class="bet-tooltip__value">15 Oct</div>
-                  </div>
-                  <div class="bet-tooltip__container">
-                    <div class="bet-tooltip__label">Round</div>
-                    <div class="bet-tooltip__value">285.47x</div>
-                  </div>
-                  <div class="bet-tooltip__container">
-                    <div class="bet-tooltip__label">Bet</div>
-                    <div class="bet-tooltip__value">44.13$</div>
-                  </div>
-                </div>
-                <div class="bet-tooltip__icon">
-                  <img class="img" src="./img/icon/info.svg">
-                </div>
-              </div>
-              <div class="fairness js-bet-multiply">
-                <div class="fairness__alert">Check fairness</div>
-                <div class="fairness__icon">
-                  <img class="img" src="./img/icon/fairness.svg">
-                </div>
-              </div>
-            </div>
-          </div>`
-
-  return html
-}
-
-
-App.prototype.htmlBet = function(data) {
-  const self = this
-  let html = '';
-
-  html += `<div class="bet-item bet-item--custom bet-item--${data.Status.toLowerCase()}">
-              <div class="bet-item__cell">
-                <div class="bet-item__date">
-                  <span>${self.getTime(data.Start, false)}</span>
-                </div>
-              </div>
-              <div class="bet-item__cell">
-                <div class="bet-item__value">
-                  <span>${data.Stake}</span>
-                  <span>${data.Symbol || data.Currency}</span>
-                </div>
-              </div>
-              <div class="bet-item__cell">
-                <div class="bet-item__multiply" style="background-color: ${data.Color}">
-                  <span>${data.Odds}</span>
-                  <span>x</span>
-                </div>
-              </div>
-              <div class="bet-item__cell">`
-                if(data.CashOut) {
-                  html += `<div class="bet-item__cash">
-                            <span>${data.CashOut || '-'}</span>
-                            <span>${data.Symbol || data.Currency}</span>
-                          </div>`
-                }
-                else {
-                  html += `-`
-                }
-  html += `</div>
-              <div class="bet-item__cell">
-                <div class="fairness js-bet-multiply">
-                  <div class="fairness__alert">Check fairness</div>
-                    <div class="fairness__icon">
-                      <img src="./img/icon/fairness.svg" class="img">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>`
-
-  return html
-}
-
-App.prototype.addBets = function(data) {
-  const self = this
-  let html = '';
-
-  $.each(data, function (index, item) {
-    html += self.htmlBet(item)
-  })
-
-  $('.js-bet-table-my-bets').prepend(html)
 }
 
 App.prototype.changeBets = function() {
@@ -449,53 +636,6 @@ App.prototype.changeBets = function() {
   })
 
   $('.js-bet-table-my-bets').html(html)
-}
-
-App.prototype.htmlStake = function(data) {
-    let html = ``;
-
-    html += `<div class="bet-item bet-item--${data.Status.toLowerCase()} js-bet-item" data-id="${data.StakeId}">
-                <div class="bet-item__cell">
-                  <div class="bet-item__logo">`
-                    if(data.Avatar) {
-                      html += `<img class="img" src="${data.Avatar}">`
-                    }
-         html += `</div>
-                </div>
-                <div class="bet-item__cell">
-                  <div class="bet-item__name">${data.Username}</div>
-                </div>
-                <div class="bet-item__cell">
-                  <div class="bet-item__value">
-                    <span>${data.Stake}</span>
-                    <span>${data.Symbol || data.Currency}</span>
-                  </div>
-                </div>
-                <div class="bet-item__cell">`
-                  if(data.Odds) {
-                    html += `<div class="bet-item__multiply" style="background-color: ${data.Color}">
-                               <span>${data.Odds}</span>
-                               <span>x</span>
-                             </div>`
-                  }
-                  else {
-                    html += `-`
-                  }
-       html += `</div>
-                <div class="bet-item__cell">`
-                  if(data.CashOut) {
-                    html += `<div class="bet-item__cash">
-                                <span>${data.CashOut || '-'}</span>
-                                <span>${data.Symbol || data.Currency}</span>
-                             </div>`
-                  }
-                  else {
-                    html += `-`
-                  }
-       html += `</div>
-            </div>`
-
-    return html;
 }
 
 App.prototype.changePreviousStakes = function() {
@@ -523,40 +663,6 @@ App.prototype.changeStakes = function() {
   $('.total-bets-value').html(this.stakes.length)
 }
 
-App.prototype.addStake = function(data) {
-  const self = this
-  let html = ``
-
-  $.each(data, function(index, item) {
-    html += self.htmlStake(item)
-  })
-
-  $('.js-bet-table-stakes').prepend(html)
-
-  if ($('.previous-table--active').length === 0) {
-    $('.total-bets-value').html($('.js-bet-table-stakes .js-bet-item').length)
-  }
-}
-
-App.prototype.removeStake = function() {
-  $('.js-bet-table-stakes').html('');
-  $('.total-bets-value').html(0)
-}
-
-App.prototype.setStakeStatus = function(data) {
-
-  $.each(data, function(index, item) {
-    $('.js-bet-table-stakes').find(`.js-bet-item[data-id="${item.StakeId}"]`).addClass('bet-item--won')
-  })
-}
-
-App.prototype.htmlOdd = function(data) {
-  return `<div class="bet-multiply js-bet-multiply" style="background-color: ${data.Color}">
-             <span>${data.Odds}</span>
-             <span>x</span>
-          </div>`
-}
-
 App.prototype.changeOdds = function() {
   let html = ''
   const self = this
@@ -568,21 +674,6 @@ App.prototype.changeOdds = function() {
   })
 
   $('.js-bet-multiplies-list').html(html)
-}
-
-App.prototype.updateOdd = function(data) {
-  const max = 100
-  const {length} = $('.js-bet-multiplies-list .js-bet-multiply')
-
-  if (length >= max) {
-    $('.js-bet-multiplies-list').children().last().remove()
-  }
-
-  $('.js-bet-multiplies-list').prepend(
-    `<div class="bet-multiplies__item">
-        ${this.htmlOdd(data)}
-    </div>`
-  )
 }
 
 App.prototype.changeBalance = function(item) {
@@ -604,6 +695,59 @@ App.prototype.changeOption = function(el, id) {
   }
 
   localStorage.setItem('user', JSON.stringify(this.user))
+}
+
+App.prototype.addStake = function(data) {
+  const self = this
+  let html = ``
+
+  $.each(data, function(index, item) {
+    html += self.htmlStake(item)
+  })
+
+  $('.js-bet-table-stakes').prepend(html)
+
+  if ($('.previous-table--active').length === 0) {
+    $('.total-bets-value').html($('.js-bet-table-stakes .js-bet-item').length)
+  }
+}
+
+App.prototype.addBets = function(data) {
+  const self = this
+  let html = '';
+
+  $.each(data, function (index, item) {
+    html += self.htmlBet(item)
+  })
+
+  $('.js-bet-table-my-bets').prepend(html)
+}
+
+App.prototype.removeStake = function() {
+  $('.js-bet-table-stakes').html('');
+  $('.total-bets-value').html(0)
+}
+
+App.prototype.setStakeStatus = function(data) {
+
+  $.each(data, function(index, item) {
+    $('.js-bet-table-stakes').find(`.js-bet-item[data-id="${item.StakeId}"]`).addClass('bet-item--won')
+  })
+}
+
+App.prototype.updateOdd = function(data) {
+  const max = 100
+  const {length} = $('.js-bet-multiplies-list .js-bet-multiply')
+
+  if (length >= max) {
+    $('.js-bet-multiplies-list').children().last().remove()
+  }
+
+  $('.js-bet-multiplies-list').prepend(
+    `<div class="bet-multiplies__item">
+        ${this.htmlOdd(data)}
+    </div>`
+  )
 }
 
 App.prototype.resetPopupAutoplay = function(id) {
@@ -665,69 +809,6 @@ App.prototype.setBetControl = function(index) {
   }
 }
 
-App.prototype.htmlBetControl = function(item, index) {
-  const self = this
-  let html = ''
-
-  html += `
-    <div class="bet-control js-bet-control" data-index="${index}">
-      <div class="bet-control__container">
-        <a class="bet-control__remove js-bet-control-action"></a>
-        <div class="bet-control__top js-bet-control-top">
-          <div class="bet-control__tab">
-            <button class="bet-control__link bet-control__link--active js-bet-control-link" type="button">Bet</button>
-            <button class="bet-control__link js-bet-control-link" type="button">Auto</button>
-          </div>
-        </div>
-        <div class="bet-control__center js-bet-control-center">
-          <div class="bet-control__cell">
-            <div class="bet-count js-bet-count">
-              <input class="bet-count__field js-bet-count-field" type="number" step="${this.user.Step}" value="${item.value.toFixed(1)}">
-              <div class="bet-count__options">
-                <button class="bet-count__button js-bet-count-button" data-value="decrement">
-                  <img src="./img/icon/count-minus.svg" alt="" class="img">
-                </button>
-                <button class="bet-count__button js-bet-count-button" data-value="increment">
-                  <img src="./img/icon/count-plus.svg" alt="" class="img">
-                </button>
-              </div>
-            </div>
-            <div class="bet-control__currency">`
-            $.each(self.user.QuickBet.split(','), function (idx, el) {
-              html += `<button class="button button--primary bet-control__button js-bet-control-button" type="button" data-value="${el}">
-                        <span>${el}</span>
-                        <span>${self.user.Symbol || self.user.Currency}</span>
-                      </button>`
-            })
-  html += `</div>
-          </div>
-          <div class="bet-control__cell">
-            <button class="bet-control__bet js-bet-control-bet" type="button">Bet</button>
-          </div>
-        </div>
-        <div class="bet-control__bottom js-bet-control-bottom">
-          <button class="button button--primary bet-control__button bet-control__button--auto js-bet-control-button" type="button" data-value="auto">
-            <span>AUTO PLAY</span>
-          </button>
-          <div class="bet-control__auto">
-            <span class="bet-control__label">Auto Cash Out</span>
-            <div class="switch js-switch">
-              <input class="switch__input" id="auto-cash-${index}" type="checkbox" name="auto-cash" ${item.auto.out && 'checked="true"'}>
-              <label class="switch__label" for="auto-cash-${index}">
-                <span class="switch__toggle"></span>
-              </label>
-            </div>
-          </div>
-          <div class="bet-control__counts ${item.auto.out ? '' : 'bet-control__counts--disabled'} js-bet-control-counts">
-            <input class="bet-control__field js-bet-control-field" type="number" step="${this.user.Step}" value="${item.auto.value.toFixed(1)}">
-          </div>
-        </div>
-      </div>
-    </div>`
-
-  return html
-}
-
 App.prototype.actionBetControl = function() {
   if (this.bet.length !== 2) {
     this.bet.push({
@@ -768,86 +849,6 @@ App.prototype.initBetControl = function() {
   else {
     $('.js-bet-controls').removeClass('bet-controls--multiply')
   }
-}
-
-App.prototype.htmlPopupAutoplay = function(index) {
-  return `<div class="bet-autoplay js-bet-autoplay" data-index="${index}">
-           <div class="bet-autoplay__alert">
-             <div class="alert alert--danger js-alert"></div>
-           </div>
-           <div class="bet-autoplay__container">
-             <div class="bet-autoplay__text">Number of Rounds:</div>
-             <div class="bet-autoplay__wrapper">
-               <button class="button button--primary bet-autoplay__button js-bet-autoplay-button" type="button" data-value="10">10</button>
-               <button class="button button--primary bet-autoplay__button js-bet-autoplay-button" type="button" data-value="20">20</button>
-               <button class="button button--primary bet-autoplay__button js-bet-autoplay-button" type="button" data-value="50">50</button>
-               <button class="button button--primary bet-autoplay__button js-bet-autoplay-button" type="button" data-value="100">100</button>
-             </div>
-           </div>
-           <div class="bet-autoplay__container bet-autoplay__container--custom">
-             <div class="switch js-switch">
-               <input class="switch__input" id="decreases" type="checkbox" name="decreases" ${this.bet[index].auto.options.decreases && 'checked="true"'}>
-               <label class="switch__label" for="decreases">
-                 <span class="switch__toggle"></span>
-               </label>
-             </div>
-             <span>Stop if cash decreases by</span>
-             <div class="bet-count ${this.bet[index].auto.options.decreases ? '' : 'bet-count--disabled'} js-bet-count" id="bet-count-decreases" data-value="decreases">
-               <input class="bet-count__field js-bet-count-field" type="number" step="${this.user.Step}" value="${this.bet[index].auto.options.decreases ? this.bet[index].auto.options.decreases.toFixed(1) : (0).toFixed(1)}">
-               <div class="bet-count__options">
-                 <button class="bet-count__button js-bet-count-button" data-value="decrement"">
-                   <img src="./img/icon/count-minus.svg" alt="" class="img">
-                 </button>
-                 <button class="bet-count__button js-bet-count-button" data-value="increment">
-                    <img src="./img/icon/count-plus.svg" alt="" class="img">
-                 </button>
-               </div>
-             </div>
-             <span>${this.user.Symbol || this.user.Currency}</span>
-           </div>
-           <div class="bet-autoplay__container bet-autoplay__container--custom">
-             <div class="switch js-switch">
-               <input class="switch__input" id="increases" type="checkbox" name="increases" ${this.bet[index].auto.options.increases && 'checked="true"'}>
-               <label class="switch__label" for="increases">
-                 <span class="switch__toggle"></span>
-               </label>
-              </div>
-             <span>Stop if cash increases by</span>
-             <div class="bet-count ${this.bet[index].auto.options.increases ? '' : 'bet-count--disabled'} js-bet-count" id="bet-count-increases" data-value="increases">
-               <input class="bet-count__field js-bet-count-field" type="number" step="${this.user.Step}" value="${this.bet[index].auto.options.increases ? this.bet[index].auto.options.increases.toFixed(1) : (0).toFixed(1)}">
-               <div class="bet-count__options">
-                 <button class="bet-count__button js-bet-count-button" data-value="decrement">
-                    <img src="./img/icon/count-minus.svg" alt="" class="img">
-                 </button>
-                 <button class="bet-count__button js-bet-count-button" data-value="increment">
-                    <img src="./img/icon/count-plus.svg" alt="" class="img">
-                 </button>
-               </div>
-             </div>
-             <span>${this.user.Symbol || this.user.Currency}</span>
-           </div>
-           <div class="bet-autoplay__container bet-autoplay__container--custom">
-             <div class="switch js-switch">
-               <input class="switch__input" id="exceeds" type="checkbox" name="exceeds" ${this.bet[index].auto.options.exceeds && 'checked="true"'}>
-               <label class="switch__label" for="exceeds">
-                 <span class="switch__toggle"></span>
-               </label>
-             </div>
-             <span>Stop if single with exceeds</span>
-             <div class="bet-count ${this.bet[index].auto.options.exceeds ? '' : 'bet-count--disabled' } js-bet-count" id="bet-count-exceeds" data-value="exceeds">
-               <input class="bet-count__field js-bet-count-field" type="number" step="${this.user.Step}" value="${this.bet[index].auto.options.exceeds ? this.bet[index].auto.options.exceeds.toFixed(1) : (0).toFixed(1)}">
-               <div class="bet-count__options">
-                 <button class="bet-count__button js-bet-count-button" data-value="decrement">
-                   <img src="./img/icon/count-minus.svg" alt="" class="img">
-                 </button>
-                 <button class="bet-count__button js-bet-count-button" data-value="increment">
-                    <img src="./img/icon/count-plus.svg" alt="" class="img">
-                 </button>
-               </div>
-             </div>
-             <span>${this.user.Symbol || this.user.Currency}</span>
-           </div>
-        </div>`
 }
 
 App.prototype.initPopupAutoplay = function(index) {
@@ -934,7 +935,6 @@ setInterval(function() {
   )
 }, 2000);
 
-
 setInterval(function() {
   app.setStakeStatus (
     [
@@ -977,7 +977,6 @@ setInterval(function() {
   // app.removeStake()
 }, 4000);
 
-
 setInterval(function() {
   app.updateOdd(
     {
@@ -1009,7 +1008,6 @@ $('.js-previous-hand').on('click', function() {
 $('.js-provably-fair').on('click', function() {
   $('.js-popup-provably-fair').addClass('popup--active')
 })
-
 
 $('.js-button-chat').on('click', function(){
   $('.js-page').toggleClass('page--wide')
@@ -1064,6 +1062,18 @@ $('.js-navigation-tab-item').on('click', function() {
 
   parent.children('.js-navigation-body').removeClass('navigation-body--active')
   parent.children(`.js-navigation-body[data-tab="${value}"]`).addClass('navigation-body--active')
+})
+
+$('.js-navigation-sort-item').on('click', function() {
+  // const parent = $(this).closest('.js-navigation')
+  const navigation = $(this).closest('.js-navigation-sort')
+  // const value = $(this).attr('data-href')
+
+  navigation.find('.js-navigation-sort-item').removeClass('navigation-sort__item--active')
+  $(this).addClass('navigation-sort__item--active')
+
+  // parent.children('.js-navigation-body').removeClass('navigation-body--active')
+  // parent.children(`.js-navigation-body[data-tab="${value}"]`).addClass('navigation-body--active')
 })
 
 $('.js-bet-multiplies-button').on('click', function() {

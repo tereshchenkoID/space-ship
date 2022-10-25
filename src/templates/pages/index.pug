@@ -23,6 +23,7 @@ block content
                     +previous-hand(type="button").button.button--outline.js-previous-hand
                   .bet-table__row
                     .bet-table__cell User
+                    .bet-table__cell
                     .bet-table__cell Bet
                     .bet-table__cell Mult.
                     .bet-table__cell Cash out
@@ -30,7 +31,7 @@ block content
                 +previous-table.js-previous-table
 
             .navigation-body(data-tab="my_bets").js-navigation-body
-              .bet-table
+              .bet-table.bet-table--custom
                 .bet-table__header
                   .bet-table__row
                     .bet-table__cell Date
@@ -45,12 +46,12 @@ block content
                     +navigation-tab(['Huge Wins', 'Biggest Wins', 'Multipliers']).js-navigation-tab
                     .navigation-body(data-tab="huge_wins").navigation-body--active.js-navigation-body
                       .navigation.js-navigation
-                        +navigation-tab(['Day', 'Month', 'Year']).js-navigation-tab.navigation-tab--disabled
+                        +navigation-sort(['Day', 'Month', 'Year']).js-navigation-sort
                         .navigation-body(data-tab="day").navigation-body--active.js-navigation-body.js-huge-wins-list
                     .navigation-body(data-tab="biggest_wins").js-navigation-body
                       .navigation.js-navigation
-                        +navigation-tab(['Day', 'Month', 'Year']).js-navigation-tab.navigation-tab--disabled
-                        .navigation-body(data-tab="day").navigation-body--active.js-navigation-body
+                        +navigation-sort(['Day', 'Month', 'Year']).js-navigation-sort
+                        .navigation-body.navigation-body--active.js-navigation-body
                           .huge-win
                             .huge-win__cell
                               .huge-win__logo
@@ -75,15 +76,16 @@ block content
                             .huge-win__cell
                               +bet-tooltip
                               +fairness.js-bet-multiply
+                              +copy.js-bet-copy
 
                     .navigation-body(data-tab="multipliers").js-navigation-body
                       .navigation.js-navigation
-                        +navigation-tab(['Day', 'Month', 'Year']).js-navigation-tab.navigation-tab--disabled
+                        +navigation-sort(['Day', 'Month', 'Year']).js-navigation-sort
                         .bet-item.bet-item--custom.bet-item--transparent
                           .bet-item__cell Date
                           .bet-item__cell Mult.
                           .bet-item__cell Fairness
-                        .navigation-body(data-tab="day").navigation-body--active.js-navigation-body
+                        .navigation-body.navigation-body--active.js-navigation-body
                           .bet-item.bet-item--custom
                             .bet-item__cell
                               .bet-item__date
@@ -94,6 +96,7 @@ block content
                                 span x
                             .bet-item__cell
                               +fairness.js-bet-multiply
+                              +copy.js-bet-copy
         .aside__footer
           .aside__wrapper
             p This game is
@@ -106,68 +109,7 @@ block content
         +bet-multiplies.js-bet-multiplies
         +game-window.js-game-window
         .bet-controls.js-bet-controls
-      .chat.js-chat
-        .chat__table.js-chat-table
-          .chat__header
-            p.chat__count
-              span Online:
-              span 10
-            a.chat__close.js-chat-close
-              img(src="./img/icon/close.svg").img
-          .chat__container
-            .chat__list
-              - var n = 1;
-              while n < 5
-                .bet-chat.bet-chat--sm.js-bet-chat
-                  .bet-chat__logo
-                    img(src=`https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-${n++}.png?v=4.1.1`).img
-                  .bet-chat__description
-                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dignissimos error, ipsa laudantium numquam perferendis
-
-              - var n = 0;
-              while n < 10
-                .bet-chat.bet-chat--lg.js-bet-chat
-                  .bet-chat__header
-                    .bet-chat__avatar
-                      img(src="https://aviator-next.spribegaming.com/assets/static/avatars/v2/av-bot.png?v=1.4.1.2").img
-                    a.bet-chat__nickname captain
-                    .bet-chat__block bot
-                    p.bet-chat__text Wow!
-                  .bet-chat__body
-                    .bet-chat__head
-                      .bet-chat__info
-                        .bet-chat__logo
-                          img(src="https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-2.png?v=4.1.1").img
-                        p.bet-chat__nickname d*****25
-                      +fairness.js-bet-multiply
-                    .bet-chat__table
-                      .bet-chat__cell
-                        .bet-chat__label Cashed out:
-                        .bet-chat__value
-                          .bet-multiply.js-bet-multiply(style='background-color: #6b07d2')
-                            span 1.8
-                            span x
-                      .bet-chat__cell
-                        .bet-chat__label Win:
-                        .bet-chat__value
-                          span= `52.${n++}`
-                          span $
-                      .bet-chat__cell
-                        .bet-chat__label Round:
-                        .bet-chat__value
-                          span 52123.41
-                          span x
-                      .bet-chat__cell
-                        .bet-chat__label Round:
-                        .bet-chat__value
-                          span 0.7
-                          span $
-        .chat__footer
-          textarea(minlength="1" maxlength="160" placeholder="Replay").chat__textarea
-          button(type="button").chat__send
-            img(src="./img/icon/enter.svg").img
-          .chat__text-count 20
-
+      +chat.js-chat
       .popup.js-popup.js-popup-rules
         .popup__content
           .popup__wrapper

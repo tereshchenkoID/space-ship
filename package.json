@@ -1,5 +1,5 @@
 {
-  "name": "s-bet",
+  "name": "space-ship",
   "version": "0.0.1",
   "scripts": {
     "ghpages": "git subtree push --prefix build origin gh-pages",

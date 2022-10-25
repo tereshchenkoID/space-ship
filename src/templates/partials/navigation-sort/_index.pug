@@ -1,0 +1,4 @@
+mixin navigation-sort(items)
+  .navigation-sort&attributes(attributes)
+    each item, index in items
+      a(data-href=item.replace(' ', '_').toLowerCase()).navigation-sort__item(class= index === 0 && 'navigation-sort__item--active').js-navigation-sort-item= item

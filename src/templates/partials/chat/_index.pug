@@ -1,0 +1,63 @@
+mixin chat
+  .chat&attributes(attributes)
+    .chat__table.js-chat-table
+      .chat__header
+        p.chat__count
+          span Online:
+          span 10
+        p.chat__title Chat
+        a.chat__close.js-chat-close
+          img(src="./img/icon/close.svg").img
+      .chat__container
+        .chat__list
+          - var n = 1;
+          while n < 5
+            .chat-item.chat-item--sm.js-chat-item
+              .chat-item__logo
+                img(src=`https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-${n++}.png?v=4.1.1`).img
+              .chat-item__description
+                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dignissimos error, ipsa laudantium numquam perferendis
+
+          - var n = 0;
+          while n < 10
+            .chat-item.chat-item--lg.js-chat-item
+              .chat-item__header
+                .chat-item__avatar
+                  img(src="https://aviator-next.spribegaming.com/assets/static/avatars/v2/av-bot.png?v=1.4.1.2").img
+                a.chat-item__nickname captain
+                .chat-item__block bot
+                p.chat-item__text Wow!
+              .chat-item__body
+                .chat-item__head
+                  .chat-item__info
+                    .chat-item__logo
+                      img(src="https://aviator-demo.spribegaming.com/assets/static/avatars/v2/av-2.png?v=4.1.1").img
+                    p.chat-item__nickname d*****25
+                  +fairness.js-bet-multiply
+                .chat-item__table
+                  .chat-item__cell
+                    .chat-item__label Cashed out:
+                    .chat-item__value
+                      .bet-multiply.js-bet-multiply(style='background-color: #6b07d2')
+                        span 1.8
+                        span x
+                  .chat-item__cell
+                    .chat-item__label Win:
+                    .chat-item__value
+                      span= `52.${n++}`
+                      span $
+                  .chat-item__cell
+                    .chat-item__label Round:
+                    .chat-item__value
+                      span 52123.41
+                      span x
+                  .chat-item__cell
+                    .chat-item__label Round:
+                    .chat-item__value
+                      span 0.7
+                      span $
+    .chat__footer
+      textarea(minlength="1" maxlength="160" placeholder="Replay").chat__textarea
+      button(type="button").chat__send
+        img(src="./img/icon/enter.svg").img
+      .chat__text-count 20
