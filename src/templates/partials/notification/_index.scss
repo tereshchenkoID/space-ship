@@ -1,0 +1,63 @@
+.notification {
+  display: none;
+  position: fixed;
+  top: 30px;
+  right: 0;
+  left: 0;
+  z-index: 12;
+
+  &__container {
+    @include make-spacer('mx', auto);
+    @include make-spacer('p', 2);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 30px;
+    align-items: center;
+    column-gap: 10px;
+    border: 2px solid var(--color-success);
+    background-color: #427F00;
+    border-radius: var(--default-border-radius);
+    width: 100%;
+    max-width: 400px;
+    color: var(--color-white);
+    text-align: center;
+  }
+
+  &__prize {
+    @include make-spacer('p', 1);
+
+    background-color: var(--color-green);
+    border-radius: var(--default-border-radius);
+  }
+
+  &__value {
+    font-size: 16px;
+    font-weight: var(--typography-bold);
+
+    span {
+
+      &:nth-child(2) {
+        @include make-spacer('ml', half);
+
+        font-size: 12px;
+      }
+    }
+  }
+
+  &__close {
+    @include make-spacer('mx', auto);
+    @include size(20px);
+
+    display: block;
+  }
+
+  &--sm {
+
+    .notification {
+
+      &__container {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

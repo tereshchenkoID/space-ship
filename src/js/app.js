@@ -1078,6 +1078,15 @@ $('.js-button-help').on('click', function() {
   $('.js-popup-rules').toggleClass('popup--active')
 })
 
+
+$('body').on('click', '.js-bet-copy', function() {
+  $('.js-notification-copy').show()
+
+  setInterval(function() {
+    $('.js-notification-copy').hide()
+  }, 2000);
+})
+
 $('body').on('click', '.js-bet-multiply', function() {
   app.getOddInfo($(this).attr('data-round'))
   $('.js-popup-bet').toggleClass('popup--active')
