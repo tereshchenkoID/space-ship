@@ -1,0 +1,20 @@
+.avatar-list {
+  display: grid;
+  grid-template-columns: repeat(2, 100px);
+  grid-gap: 10px;
+  justify-content: center;
+  overflow-x: hidden;
+
+  @include media-breakpoint-up(sm) {
+    grid-gap: 20px;
+    grid-template-columns: repeat(3, 120px);
+  }
+
+  @include media-breakpoint-up(md) {
+    grid-template-columns: repeat(4, 120px);
+  }
+
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(5, 120px);
+  }
+}

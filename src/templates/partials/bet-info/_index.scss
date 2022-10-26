@@ -29,7 +29,7 @@
     @include make-spacer('py', 2);
     @include make-spacer('px', 4);
 
-    border-radius: 5px;
+    border-radius: var(--default-border-radius);
     border: solid 1px rgba(255, 255, 255, 0.1);
     width: 100%;
     overflow: hidden;

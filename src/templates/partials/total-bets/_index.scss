@@ -1,0 +1,17 @@
+.total-bets {
+  @include flex($align-items: center);
+
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  span {
+    font-family: var(--font-family-alt);
+
+    &:last-child {
+      @include make-spacer('ml', 1);
+
+      min-width: 40px;
+      color: var(--color-green);
+    }
+  }
+}

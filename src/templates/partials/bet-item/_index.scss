@@ -7,7 +7,7 @@
   column-gap: 5px;
   background: linear-gradient(85deg, var(--color-black), #0f1214);
   border: 2px solid var(--color-black);
-  border-radius: 5px;
+  border-radius: var(--default-border-radius);
   padding-left: 1px;
   height: 34px;
   font-size: 14px;
@@ -37,7 +37,7 @@
 
   &__value,
   &__multiply {
-    border-radius: 5px;
+    border-radius: var(--default-border-radius);
     text-align: center;
   }
 

@@ -1,0 +1,31 @@
+.how-play {
+
+  &__iframe {
+    @include size(100%, 210px);
+
+    display: block;
+
+    @include media-breakpoint-up(md) {
+      height: 280px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      height: 450px;
+    }
+  }
+
+  &__id {
+    font-size: 18px;
+    font-weight: var(--typography-bold);
+  }
+
+  &__step {
+    @include make-spacer('p', 2);
+
+    display: grid;
+    grid-template-columns: 20px 40px 1fr;
+    align-items: center;
+    column-gap: 10px;
+    color: #5f3816;
+  }
+}

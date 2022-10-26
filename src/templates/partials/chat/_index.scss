@@ -21,7 +21,7 @@
     @include make-spacer('py', 1);
     @include flex(space-between, center);
 
-    border-bottom: 1px solid #2A2B2E;
+    border-bottom: 1px solid var(--color-border);
     height: 40px;
   }
 
@@ -29,7 +29,7 @@
     @include flex(space-between, center);
 
     position: relative;
-    border: 1px solid #2A2B2E;
+    border: 1px solid var(--color-border);
     background-color: var(--color-black);
     height: 100px;
     color: #5e6269;
@@ -85,7 +85,7 @@
 
     &::-webkit-scrollbar-thumb {
       border: 2px solid transparent;
-      border-radius: 5px;
+      border-radius: var(--default-border-radius);
       background-clip: content-box;
       background-color: #888;
     }
@@ -100,8 +100,8 @@
     @include flex($direction: column);
 
     position: relative;
-    border: 1px solid #2A2B2E;
-    border-radius: 5px 5px 0 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--default-border-radius) var(--default-border-radius) 0 0;
     background-image: url('../img/grey-texture-bg.png');
     flex-grow: 1;
     overflow: hidden;
@@ -129,7 +129,7 @@
 
     &::-webkit-scrollbar-thumb {
       border: 2px solid transparent;
-      border-radius: 5px;
+      border-radius: var(--default-border-radius);
       background-clip: content-box;
       background-color: #888;
     }

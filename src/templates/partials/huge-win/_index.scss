@@ -5,7 +5,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-  border-radius: 5px;
+  border-radius: var(--default-border-radius);
   background-image: linear-gradient(82deg, var(--color-black), #0f1214);
   border: solid 1px var(--color-black);
   margin-bottom: 3px;
@@ -36,7 +36,7 @@
 
   &__multiply,
   &__value {
-    border-radius: 5px;
+    border-radius: var(--default-border-radius);
     text-align: center;
 
     span {

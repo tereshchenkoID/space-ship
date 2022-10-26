@@ -1,0 +1,32 @@
+mixin probably-fair
+  .probably-fair&attributes(attributes)
+    .probably-fair__left
+      img(src="https://aviator-demo.spribegaming.com/pf-mi.a232388afb375a25.png").img.probably-fair__img
+      .probably-fair__titles
+        h4.probably-fair__title Probably Fair
+        h3.probably-fair__title 100% FAIR GAME
+    .probably-fair__right
+      .probably-fair__container
+        p.probably-fair__text "SpaceShip" is based on cryptographic technology called "Provably Fair". This technology guarantees 100% fairness of game result. With this technology, it's impossible for any third party to interfere in game process.
+      h3.probably-fair__title How it Work
+      h4.probably-fair__title Quick explanation:
+      p.probably-fair__text Result of each round (Game's "Fly away" multiplier ) is not generated on our servers. It's generated with help of round players and is fully transparent. This way, it's impossible for anyone to manipulate game output. Also, anyone can check and confirm game fairness
+      h4.probably-fair__title More information:
+      p.probably-fair__text Round result is generated from four independent participants of the round: game operator and first 3 betters of the round. Operator is generating server seed (random 16 symbols). Hashed version of this server seed is available publicly before round starts
+      p.probably-fair__text When round starts, game merges server seed with three client seeds. From merged symbols is generated SHA512 hash, and from this hash - game result.
+      img(src="https://aviator-demo.spribegaming.com/pf-scheme.e261353b3374f95c.png").img.probably-fair__img.img.probably-fair__img--md
+      .probably-fair__wrapper
+        .probably-fair__cell
+          img(src="https://aviator-demo.spribegaming.com/check-pf-1.8224ea20318509a7.png").img.probably-fair__img.probably-fair__img--sm
+        .probably-fair__cell
+          p.probably-fair__text You can check fairness of each round from game history, by clicking on green icon.
+          p.probably-fair__text In opened window, you will see server seed, 3 pair of players seeds, combined hash and round result.
+      .probably-fair__wrapper
+        .probably-fair__cell
+          img(src="https://aviator-demo.spribegaming.com/check-pf-2.6b2957791c2c5547.png").img.probably-fair__img.probably-fair__img--sm
+        .probably-fair__cell
+          p.probably-fair__text Hashed version of next rounds server seed is available publicly in settings window (In user menu, check "Provably Fair Settings" and then "Next server seed SHA256").
+          p.probably-fair__text You can also change your client seed here.
+          p.probably-fair__text If you want to participate in round result generation, make sure you are between first 3 players who make bet in that round.
+      p.probably-fair__text Correctness of hash can be checked in any online calculator, for example
+        a(href="https://www.miniwebtool.com/sha512-hash-generator/").probably-fair__link https://www.miniwebtool.com/sha512-hash-generator

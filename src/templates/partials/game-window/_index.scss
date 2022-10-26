@@ -1,10 +1,11 @@
 .game-window {
   @include make-spacer('mb', 2);
 
-  border-radius: 5px;
+  border-radius: var(--default-border-radius);
   overflow: hidden;
   background-color: grey;
   flex-grow: 1;
   height: calc(40vh - 38px)!important;
   min-height: 200px;
+  border: 1px solid var(--color-border);
 }

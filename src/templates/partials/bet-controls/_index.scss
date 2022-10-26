@@ -1,0 +1,67 @@
+.bet-controls {
+  @include flex(center, center, column);
+
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+  }
+
+  .bet-control {
+    @include make-spacer('mb', 2);
+    @include make-spacer('mr', 2, md);
+    @include make-spacer('mb', 0, md);
+
+    &:nth-child(1) {
+
+      .bet-control {
+
+        &__remove {
+          background: #29a909 url('../img/icon/plus.svg') no-repeat center center
+        }
+      }
+    }
+
+    &:nth-child(2) {
+
+      .bet-control {
+
+        &__remove {
+          opacity: 0.6;
+          background: url('../img/icon/minus.svg') no-repeat;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &:last-child {
+      @include make-spacer('m', 0);
+    }
+  }
+
+  &--multiply {
+
+    .bet-control {
+
+      &:nth-child(1) {
+
+        .bet-control {
+
+          &__remove {
+            display: none;
+          }
+        }
+      }
+
+      &__remove {
+        opacity: 0.6;
+        background: url('../img/icon/minus.svg') no-repeat;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

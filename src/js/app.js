@@ -4,8 +4,6 @@ const colors = ['#6b07d2', '#005d91', '#900087']
 const r_color = () => {
   return Math.floor(Math.random() * colors.length)
 }
-
-
 /* End Remove for test */
 
 function Count (min, max) {
@@ -84,16 +82,16 @@ App.prototype.htmlBet = function(data) {
                 </div>
               </div>
               <div class="bet-item__cell">`
-  if(data.CashOut) {
-    html += `<div class="bet-item__cash">
-                            <span>${data.CashOut || '-'}</span>
-                            <span>${data.Symbol || data.Currency}</span>
-                          </div>`
-  }
-  else {
-    html += `-`
-  }
-  html += `</div>
+        if(data.CashOut) {
+            html += `<div class="bet-item__cash">
+                        <span>${data.CashOut || '-'}</span>
+                        <span>${data.Symbol || data.Currency}</span>
+                    </div>`
+        }
+        else {
+            html += `-`
+        }
+      html += `</div>
             </div>`
 
   return html
@@ -104,11 +102,9 @@ App.prototype.htmlStake = function(data) {
 
   html += `<div class="bet-item bet-item--${data.Status.toLowerCase()} js-bet-item" data-id="${data.StakeId}">
                 <div class="bet-item__cell">
-                  <div class="bet-item__logo">`
-  if(data.Avatar) {
-    html += `<img class="img" src="${data.Avatar}">`
-  }
-  html += `</div>
+                  <div class="bet-item__logo">
+                    ${data.Avatar ? `<img class="img" src="${data.Avatar}" alt="">` : ``}
+                  </div>
                 </div>
                 <div class="bet-item__cell">
                   <div class="bet-item__name">${data.Username}</div>
@@ -120,34 +116,34 @@ App.prototype.htmlStake = function(data) {
                   </div>
                 </div>
                 <div class="bet-item__cell">`
-  if(data.Odds) {
-    html += `<div class="bet-item__multiply" style="background-color: ${data.Color}">
+                if(data.Odds) {
+                    html += `<div class="bet-item__multiply" style="background-color: ${data.Color}" data-round="${data.Round}">
                                <span>${data.Odds}</span>
                                <span>x</span>
                              </div>`
-  }
-  else {
-    html += `-`
-  }
-  html += `</div>
+                }
+                else {
+                  html += `-`
+                }
+       html += `</div>
                 <div class="bet-item__cell">`
-  if(data.CashOut) {
-    html += `<div class="bet-item__cash">
+                if(data.CashOut) {
+                    html += `<div class="bet-item__cash">
                                 <span>${data.CashOut || '-'}</span>
                                 <span>${data.Symbol || data.Currency}</span>
                              </div>`
-  }
-  else {
-    html += `-`
-  }
-  html += `</div>
-            </div>`
+                }
+                else {
+                  html += `-`
+                }
+       html += `</div>
+           </div>`
 
   return html;
 }
 
 App.prototype.htmlOdd = function(data) {
-  return `<div class="bet-multiply js-bet-multiply" style="background-color: ${data.Color}">
+  return `<div class="bet-multiply js-bet-multiply" style="background-color: ${data.Color}" data-round="${data.Round}">
              <span>${data.Odds}</span>
              <span>x</span>
           </div>`
@@ -264,9 +260,9 @@ App.prototype.htmlBetControl = function(item, index) {
             <div class="bet-control__currency">`
   $.each(self.user.QuickBet.split(','), function (idx, el) {
     html += `<button class="button button--primary bet-control__button js-bet-control-button" type="button" data-value="${el}">
-                        <span>${el}</span>
-                        <span>${self.user.Symbol || self.user.Currency}</span>
-                      </button>`
+                <span>${el}</span>
+                <span>${self.user.Symbol || self.user.Currency}</span>
+             </button>`
   })
   html += `</div>
           </div>
@@ -382,11 +378,9 @@ App.prototype.htmlHugeWin = function(data) {
 
   html += `<div class="huge-win">
             <div class="huge-win__cell">
-              <div class="huge-win__logo">`
-  if(data.Avatar) {
-    html += `<img class="img" src="${data.Avatar}">`
-  }
-  html += `</div>
+              <div class="huge-win__logo">
+                ${data.Avatar ? `<img class="img" src="${data.Avatar}" alt="">` : ``}
+              </div>
               <div class="huge-win__nickname">${data.Username}</div>
             </div>
             <div class="huge-win__cell">
@@ -425,7 +419,7 @@ App.prototype.htmlHugeWin = function(data) {
                   <img class="img" src="./img/icon/info.svg">
                 </div>
               </div>
-              <div class="fairness js-bet-multiply">
+              <div class="fairness js-bet-multiply" data-round="${data.Round}">
                 <div class="fairness__alert">Check fairness</div>
                 <div class="fairness__icon">
                   <img class="img" src="./img/icon/fairness.svg">
@@ -574,11 +568,11 @@ App.prototype.getBets = function() {
   });
 }
 
-App.prototype.getOddInfo = function() {
+App.prototype.getOddInfo = function(round) {
   const self = this
 
   $.ajax({
-    url: './json/odd.json',
+    url: `./json/odd.json?round=${round}`,
     method: "GET",
     dataType: "json",
     success (data) {
@@ -1085,7 +1079,7 @@ $('.js-button-help').on('click', function() {
 })
 
 $('body').on('click', '.js-bet-multiply', function() {
-  app.getOddInfo()
+  app.getOddInfo($(this).attr('data-round'))
   $('.js-popup-bet').toggleClass('popup--active')
 })
 

@@ -1,5 +1,8 @@
 .previous-hand {
-  border-radius: 5px!important;
+  @include make-spacer('px', 1);
+
+  border-radius: var(--default-border-radius)!important;
+  white-space: nowrap;
 
   span {
     color: var(--color-white);
@@ -8,6 +11,14 @@
     &:nth-child(1) {
       @include size(16px);
       @include make-spacer('mr', 1);
+
+      @include media-breakpoint-up(lg) {
+        display: none;
+      }
+
+      @include media-breakpoint-up(xl) {
+        display: block;
+      }
     }
   }
 

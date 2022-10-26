@@ -1,11 +1,10 @@
 .bet-multiplies {
-  @include make-spacer('mb', 2);
-
   position: relative;
+  margin-bottom: 8px;
   z-index: 1;
 
   &--active {
-    border-radius: 5px;
+    border-radius: var(--default-border-radius);
     background-color: #262830;
 
     .bet-multiplies {
@@ -21,7 +20,7 @@
       &__header {
         @include flex($align-items: center);
 
-        border-radius: 5px 5px 0 0;
+        border-radius: var(--default-border-radius) var(--default-border-radius) 0 0;
       }
 
       &__body {
@@ -31,8 +30,20 @@
         top: 100%;
         left: 0;
         right: 0;
-        border-radius: 0 0 5px 5px;
+        border-radius: 0 0 var(--default-border-radius) var(--default-border-radius);
         background-color: #262830;
+      }
+
+      &__button {
+        border-color: #e90000;
+        background-color: #600;
+
+        img {
+
+          &:last-child {
+            transform: rotateZ(180deg);
+          }
+        }
       }
     }
   }
@@ -80,12 +91,17 @@
     top: 10px;
     right: 10px;
     flex-shrink: 0;
-    border-radius: 5px;
+    border-radius: var(--default-border-radius);
     border: solid 1px #6f6f6f;
     background-color: #1e1e1e;
 
     img {
       margin: 0 2px;
+      transition: var(--default-transition);
+    }
+
+    &:hover {
+      border-color: #e90000;
     }
   }
 }

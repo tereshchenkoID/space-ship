@@ -1,8 +1,8 @@
 .bet-table {
   @include flex($direction: column);
 
-  border: 1px solid #2A2B2E;
-  border-radius: 5px 5px 0 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--default-border-radius) var(--default-border-radius) 0 0;
   background-image: url('../img/grey-texture-bg.png');
   height: 100%;
   position: relative;
@@ -31,7 +31,7 @@
 
     &::-webkit-scrollbar-thumb {
       border: 2px solid transparent;
-      border-radius: 5px;
+      border-radius: var(--default-border-radius);
       background-clip: content-box;
       background-color: #888;
     }
@@ -49,7 +49,7 @@
 
     flex-shrink: 0;
     min-height: 50px;
-    border-bottom: 1px solid #2A2B2E;
+    border-bottom: 1px solid var(--color-border);
 
     .bet-table {
 

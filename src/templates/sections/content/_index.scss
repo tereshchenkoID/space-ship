@@ -1,0 +1,12 @@
+.content {
+  @include flex($justify-content: space-between, $direction: column);
+
+  position: relative;
+  padding: 60px 10px 10px;
+  overflow: hidden;
+  grid-area: b;
+
+  @include media-breakpoint-up(lg) {
+    @include make-spacer('pl', 0)
+  }
+}

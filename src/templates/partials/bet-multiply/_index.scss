@@ -5,7 +5,7 @@
 
   cursor: pointer;
   flex-shrink: 0;
-  border-radius: 5px;
+  border-radius: var(--default-border-radius);
   background-color: var(--color-dark);
   height: 22px;
   color: #d7c3eb;

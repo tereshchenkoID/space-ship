@@ -1,0 +1,51 @@
+.page {
+  display: grid;
+  align-items: stretch;
+  grid-template-areas: 'b'
+                       'a';
+  position: relative;
+  overflow: hidden;
+  max-width: var(--max-width);
+  width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    grid-template-areas: 'a b c';
+    grid-template-columns: 320px 1fr;
+    height: 100vh;
+  }
+
+  @include media-breakpoint-up(xl) {
+    grid-template-columns: 410px 1fr;
+  }
+
+  &--wide {
+
+    .chat {
+      @include make-spacer('pt', 10);
+      @include make-spacer('pt', 12, xl);
+      @include flex($direction: column);
+
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 11;
+      width: 280px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      grid-template-areas: 'a b c';
+      grid-template-columns: 320px 1fr 280px;
+
+      .chat {
+        position: relative;
+        width: 100%;
+      }
+    }
+
+    @include media-breakpoint-up(xxl) {
+      grid-template-areas: 'a b c';
+      grid-template-columns: 410px 1fr 280px;
+    }
+  }
+}

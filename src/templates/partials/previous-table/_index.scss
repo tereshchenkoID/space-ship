@@ -22,7 +22,7 @@
 
   &::-webkit-scrollbar-thumb {
     border: 2px solid transparent;
-    border-radius: 5px;
+    border-radius: var(--default-border-radius);
     background-clip: content-box;
     background-color: #888;
   }

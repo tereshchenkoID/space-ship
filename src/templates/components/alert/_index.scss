@@ -3,7 +3,7 @@
   @include make-spacer('mb', 2);
 
   display: none;
-  border-radius: 5px;
+  border-radius: var(--default-border-radius);
   color: var(--color-white);
 
   &--danger {

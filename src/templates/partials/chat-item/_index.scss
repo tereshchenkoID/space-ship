@@ -2,7 +2,7 @@
   margin-bottom: 2.5px;
   background: linear-gradient(85deg, var(--color-black), #0f1214);
   border: 2px solid var(--color-black);
-  border-radius: 5px;
+  border-radius: var(--default-border-radius);
   color: var(--color-white);
   font-size: 13px;
 
